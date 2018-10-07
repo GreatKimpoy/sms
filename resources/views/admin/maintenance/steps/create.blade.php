@@ -18,21 +18,19 @@
 @section('content-body')
 <section class="content-header">
   <div class="container-fluid">
-    <div class="box box-primary col-sm-12 mt-3">
-      <div class="box-block pt-3">
-        <div class="box-header"><strong><h4> Service Steps Form </h4><hr> </strong></div>
-          <div class="box-body">
-            <form method="post" action="{{ url('steps') }}" class="form-horizontal">
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                 @include('errors.alert')
-                @include('admin.maintenance.steps.form')
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary btn-block">SAVE</button>
-                </div>
-            </form>
-          </div>
-      </div>
-    </div>
+    <form method="post" action="{{ url('steps') }}" class="form-horizontal">
+      <input type="hidden" name="_token" value="{{ csrf_token() }}">
+        @include('errors.alert')
+        @include('admin.maintenance.steps.form')
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-block">SAVE</button>
+        </div>
+    </form>
   </div>
 </section>
 @endsection
+
+
+
+
+
