@@ -26,6 +26,76 @@
 
 
 @section('content-body')
+<div class="modal fade" id="modal-default">
+              {{ Form::open(array('url'=>'service/save','class'=>'form-horizontal', 'method'=> 'POST')) }}
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                      <h4 class="modal-title">Add Steps</h4>
+                    </div>
+                    <div class="modal-body">
+
+                      <div class="row">
+
+                        <div class="col-md-6">
+                          <label for="stepNumber">Sequence Number</label>
+                          <input type="text" 
+                          name="sequence"
+                          class="form-control"
+                          value="">
+                        </div>
+
+                        
+                        <div class="col-md-6">
+                          <label for="partNumber">Number of Minutes</label>
+                          <input type="text" 
+                          name="time"
+                          placeholder = "minutes"
+                          class="form-control"
+                          value="">
+                        </div>
+
+                         <div class="col-md-12">
+                          <label for="Description">Description</label>
+                            <textarea 
+                                    class="form-control align-center" 
+                                    placeholder="Description"
+                                    maxlength="100" 
+                                    name="description"
+                                    cols="50"
+                                    id="description"
+                                    rows="10"></textarea>
+                        </div> 
+
+                        <div class="col-md-6">
+                          <label for="Description">Service Number</label>
+                          <input type="text"
+                          name="service"
+                          placeholder="{{$service->name}}"
+                          class="form-control"
+                          value="{{$service->id}}"> 
+                        </div> 
+
+                      </div>
+
+
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                      <button type="submit" class="btn btn-success">Submit</button>
+                      {{!! form::close() !!}}
+                    </div>
+                  
+                  </div>
+                  <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+              </div>
+              <!-- /.modal -->
+
 <section class="content-header">
   <div class="container-fluid">
     <div class="row">
@@ -73,6 +143,61 @@
         </div>
       </div>
 
+    
+
+    <div class="col-md-9 pull-right">
+ 
+          <div class="box box-success">
+            <div class="box-header">
+              <h3 class="box-title">Steps Included</h3>
+              <div> <button type="button" class="btn btn-success btn-sm pull-right" data-toggle="modal" data-target="#modal-default">
+                 <i class="fa fa-plus"></i> <strong>Add Steps</strong>
+              </button>
+              </div>
+            </div>
+
+
+            <div class="box-body">
+              <table id="steps" class="table table-bordered table-striped table-hovered">
+                <thead>
+                  <tr>
+                        <th>Step Number</th>
+                        <th>Description</th>
+                         <th>Time</th>  
+                  </tr>
+                </thead>
+                <tbody>
+                              @foreach($service->steps as $step)
+                                  <tr>
+                                      <td>step
+                                        {{$step->sequence}}
+                                      </td>
+                                     
+                                      <td>
+                                          {{$step->description}}
+                                      </td>
+
+                                       <td>
+                                          {{$step->time_consumed}} minutes
+                                      </td>
+                                  </tr>
+                              @endforeach                   
+                        </tbody>
+                <tfoot>
+                  <tr>
+                        <th>Step Number</th>
+                        <th>Description</th>
+                        <th>Time</th>  
+                  </tr>
+                  </tfoot>
+              </table>
+            </div>
+          </div>
+
+      </div>
+
+    </div>
+
       <div class="col-md-9">
           
           <div class="box box-success">
@@ -110,57 +235,6 @@
 
       </div>
 
-
-    <div class="col-md-9 pull-right">
- 
-          <div class="box box-success">
-            <div class="box-header">
-              <h3 class="box-title">Steps Included</h3>
-              <div> <button type="button" class="btn btn-success btn-sm pull-right" data-toggle="modal" data-target="#modal-default">
-                 <i class="fa fa-plus"></i> <strong>Add Steps</strong>
-              </button>
-              </div>
-            </div>
-
-
-            <div class="box-body">
-              <table id="steps" class="table table-bordered table-striped table-hovered">
-                <thead>
-                  <tr>
-                        <th>Step Number</th>
-                        <th>Time</th>  
-                        <th>Description</th>  
-                  </tr>
-                </thead>
-                <tbody>
-                              @foreach($service->steps as $step)
-                                  <tr>
-                                      <td>
-                                        {{$step->sequence}}
-                                      </td>
-                                      <td>
-                                          {{$step->time_consumed}} minutes
-                                      </td>
-                                      <td>
-                                          {{$step->description}}
-                                      </td>
-                                  </tr>
-                              @endforeach                   
-                        </tbody>
-                <tfoot>
-                  <tr>
-                        <th>Step Number</th>
-                        <th>Time</th>   
-                        <th>Description</th>  
-                  </tr>
-                  </tfoot>
-              </table>
-            </div>
-          </div>
-
-      </div>
-
-    </div>
   </div>
 </section>
 @endsection

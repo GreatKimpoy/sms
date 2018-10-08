@@ -21,6 +21,7 @@ Route::resource('dashboard', 'DashboardController');
 Route::namespace('Maintenance')->group(function() {
     Route::get('service/part/{id}', 'ServiceListController@showServicePart');
     Route::post('model/save' ,'VehicleModelsController@addParts');
+    Route::post('service/save' ,'ServiceListController@addSteps');
     Route::resource('customer', 'CustomerController');
     Route::resource('technician','TechnicianController');
     Route::resource('model','VehicleModelsController');

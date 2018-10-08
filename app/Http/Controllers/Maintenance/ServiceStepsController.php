@@ -4,6 +4,11 @@ namespace App\Http\Controllers\Maintenance;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\ServiceList;
+use App\Step;
+use Response;
+use Validator;
+use DB;
 
 class ServiceStepsController extends Controller
 {
@@ -16,9 +21,13 @@ class ServiceStepsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
+        if( $request->ajax() ) {
+            $steps = Step::all();
+            return datatables($steps)->toJson();
+        }
         return view( $this->viewBasePath . '.steps.index');
 
     }
@@ -31,7 +40,10 @@ class ServiceStepsController extends Controller
     public function create()
     {
         //
-        return view( $this->viewBasePath . '.steps.create');
+        $services = ServiceList::all();
+
+        return view( $this->viewBasePath . '.steps.create')
+        ->with('services', $services);
     }
 
     /**
@@ -42,7 +54,8 @@ class ServiceStepsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      
+
     }
 
     /**

@@ -17,7 +17,7 @@ class CreateStepsTable extends Migration
             $table->increments('id');
             $table->integer('service_id')->unsigned();
             $table->integer('sequence');
-            $table->longText('description');
+            $table->longText('description')->nullable();
             $table->integer('time_consumed');
  
                 $table->foreign('service_id')

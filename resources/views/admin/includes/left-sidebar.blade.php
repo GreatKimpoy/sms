@@ -41,9 +41,6 @@
                   <!--Models-->
                  <li {{{ (Request::is('model') ? 'class=active': '')}}}><a href="{{url('model')}}"><i class="fa fa-car-alt"></i> Models</a></li>
 
-                  <!--Models-->
-                  <li {{{ (Request::is('parts') ? 'class=active': '')}}}><a href="{{url('part')}}"><i class="fa fa-car-alt"></i> Vehicle parts</a>
-
                  <!--Inspection-->
                  <li {{{ (Request::is('inspection') ? 'class=active': '')}}}><a href="{{url('inspection')}}"><i class="fa fa-car-alt"></i> Inspection</a></li>
 

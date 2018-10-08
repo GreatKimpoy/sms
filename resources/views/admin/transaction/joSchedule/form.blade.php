@@ -23,7 +23,7 @@
 										<option></option>
                     <option value="{{$inspect->customer->id}}">{{$inspect->customer->firstname}} {{$inspect->customer->middlename}} {{$inspect->customer->lastname}}</option>
                 @endforeach
-		   	
+
 		        </select>
 			</div>
 
