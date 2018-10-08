@@ -41,10 +41,8 @@ Route::namespace('Transaction')->group(function() {
     Route::resource('checkup', 'InspectionCheckupController');
     Route::resource('maintenance','InspectionMaintenanceController');
     Route::resource('schedule','JobOrderScheduleController');
-    
+    Route::get('findCustomer', 'JobOrderScheduleController@findCustomer');
 });
 
 
 Route::get('job/final', 'JobOrderScheduleController@store');
-
-

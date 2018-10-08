@@ -31,7 +31,7 @@
                 <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                 <input type="hidden" name="type" value="checkup" />
                 @include('errors.alert')
-                 @include('admin.layouts.customer')
+                @include('admin.layouts.customer')
                 @include('admin.transaction.checkup.form')
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary btn-block">Save</button>

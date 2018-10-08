@@ -1,6 +1,9 @@
 @extends('admin.layouts.app')
 
 
+@section('title')
+  {{"Models"}}
+@endsection
 
 @section('content-header')
   <section class="content-header">
@@ -19,7 +22,7 @@
         <div class="box-header" id="box"><strong><h4> Vehicle Information Form </h4></strong>
         </div>
           <div class="box-body" id="box">
-            <form method="post" action="{{ url("vehicle/$category->id") }}" class="form-horizontal">
+            <form method="post" action="{{ url("model/$category->id") }}" class="form-horizontal">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <input type="hidden" name="_method" value="PUT">
                 @include('errors.alert')
@@ -37,4 +40,14 @@
 
 
 
+@section('scripts-include')
+
+<script>
+    $(function(){
+         $('.select2').select2();
+
+    })
+</script>
+
+@endsection
 
