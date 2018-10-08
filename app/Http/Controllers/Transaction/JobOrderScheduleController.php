@@ -199,5 +199,15 @@ class JobOrderScheduleController extends Controller
     }
 
 
+    public function findCustomer(Request $request)
+    {
+
+        $data = Customer::select('firstname', 'middlename' ,'lastname','street','barangay','city','contact','email')
+        ->where('id',$request->id)->first();
+
+        return response()->json($data);
+
+    }
+
 
 }

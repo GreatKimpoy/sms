@@ -1,5 +1,9 @@
 @extends('admin.layouts.app')
 
+@section('title')
+  {{"Models"}}
+@endsection
+
 
 
 @section('content-header')
@@ -33,6 +37,19 @@
   </div>
 </section>
 @endsection
+
+
+@section('scripts-include')
+
+<script>
+    $(function(){
+         $('.select2').select2();
+
+    })
+</script>
+
+@endsection
+
 
 
 

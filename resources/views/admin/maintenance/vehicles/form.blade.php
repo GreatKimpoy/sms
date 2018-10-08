@@ -75,12 +75,12 @@
             <option value="Sedan">Sedan</option>
         </select>
 
-    </div>
-    <div class="row">
-     <div class="col-md-6">
-        <label for="transmission" class="label">Transmission Type</label><span class="asterisks"><strong>*</strong></span>
+    </div><br>
+
+    <div class="col-md-6">
+          <label for="trans">Transmission Type</label><span class="asterisks">*</span><br>
              <div class="col-md-12">
-             @if(isset($transmission_types))
+                    @if(isset($transmission_types))
                         @foreach($transmission_types as $key => $type)
                         <input 
                             required 
@@ -99,20 +99,9 @@
              </div>
     </div>
 </div>
-</div>
 <br>
 
 
 
 
 
-@section('scripts-include')
-
-<script>
-    $(function(){
-         $('.select2').select2();
-
-    })
-</script>
-
-@endsection
