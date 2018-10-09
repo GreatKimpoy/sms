@@ -83,7 +83,6 @@
               </a>
               <ul class="treeview-menu">
                  <li {{{ (Request::is('checkup') ? 'class=active': '')}}} ><a href="{{url('checkup')}}"><i class="fa fa-stethoscope"></i> Check-up </a></li>
-                 <li {{{ (Request::is('maintenance') ? 'class=active': '')}}} ><a href="{{url('maintenance')}}"><i class="fa fa-stethoscope"></i> Maintenance</a></li>
               </ul>
             </li>
             <li class="treeview">
