@@ -144,38 +144,40 @@
 
     <div class="col-md-6">
         <label for="model" class="labely">Technician(s) Assigned</label>
-            <select name="technician[]" class="form-control select2" multiple="multiple" style="width: 100%;">
-
-                <option value=""></option>
-            
-
-     
+            <select name="technician[]" class="form-control select2" id="technician" multiple="multiple" style="width: 100%;">
+                @foreach($technicians as $technician)
+                <option value="{{$technician->id}}">{{$technician->firstname}} {{$technician->lastname}}</option>
+                @endforeach   
             </select>
     </div>
     
     <div class="col-md-3">
         <label for="plate" class="labely">Vehicle Plate Number</label>
-            <input type="text" name="plate" class="form-control" placeholder="Plate Number" id="plate">
+            <input type="text" name="plate" class="form-control" placeholder="Plate Number" id="plate" disabled>
     </div>
 
     <div class="col-md-3">
-        <label for="model" class="labely">Vehicle Model</label>
-            <select name="modelId"  class="form-control select2" style="width: 100%;">
-                
-                <option value=""></option>    
-                         
-            </select>
-       
-            </select>
+        <label for="plate" class="labely">Vehicle Model</label>
+            <input type="text" name="modelId" class="form-control" placeholder="Plate Number" id="model" disabled>
     </div>
-
 
     <div class="col-md-12">
         <label for="service" class="labely">Service Search</label>
-        <select name="service[]" class="form-control select2 service" multiple="multiple" style="width: 100%;">
-            <option value=""></option>
+        <select name="service[]" class="form-control select2 services"  multiple style="width: 100%;">
+            <option value="0" id = "services"></option>
+        @foreach($services as $service)
+            <option value="{{$service->id}}">{{$service->name}}</option>
+
+        @endforeach
         </select>
     </div>
+    
+
+	<div class="col-md-6">
+		 		<label for="start"> Start Date <span class="asterisks"><strong>*</strong></span></label>
+		 		<input type="date" name="start_date" class="form-control" id="dateDefault">
+
+	</div>
 
 
 </div>

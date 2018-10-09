@@ -62,9 +62,6 @@
                  <!--List-->
                  <li {{{ (Request::is('service') ? 'class=active': '')}}} ><a href="{{url('service')}}"><i class="fa fa-car-alt"></i> List</a></li>
 
-                  <!--List-->
-                 <li {{{ (Request::is('service') ? 'class=active': '')}}} ><a href="{{url('steps')}}"><i class="fa fa-car-alt"></i> Steps </a></li>
-
 
               </ul>
             </li>
@@ -80,7 +77,6 @@
               </a>
               <ul class="treeview-menu">
                  <li {{{ (Request::is('checkup') ? 'class=active': '')}}} ><a href="{{url('checkup')}}"><i class="fa fa-stethoscope"></i> Check-up </a></li>
-                 <li {{{ (Request::is('maintenance') ? 'class=active': '')}}} ><a href="{{url('maintenance')}}"><i class="fa fa-stethoscope"></i> Maintenance</a></li>
               </ul>
             </li>
             <li class="treeview">

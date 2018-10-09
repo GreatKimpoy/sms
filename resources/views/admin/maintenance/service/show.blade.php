@@ -70,11 +70,10 @@
                                     rows="10"></textarea>
                         </div> 
 
-                        <div class="col-md-6">
-                          <label for="Description">Service Number</label>
+                        <div class="col-md-6" hidden="">
+                          <label for="Description" >Service Number</label>
                           <input type="text"
                           name="service"
-                          placeholder="{{$service->name}}"
                           class="form-control"
                           value="{{$service->id}}"> 
                         </div> 

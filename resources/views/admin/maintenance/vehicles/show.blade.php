@@ -130,7 +130,7 @@
                           value="">
                         </div> 
 
-                        <div class="col-md-6">
+                        <div class="col-md-6" hidden="">
                           <label for="Description">Model</label>
                           <input type="text" 
                           name="model"

@@ -84,9 +84,6 @@ class JobOrderScheduleController extends Controller
        
         $this->validate($request, [
             'start_date' => 'required|date',
-            'start_time' => 'required',
-            'end_date' => 'required|date',
-            'end_time' => 'required',
             'remarks' => 'nullable',
             'technician.*' => 'required',
             'service.*' => 'required',
@@ -95,8 +92,7 @@ class JobOrderScheduleController extends Controller
             
         // Save to database 
         $order = new JobOrder;
-        $order->start = $request->input('start_date')." ".$request->input('start_time');
-        $order->end = $request->input('end_date')." ".$request->input('end_time');
+        $order->start = $request->input('start_date');
         $order->remarks = $request->input('remarks');
         $order->inspection_id = $request->customer;
         $order->save();
@@ -201,12 +197,20 @@ class JobOrderScheduleController extends Controller
 
     public function findCustomer(Request $request)
     {
-
-        $data = Customer::select('firstname', 'middlename' ,'lastname','street','barangay','city','contact','email')
-        ->where('id',$request->id)->first();
+        $services = ServiceList::all();
+        $data = DB::table('inspections as i')
+        ->join('customers as c','c.id','i.customer_id')
+        ->join('vehicle_owners as v','v.id','i.owner_id')
+        ->join('vehicle_models as vm', 'vm.id', 'v.vehicle_id')
+        ->join('inspection_technicians as it', 'it.id', 'it.inspection_id')
+        ->join('technicians as t', 't.id', 'it.technician_id')
+        ->join('service_lists as s', 's.id', 'i.service_id')
+        ->select('i.*', 'c.*', 'v.*' ,'s.*', 'vm.*')->where('i.customer_id',$request->id)->first();;
 
         return response()->json($data);
 
+
+     
     }
 
 

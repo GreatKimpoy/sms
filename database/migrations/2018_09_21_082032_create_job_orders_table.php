@@ -1,4 +1,4 @@
-<?php
+-<?php
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
@@ -17,7 +17,7 @@ class CreateJobOrdersTable extends Migration
             $table->increments('id');
             $table->integer('inspection_id')->unsigned();
             $table->datetime('start');
-            $table->datetime('end');
+            $table->datetime('end')->nullable();
             $table->text('remarks')->nullable();
 
             $table->timestamps();

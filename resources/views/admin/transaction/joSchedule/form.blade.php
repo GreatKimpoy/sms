@@ -27,6 +27,7 @@
 		        </select>
 			</div>
 
+      
 
 		</div>
 		 <br>
@@ -87,6 +88,13 @@
           $('#city').val(data.city);
           $('#email').val(data.email);
           $('#contact').val(data.contact);
+          $('#plate').val(data.plate_number);
+          $('#model').val(data.brand).val(data.model);
+
+          var option= $('.services option[value='+data.service_id+']').attr('selected',true);
+          
+
+          console.log(option);
 
         },
         error:function(data){
