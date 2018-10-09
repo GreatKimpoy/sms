@@ -13,6 +13,7 @@ use App\VehiclePart;
 use App\JobService;
 use App\JobTechnician;
 use App\ServicePerformed;
+use App\Step;
 use DB;
 
 use Illuminate\Support\Facades\Redirect;
@@ -196,6 +197,7 @@ class JobOrderScheduleController extends Controller
 
 
     public function findCustomer(Request $request)
+
     {
         $services = ServiceList::all();
         $data = DB::table('inspections as i')
@@ -205,13 +207,24 @@ class JobOrderScheduleController extends Controller
         ->join('inspection_technicians as it', 'it.id', 'it.inspection_id')
         ->join('technicians as t', 't.id', 'it.technician_id')
         ->join('service_lists as s', 's.id', 'i.service_id')
-        ->select('i.*', 'c.*', 'v.*' ,'s.*', 'vm.*')->where('i.customer_id',$request->id)->first();;
+
+        ->select('i.*', 'c.*', 'v.*' ,'s.*', 'vm.*', 'it.*')
+        ->where('i.customer_id',$request->id)->get();
 
         return response()->json($data);
 
-
-     
     }
+
+   public function findStep(Request $request)
+   {
+
+        $data = Step::select('*')
+        ->where('service_id',$request->id)->get();
+
+        return response()->json($data);
+
+   } 
+
 
 
 }

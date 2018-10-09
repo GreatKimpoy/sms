@@ -144,7 +144,7 @@
 
     <div class="col-md-6">
         <label for="model" class="labely">Technician(s) Assigned</label>
-            <select name="technician[]" class="form-control select2" id="technician" multiple="multiple" style="width: 100%;">
+            <select name="technician[]" class="form-control select2 technician" id="technician" multiple="multiple" style="width: 100%;">
                 @foreach($technicians as $technician)
                 <option value="{{$technician->id}}">{{$technician->firstname}} {{$technician->lastname}}</option>
                 @endforeach   
@@ -157,27 +157,32 @@
     </div>
 
     <div class="col-md-3">
+
         <label for="plate" class="labely">Vehicle Model</label>
-            <input type="text" name="modelId" class="form-control" placeholder="Plate Number" id="model" disabled>
+            <input type="text" name="modelId" class="form-control" placeholder="Vehicle Model" id="model" disabled>
+
     </div>
 
+</div>
+
+<div class="row">
     <div class="col-md-12">
         <label for="service" class="labely">Service Search</label>
-        <select name="service[]" class="form-control select2 services"  multiple style="width: 100%;">
-            <option value="0" id = "services"></option>
+        <select name="service[]" class="form-control select2 services"  multiple style="width: 100%;" disabled> 
         @foreach($services as $service)
             <option value="{{$service->id}}">{{$service->name}}</option>
 
         @endforeach
         </select>
     </div>
-    
+</div><br>
 
-	<div class="col-md-6">
-		 		<label for="start"> Start Date <span class="asterisks"><strong>*</strong></span></label>
-		 		<input type="date" name="start_date" class="form-control" id="dateDefault">
+<div class="row">
 
-	</div>
+        <div class="col-md-12">
+                <label for="start"> Start Date <span class="asterisks"><strong>*</strong></span></label>
+                <input type="date" name="start_date" class="form-control" id="dateDefault">
 
+        </div>
 
 </div>
