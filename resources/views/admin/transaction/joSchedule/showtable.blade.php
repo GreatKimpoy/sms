@@ -88,7 +88,7 @@
                     <div class="col-md-12" style="float:left;width:100%"><br>
                       
                       <div class="progress active">
-                           <div id="serviceProgress" class="progress-bar progress-bar-success progress-bar-striped"  role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em;width: 0%;">
+                           <div id="stepProgress" class="progress-bar progress-bar-success progress-bar-striped"  role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em;width: 0%;">
                              0% 
                           </div>
                       </div>
@@ -130,13 +130,14 @@
                               @foreach($jobs->services as $service)
                       
                                   <tr>
-                                      <td></td>
+                                      <td>{{$service->id}}</td>
                                       <td>{{$service->name}}</td>
                                       <td>{{$service->description}}</td>
                                       <td>{{$service->standard_time}}</td>
                                       <td id="currentStep"></td>
                                       <td id="status"><i style="color:red" class="fa fa-times"></i> Not Completed</td>
-                                      <td>   <button type="button" class="btn bg-navy btn-sm" data-toggle="modal" data-target="#largeModal">
+                                      <td>   <button type="button" class="btn bg-navy btn-sm" id="modal" 
+                                        data-id="{{$service->id}}" value="{{$service->id}}" data-toggle="modal" data-target="#steps_{{$service->id}}">
                                 <i class="fa fa-eye"></i> <strong></strong> </button> </td>
                                   </tr>
                        
@@ -147,33 +148,21 @@
             </div>
           </div>
 
-
-           <div class="modal fade" id="largeModal" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+   @foreach($jobs->services as $service)
+           <div class="modal fade" id="steps_{{$service->id}}" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
             <div class="modal-dialog modal-lg">
               <div class="modal-content">
                 <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                  <h4 class="modal-title" id="myModalLabel">Service Progress</h4>
+                  <h4 class="modal-title" id="myModalLabel">{{$service->name}}</h4>
                 </div>
                 <div class="modal-body">
                     <div class="row">
                       <div class="col-md-12">
-                        <div class="panel panel-primary">
-                          <div class="panel-body">
-                            <div class="row">
-                               <div class="col-md-12"><br>
-                                <div class="progress active">
-                                    <div id="stepProgress" class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em;width: 0%;">
-                                       0% 
-                                    </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-
                         <div class="row">
                               <div class="col-md-12">
+                                <input type="text" name="stepNumber" id="updateStep" hidden="">
+                                <input type="text" name="stepNumber" id="modalId" hidden="">
                               <form method="post" action="{{  url("schedule/$jobs->id") }}" class="form-horizontal">'
                                   <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                   <input type="hidden" name="_method" value="PUT">
@@ -185,23 +174,19 @@
                                        <th>Steps</th>
                                        <th>Description</th>
                                        <th>Standard Time</th>
-                                       <th>Status</th>
                                        <th class="text-right">Action</th>
                                     </tr>
                                   </thead>
                                   <tbody>
-                                            @foreach($jobs->services as $service)
-                                              @foreach($service->steps as $step)
+                                            @foreach($service->steps as $step)                                             
                                                 <tr>
-                                                    <td>Step {{$step->sequence}}</td>
-                                                    <td>{{$step->description}}</td>
-                                                    <td>{{$step->time_consumed}}</td>
-                                                    <td id="status"></td>
+                                                      <td id="sequence">{{$step->sequence}}</td>
+                                                      <td id="description">{{$step->description}}</td>
+                                                      <td id="time_consumed">{{$step->time_consumed}}</td>
                                                     <td><input type="checkbox" name="step" value="{{$step->sequence}}" id="check" class="checkbox" 
-                                                      data-stepid="{{$step->sequence}}"> </td>
+                                                        data-stepid="{{$step->sequence}}"> </td>
                                                 </tr>
-                                                @endforeach
-                                            @endforeach                   
+                                            @endforeach                      
                                       </tbody>
                                 </table>
                               </div>
@@ -212,13 +197,17 @@
 
                   </div>
                 <div class="modal-footer">
+<<<<<<<
                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                   <button type="submit" class="btn btn-primary">Save changes</button>
+=======
+                  <button type="submit" id="btnSubmit" class="btn btn-primary">Save changes</button>
+>>>>>>>
                 </div>
               </div>
             </div>
           </div>
-
+  @endforeach 
 
         </div> 
 
@@ -301,6 +290,8 @@
   <script src="{{asset ('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
   <script src="{{asset ('js/serviceProgress.js')}}"></script>
   <script src="{{asset ('js/progress.js')}}"></script>
+  <script src="{{asset ('js/stepProgres.js')}}"></script>
+
 
 <script>
 
@@ -334,8 +325,7 @@
   })
 
 </script>
+
+
+
 @stop
-
-
-
-/

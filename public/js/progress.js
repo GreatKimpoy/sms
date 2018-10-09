@@ -37,15 +37,6 @@ $(function(){
 		$('#stepProgress').css('width', temp);
 		$('#stepProgress').text(progressPercent + "%");
 		$('#updateStep').val(id);	
-		$('#currentStep').text("Step"+" "+ progressCount +" "+ "of" +" "+stepCount);
-
-		if(progressCount == stepCount){
-			$('#status').html($('<i/>',{style:'color:green',class:'fa fa-check'})).append(' Completed');
-		}
-		else{
-			$('#status').html($('<i/>',{style:'color:red',class:'fa fa-circle'})).append(' In-Progress');
-		}
-
 
 	});
 });

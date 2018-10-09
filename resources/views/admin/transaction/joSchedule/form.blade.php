@@ -67,7 +67,14 @@
 
       var customerId = $('#customer option:selected').val();
 
+
       var parent = $(this).parent();
+
+      var op = "";
+
+      var ops = "";
+
+
 
       //console.log(customerId);
 
@@ -79,7 +86,8 @@
         dataType: 'json',
         success:function(data){
 
-
+          
+          
           $('#lastname').val(data.lastname);
           $('#firstname').val(data.firstname);
           $('#middlename').val(data.middlename);
@@ -91,10 +99,16 @@
           $('#plate').val(data.plate_number);
           $('#model').val(data.brand).val(data.model);
 
-          var option= $('.services option[value='+data.service_id+']').attr('selected',true);
-          
 
-          console.log(option);
+          op+= '<option selected disabled value ="'+data.service_id+'">' +data.name+'</option>';
+          $('.services').append(op).prop('disabled', false);
+        
+          ops+= '<option selected disabled value ="'+data.technian_id+'">' +data.firstname+'</option>';
+          $('.technician').append(ops).prop('disabled', false);
+
+
+          console.log(data);
+
 
         },
         error:function(data){
