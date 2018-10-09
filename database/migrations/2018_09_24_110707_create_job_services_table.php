@@ -17,6 +17,7 @@ class CreateJobServicesTable extends Migration
             $table->increments('id');
             $table->integer('service_id')->unsigned();
             $table->integer('job_id')->unsigned();
+            $table->integer('sequence')->nullable();
             $table->string('actual_time')->nullable();
 
             $table->foreign('service_id')

@@ -16,6 +16,7 @@ use App\InspectionTechnician;
 use App\Http\Controllers\Controller;
 use App\Technician;
 use App\ServiceList;
+use App\InspectionService;
 class InspectionCheckupController extends Controller
 {
     public $viewBasePath = 'admin.transaction.checkup';
@@ -138,16 +139,14 @@ class InspectionCheckupController extends Controller
                         'vehicle_id' => $model,
                     ]
                 );
-                $services = $request->service;
-                foreach ($services as $key=>$service){
-                    $inspection = Inspection::create([
+                
+
+                $inspection = Inspection::create([
                         'customer_id' => $customer->id,
                         'owner_id' => $vehicle->id,
-                        'service_id' => $service,
-                        'additional_remarks' => trim($request->remarks),
-                        
+                        'additional_remarks' => trim($request->remarks),   
                 ]);
-                }
+
                 $forms = $request->form;
                 $items = $request->item_id;
                 foreach($items as $key=>$item){
@@ -155,6 +154,13 @@ class InspectionCheckupController extends Controller
                         'inspection_id' => $inspection->id,
                         'item_id' => $item,
                         'remarks' => $forms[$key],
+                    ]);
+                }
+                $services = $request->service;
+                foreach($services as $service){
+                    InspectionService::create([
+                        'inspection_id' => $inspection->id,
+                        'service_id' => $service,
                     ]);
                 }
                 $technicians = $request->technician;

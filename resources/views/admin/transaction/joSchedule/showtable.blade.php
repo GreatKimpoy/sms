@@ -174,6 +174,9 @@
 
                         <div class="row">
                               <div class="col-md-12">
+                              <form method="post" action="{{  url("schedule/$jobs->id") }}" class="form-horizontal">'
+                                  <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                  <input type="hidden" name="_method" value="PUT">
                                 <input type="text" name="stepNumber" id="updateStep" hidden="" >
                                 <table id="jobs" class="table table-striped table-bordered responsive table-hover">
                                   <thead>
@@ -194,7 +197,7 @@
                                                     <td>{{$step->description}}</td>
                                                     <td>{{$step->time_consumed}}</td>
                                                     <td id="status"></td>
-                                                    <td><input type="checkbox" name="step" value="" id="check" class="checkbox" 
+                                                    <td><input type="checkbox" name="step" value="{{$step->sequence}}" id="check" class="checkbox" 
                                                       data-stepid="{{$step->sequence}}"> </td>
                                                 </tr>
                                                 @endforeach
@@ -210,7 +213,7 @@
                   </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary">Save changes</button>
+                  <button type="submit" class="btn btn-primary">Save changes</button>
                 </div>
               </div>
             </div>

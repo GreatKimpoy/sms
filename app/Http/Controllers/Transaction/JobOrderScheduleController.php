@@ -180,7 +180,26 @@ class JobOrderScheduleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'step' => 'required',
+        ]);
+
+       
+        DB::beginTransaction();
+        $service = JobService::findOrFail($id);
+        $service->update([
+            'job_id' => $service->id,
+            'service_id' => $service->id,
+            'sequence' => $request->step,
+        ]);
+
+        DB::commit();
+
+        session()->flash('notification', [
+            'title' => 'Success!',
+            'message' => 'You have created your service',
+            'type' => 'success'
+        ]);
     }
 
     /**
@@ -204,12 +223,11 @@ class JobOrderScheduleController extends Controller
         ->join('vehicle_models as vm', 'vm.id', 'v.vehicle_id')
         ->join('inspection_technicians as it', 'it.id', 'it.inspection_id')
         ->join('technicians as t', 't.id', 'it.technician_id')
-        ->join('service_lists as s', 's.id', 'i.service_id')
+        ->join('inspection_services as is', 'is.id', 'is.inspection_id')
+        ->join('service_lists as s', 's.id', 'is.service_id')
         ->select('i.*', 'c.*', 'v.*' ,'s.*', 'vm.*')->where('i.customer_id',$request->id)->first();;
 
         return response()->json($data);
-
-
      
     }
 
