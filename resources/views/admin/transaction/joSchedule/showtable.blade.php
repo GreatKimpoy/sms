@@ -188,9 +188,7 @@
 
                   </div>
                 <div class="modal-footer">
-
                   <button id="ajaxSubmit" class="btn btn-primary" data-dismiss="modal">Save changes</button>
-
                 </div>
               </div>
             </div>
