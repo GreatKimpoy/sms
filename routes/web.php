@@ -43,6 +43,8 @@ Route::namespace('Transaction')->group(function() {
     Route::resource('schedule','JobOrderScheduleController');
     Route::get('findCustomer', 'JobOrderScheduleController@findCustomer');
     Route::get('findStep', 'JobOrderScheduleController@findStep');
+    Route::get('servicePar', 'JobOrderScheduleController@serviceParts');
+    Route::post('sequence/post', 'JobOrderScheduleController@updateSequence');
     
 });
 

@@ -7,7 +7,8 @@
 
 @section('styles-include')
 
-<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+ <!-- DataTables -->
+  <link rel="stylesheet" href="{{asset ('bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css')}}">
 
 @stop
 
@@ -53,7 +54,9 @@
 
 @section('scripts-include')
 
-<script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <!-- DataTables -->
+  <script src="{{asset ('bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
+  <script src="{{asset ('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
 
 <script type="text/javascript">
 	$(document).ready(function() {

@@ -1,11 +1,23 @@
 
-<style>
-	
-.asterisks{
-	color: red;
-}
 
-</style>
+
+@section('styles-include')
+
+  <style>
+    
+  .asterisks{
+    color: red;
+  }
+
+  </style>
+
+
+   <!-- DataTables -->
+  <link rel="stylesheet" href="{{asset ('bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css')}}">
+
+
+
+@endsection
 
 <section class="conten-header">
 
@@ -33,10 +45,7 @@
 		 <br>
 
 		@include('admin.layouts.customers')
-		
-
-		<br>
-
+  
 	
 
 
@@ -47,6 +56,10 @@
 	
 @section('scripts-include')
 
+    <!-- DataTables -->
+  <script src="{{asset ('bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
+  <script src="{{asset ('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
+
 <script>
   
 
@@ -54,6 +67,12 @@
          $('.select2').select2();
 
     })
+
+
+$(function () {
+      $('#job').DataTable()
+     
+    });
 
 </script>
 
@@ -69,6 +88,8 @@
 
 
       var parent = $(this).parent();
+
+      console.log(customerId);
 
       var op = "";
 
@@ -100,9 +121,7 @@
           $('#model').val(data.brand).val(data.model);
 
 
-          op+= '<option selected disabled value ="'+data.service_id+'">' +data.name+'</option>';
-          $('.services').append(op).prop('disabled', false);
-        
+
           ops+= '<option selected disabled value ="'+data.technian_id+'">' +data.firstname+'</option>';
           $('.technician').append(ops).prop('disabled', false);
 
@@ -124,5 +143,38 @@
 
 
 </script>
+
+
+
+<script>
+  
+  $(document).ready(function(){
+
+    $(document).on('change', '#services', function(){
+
+       var service_id = $('#services option:selected').val();
+
+       console.log(service_id);
+
+
+       $.ajax({
+
+                type: 'GET',
+                url: '{!!URL('servicePar')!!}',
+                data: {'service_id': service_id},
+                dataType: 'json',
+                success:function(data){
+                    alert("success");
+                    console.log(data);
+                },
+                error:function(data){
+                  alert("ERROR!!!");
+                }
+       });
+    });
+  });
+
+</script>
+
 
 @endsection

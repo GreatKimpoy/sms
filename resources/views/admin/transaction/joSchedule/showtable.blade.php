@@ -123,35 +123,30 @@
                     <th>Action</th>
                   </tr>
                 </thead>
-
-            
-
-              <tbody>
-                              @foreach($jobs->services as $service)
-                      
-                                  <tr>
-                                      <td>{{$service->id}}</td>
-                                      <td>{{$service->name}}</td>
-                                      <td>{{$service->description}}</td>
-                                      <td>{{$service->standard_time}}</td>
-                                      <td id="currentStep"></td>
-                                      <td id="status"><i style="color:red" class="fa fa-times"></i> Not Completed</td>
-                                      <td>   <button type="button" class="btn bg-navy btn-sm" id="modal" 
-                                        data-id="{{$service->id}}" value="{{$service->id}}" data-toggle="modal" data-target="#steps_{{$service->id}}">
-                                <i class="fa fa-eye"></i> <strong></strong> </button> </td>
-                                  </tr>
-                       
-                              @endforeach                   
-                        </tbody>
+                    <tbody>
+                        @foreach($jobs->services as $service)
+                            <tr>
+                                <td>{{$service->id}}</td>
+                                <td>{{$service->name}}</td>
+                                <td>{{$service->description}}</td>
+                                <td>{{$service->standard_time}}</td>
+                                <td id="currentStep"></td>
+                                <td id="status"><i style="color:red" class="fa fa-times"></i> Not Completed</td>
+                                <td>   <button type="button" class="btn bg-navy btn-sm" id="modal" 
+                                  data-id="{{$service->id}}" value="{{$service->id}}" data-toggle="modal" data-target="#steps-{{$service->id}}">
+                          <i class="fa fa-eye"></i> <strong></strong> </button> </td>
+                            </tr>
+                        @endforeach                   
+                    </tbody>
               </table>
 
             </div>
           </div>
 
    @foreach($jobs->services as $service)
-           <div class="modal fade" id="steps_{{$service->id}}" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-              <div class="modal-content">
+           <div class="modal fade" id="steps-{{$service->id}}" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content" >
                 <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                   <h4 class="modal-title" id="myModalLabel">{{$service->name}}</h4>
@@ -161,12 +156,8 @@
                       <div class="col-md-12">
                         <div class="row">
                               <div class="col-md-12">
-                                <input type="text" name="stepNumber" id="updateStep" hidden="">
-                                <input type="text" name="stepNumber" id="modalId" hidden="">
-                              <form method="post" action="{{  url("schedule/$jobs->id") }}" class="form-horizontal">'
-                                  <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                  <input type="hidden" name="_method" value="PUT">
-                                <input type="text" name="stepNumber" id="updateStep" hidden="" >
+                                <input type="text" name="stepNumber" id="updateStep" hidden>
+                                <input type="text" name="jobNumber" id="jobNumber" value="{{$jobs->id}}" hidden="">
                                 <table id="jobs" class="table table-striped table-bordered responsive table-hover">
                                   <thead>
                                     <tr>
@@ -184,7 +175,7 @@
                                                       <td id="description">{{$step->description}}</td>
                                                       <td id="time_consumed">{{$step->time_consumed}}</td>
                                                     <td><input type="checkbox" name="step" value="{{$step->sequence}}" id="check" class="checkbox" 
-                                                        data-stepid="{{$step->sequence}}"> </td>
+                                                        data-stepid="{{$step->sequence}}" data-serviceid="{{$step->service_id}}"></td>
                                                 </tr>
                                             @endforeach                      
                                       </tbody>
@@ -197,12 +188,9 @@
 
                   </div>
                 <div class="modal-footer">
-<<<<<<<
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                  <button type="submit" class="btn btn-primary">Save changes</button>
-=======
-                  <button type="submit" id="btnSubmit" class="btn btn-primary">Save changes</button>
->>>>>>>
+
+                  <button id="ajaxSubmit" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+
                 </div>
               </div>
             </div>
@@ -290,7 +278,6 @@
   <script src="{{asset ('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
   <script src="{{asset ('js/serviceProgress.js')}}"></script>
   <script src="{{asset ('js/progress.js')}}"></script>
-  <script src="{{asset ('js/stepProgres.js')}}"></script>
 
 
 <script>
@@ -325,6 +312,7 @@
   })
 
 </script>
+
 
 
 

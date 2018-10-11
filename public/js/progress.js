@@ -2,7 +2,7 @@
 
 
 
-$(function(){
+$(document).ready(function(){
 
 
 	$("table.table-striped").on("click", "#check", function(event){
@@ -10,18 +10,23 @@ $(function(){
 		var progressCount = 0, stepCount=0 , progressPercent = 0, temp;
 
 		var id = $(this).data('stepid');
+		var serviceId = $(this).data('serviceid');
+
+		console.log(serviceId);
 
 		$('table.table-striped tr td input').each(function(){
 
 			var check= $(this).data('stepid');
+			var serviceid = $(this).data('serviceid');
 			check = parseInt(check);
-			if((this.id) == "check" && check <= id )
-				$(this).prop("checked", "checked")  ;
+			if((this.id) == "check" && check <= id && serviceid <= serviceId )
+				$(this).prop("checked", "checked");
 			else
 				$(this).prop("checked", false);
 			stepCount++;
 
 		});
+
 
 		progressCount= id;
 		progressPercent = (progressCount / stepCount )*100;
@@ -36,8 +41,7 @@ $(function(){
 		progressPercent = parseFloat(progressPercent).toFixed(2);
 		$('#stepProgress').css('width', temp);
 		$('#stepProgress').text(progressPercent + "%");
-		$('#updateStep').val(id);	
-
+		$('#updateStep').val(progressCount);	
 	});
 });
 
