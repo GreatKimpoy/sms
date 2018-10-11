@@ -29,18 +29,18 @@
             </select>
     </div>
 
+</div>
 
+<div class="row">
+    
     <div class="col-md-12">
-                  <div class="form-group">
-                    <label for="service" class="labely">Service Search</label>
-                    <select name="service[]" class="form-control select2 service" multiple="multiple" style="width: 100%;">
-                              @foreach($services as $service)
-                                  <option value="{{$service->id}}">{{$service->name}} </option>
-                              @endforeach
-                          </select>
-                  </div>
-                </div>
-
+        <label for="service" class="labely">Service Search</label>
+        <select name="service[]" class="form-control select2 service" multiple="multiple" style="width: 100%;">
+                  @foreach($services as $service)
+                      <option value="{{$service->id}}">{{$service->name}} </option>
+                  @endforeach
+              </select>
+    </div>
 
 </div>
 

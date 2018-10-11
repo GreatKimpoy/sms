@@ -169,13 +169,4 @@
             </select>
     </div>
 
-
-    <div class="col-md-12">
-        <label for="service" class="labely">Service Search</label>
-        <select name="service[]" class="form-control select2 service" multiple="multiple" style="width: 100%;">
-            <option value=""></option>
-        </select>
-    </div>
-
-
 </div>

@@ -5,9 +5,11 @@
 	color: red;
 }
 
+
+
 </style>
 
-<section class="conten-header">
+<section class="content-header">
 
 	<div class="container-fluid">
 		<div class="row">
@@ -31,17 +33,25 @@
 		</div>
 		 <br>
 
-		@include('admin.layouts.customers')
+		@include('admin.layouts.customers')<br>
+    <div class="row">
+  
+        <div class="col-md-12">
+            <label for="service" class="labely">Service Search</label>
+            <select name="service[]" class="form-control select2 service" multiple="multiple" style="width: 100%;">
+                <option value=""></option>
+            </select>
+        </div>
+
+
+    </div>
 		
 
 		<br>
 
-	
-
-
-
-
+  </div>
 </section>
+
 
 	
 @section('scripts-include')
