@@ -80,8 +80,8 @@
           { data: "transmission_type" },
           { data: function(callback){
             return `
-              <a href="{{ url("model") }}` + '/' + callback.id + `/edit" class="btn btn-warning"><i class="fa fa-edit"></i><strong>Edit</strong></a>
-              <a href="{{ url("model") }}` + '/' + callback.id + `" class="btn btn-success">Show</a>
+              <a href="{{ url("model") }}` + '/' + callback.id + `/edit" class="btn btn-warning"><i class="fa fa-edit"></i></a>
+              <a href="{{ url("model") }}` + '/' + callback.id + `" class="btn btn-success"><i class="fa fa-eye"></i></a>
               
             `
           } },
