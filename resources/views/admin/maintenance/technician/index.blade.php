@@ -82,8 +82,8 @@
           { data: "specializations" },
           { data: function(callback){
             return `
-            <a href="{{ url("technician") }}` + '/' + callback.id + `" class="btn btn-success"><i class="fa fa-edit"></i><strong>View</strong></a>
-              <a href="{{ url("technician") }}` + '/' + callback.id + `/edit" class="btn btn-warning"><i class="fa fa-edit"></i><strong>Edit</strong></a>
+            <a href="{{ url("technician") }}` + '/' + callback.id + `" class="btn btn-sm btn-success"><i class="fa fa-eye"></i></a>
+              <a href="{{ url("technician") }}` + '/' + callback.id + `/edit" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></a>
              
             `
           } },

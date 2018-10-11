@@ -28,9 +28,6 @@
     <div class="box box-primary col-sm-12 mt-3">
       <div class="box-block pt-3">
         <div class="box-body">
-          <a type="button" id="new" href="{{ url('steps/create') }}"  class="btn btn-success btn-sm pull-right">
-            <i class="fa fa-plus"></i> <strong> NEW RECORD </strong>  
-          </a>
           @include('notification.alert')
         </div>
         <table id="servicesTable" class="table table-bordered table-hover">
@@ -81,9 +78,8 @@
           { data: "standard_time" },
           { data: function(callback){
             return `
-              <a href="{{ url("service") }}` + '/' + callback.id + `/edit" class="btn btn-warning">Edit</a>
-              <a href="{{ url("service") }}` + '/' + callback.id + `" class="btn btn-success">Show</a>
-              <button type="button" data-id='` + callback.id + `' class="btn-remove btn btn-danger">Remove</button>
+              <a href="{{ url("service") }}` + '/' + callback.id + `/edit" class="btn btn-warning"><i class= "fa fa-edit"> EDIT</i></a>
+              <button type="button" data-id='` + callback.id + `' class="btn-remove btn btn-danger"><i class= "fa fa-trash"> REMOVE</i></button>
             `
           } },
       ],

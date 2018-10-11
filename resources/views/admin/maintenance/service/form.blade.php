@@ -24,11 +24,11 @@
                 id="name"
                 value="{{ isset($service->name) ? $service->name : old('name') }}">
     </div>
-</div>
+</div><br>
 
 <div class="row">
     <div class="col-lg-12">
-            <label for="description" class="labely">Description</label><span>*</span>
+            <label for="description" class="labely">Description</label>
             <textarea 
                 class="form-control align-center" 
                 placeholder="Description"
@@ -38,11 +38,11 @@
                 id="description"
                 rows="10">{{ isset($service->description) ? $service->description : old('description') }}</textarea>
     </div>
-</div>
+</div><br>
 
 <div class="row">
     <div class="col-lg-12">
-            <label for="description" class="labely">Standard time</label><span>*</span>
+            <label for="description" class="labely">Standard time</label><span class="asterisks">*</span>
             <input
                 class="form-control align-center" 
                 placeholder="Standard Time"
@@ -52,12 +52,13 @@
                 id="standard_time"
                 value="{{ isset($service->standard_time) ? $service->standard_time : old('standard_time') }}">
     </div>
-</div>
+</div><br>
 
 <div class="row">
     <div class="col-lg-12">
             <label for="category">Category</label><span class="asterisks"><strong>*</strong></span>
-            <select name="category" class="form-control select2" required>
+            <select name="category" class="form-control select2" required data-placeholder="Select Category">
+            <option></option>
             @foreach($categories as $category)
                 <option
                     value="{{ $category->id }}"

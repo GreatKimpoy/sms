@@ -81,9 +81,8 @@
           { data: "standard_time" },
           { data: function(callback){
             return `
-              <a href="{{ url("service") }}` + '/' + callback.id + `/edit" class="btn btn-warning">Edit</a>
-              <a href="{{ url("service") }}` + '/' + callback.id + `" class="btn btn-success">Show</a>
-              <button type="button" data-id='` + callback.id + `' class="btn-remove btn btn-danger">Remove</button>
+              <a href="{{ url("service") }}` + '/' + callback.id + `/edit" class="btn btn-warning"><i class="fa fa-edit"></i></a>
+              <a href="{{ url("service") }}` + '/' + callback.id + `" class="btn btn-success"><i class="fa fa-eye"</a>
             `
           } },
       ],

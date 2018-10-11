@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Maintenance;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Technician;
+use App\TechinicianSkill;
 use Validator;
 use App\ServiceCategory;
 use DB;
@@ -138,6 +139,13 @@ class TechnicianController extends Controller
     public function edit($id)
     {
         //
+        $id = filter_var( $id, FILTER_VALIDATE_INT);
+        $technician = Technician::all()->where('id', '=', $id)->first();
+
+        $categories = ServiceCategory::all();
+        return view( $this->viewBasePath . '.technician.edit')
+                ->with('technician', $technician)
+                ->with('categories', $categories);
     }
 
     /**

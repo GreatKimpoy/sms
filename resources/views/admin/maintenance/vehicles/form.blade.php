@@ -38,10 +38,10 @@
 <div class="row">
 
     <div class="col-md-6">
-        <label for="brand" class="labely">Brand</label><span class="asterisks"><strong>*</strong></span>
+        <label for="brand" class="labely">Make</label><span class="asterisks"><strong>*</strong></span>
              <input 
                 class="form-control align-center" 
-                placeholder="make" 
+                placeholder="Make" 
                 maxlength="50" 
                 required 
                 name="make" 
@@ -80,22 +80,12 @@
     <div class="col-md-6">
           <label for="trans">Transmission Type</label><span class="asterisks">*</span><br>
              <div class="col-md-12">
-                    @if(isset($transmission_types))
-                        @foreach($transmission_types as $key => $type)
-                        <input 
-                            required 
-                            name="transmission" 
-                            type="radio"
-                            @if( isset($category->transmission_type) && $category->transmission_type == $type )
-                            checked
-                            @elseif( $type == old('transmission') )
-                            checked
-                            @elseif( !isset($category->transmission) && $key == 0 )
-                            checked
-                            @endif
-                            value="{{ $type }}"> {{ $type }}      
-                        @endforeach
-                @endif
+                <select class="form-control select2" name="Transmission" style="width: 100%;" data-placeholder="Select Transmission Type">
+                    <option></option>
+                    <option value="Automatic">Automatic</option>
+                    <option value="Manual"> Manual</option>
+                    <option value="AT & MT">Automatic Manual </option>
+                </select>
              </div>
     </div>
 </div>

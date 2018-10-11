@@ -179,6 +179,24 @@
                 id="form" 
                 multiple= "multiple"
                 data-placeholder="Select Specialization">
+                <option></option>
+                 @foreach($categories as $category)
+                <option
+                    value="{{ $category->id }}"
+                    @if( old('specializations') )
+                        @if( in_array( $category->id, old('specializations') ) )
+                        selected
+                        @endif    
+                    @elseif(
+                        isset( $technician->specializations_id ) && 
+                        count( $technician->specializations_id ) > 0 && 
+                        in_array( $category->id, $technician->specializations_id ) )
+                        selected
+                    @endif
+                    >
+                    {{ $category->name }}
+                </option>
+                @endforeach
             </select>
         </div>
     </div>

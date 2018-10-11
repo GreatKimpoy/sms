@@ -78,8 +78,8 @@
           { data: "description" },
           { data: function(callback){
             return `
-              <a href="{{ url("category") }}` + '/' + callback.id + `/edit" class="btn btn-warning">Edit</a>
-              <button type="button" data-id='` + callback.id + `' class="btn-remove btn btn-danger">Remove</button>
+              <a href="{{ url("category") }}` + '/' + callback.id + `/edit" class="btn btn-warning"><i class="fa fa-edit"></i></a>
+              <button type="button" data-id='` + callback.id + `' class="btn-remove btn btn-danger"><i class="fa fa-trash"></i></button>
             `
           } },
       ],

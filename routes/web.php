@@ -28,7 +28,6 @@ Route::namespace('Maintenance')->group(function() {
     Route::resource('category','ServiceCategoryController');
     Route::resource('service','ServiceListController');
     Route::resource('steps','ServiceStepsController');
-    Route::resource('part','VehiclePartController');
     Route::get('/inspection/data/{id}','InspectionController@getData');
 });
 
