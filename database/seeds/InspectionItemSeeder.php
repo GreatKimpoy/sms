@@ -125,14 +125,7 @@ class InspectionItemSeeder extends Seeder
                         "subtype": "textarea",
                         "maxlength": "100"
                     },
-                    {
-                        "type": "text",
-                        "required": true,
-                        "label": "PSI",
-                        "className": "form-control",
-                        "name": "text-1502452795394",
-                        "subtype": "text"
-                    }
+                   
                 ]',
             'type_id' => 2,
             'Active' => 1
@@ -172,14 +165,7 @@ class InspectionItemSeeder extends Seeder
                         "subtype": "textarea",
                         "maxlength": "100"
                     },
-                    {
-                        "type": "text",
-                        "required": true,
-                        "label": "PSI",
-                        "className": "form-control",
-                        "name": "text-1502452818386",
-                        "subtype": "text"
-                    }
+                   
                 ]',
             'type_id' => 2,
             'Active' => 1
@@ -219,14 +205,7 @@ class InspectionItemSeeder extends Seeder
                         "subtype": "textarea",
                         "maxlength": "100"
                     },
-                    {
-                        "type": "text",
-                        "required": true,
-                        "label": "PSI",
-                        "className": "form-control",
-                        "name": "text-1502452842526",
-                        "subtype": "text"
-                    }
+                
                 ]',
             'type_id' => 2,
             'Active' => 1
@@ -266,14 +245,7 @@ class InspectionItemSeeder extends Seeder
                         "subtype": "textarea",
                         "maxlength": "100"
                     },
-                    {
-                        "type": "text",
-                        "required": true,
-                        "label": "PSI",
-                        "className": "form-control",
-                        "name": "text-1502452865914",
-                        "subtype": "text"
-                    }
+                  
                 ]',
             'type_id' => 2,
             'Active' => 1

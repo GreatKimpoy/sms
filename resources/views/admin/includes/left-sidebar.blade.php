@@ -62,9 +62,6 @@
                  <!--List-->
                  <li {{{ (Request::is('service') ? 'class=active': '')}}} ><a href="{{url('service')}}"><i class="fa fa-car-alt"></i> List</a></li>
 
-                  <!--List-->
-                 <li {{{ (Request::is('service') ? 'class=active': '')}}} ><a href="{{url('steps')}}"><i class="fa fa-car-alt"></i> Steps </a></li>
-
 
               </ul>
             </li>

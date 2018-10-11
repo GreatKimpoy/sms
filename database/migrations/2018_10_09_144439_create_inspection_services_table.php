@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateJobServicesTable extends Migration
+class CreateInspectionServicesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,24 +13,24 @@ class CreateJobServicesTable extends Migration
      */
     public function up()
     {
-        Schema::create('job_services', function (Blueprint $table) {
+        Schema::create('inspection_services', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('inspection_id')->unsigned();
             $table->integer('service_id')->unsigned();
-            $table->integer('job_id')->unsigned();
-            $table->string('sequence')->nullable();
-            $table->string('actual_time')->nullable();
 
+            
             $table->foreign('service_id')
                     ->references('id')
                     ->on('service_lists')
                     ->onUpdate('cascade')
                     ->onDelete('restrict');
-            
-            $table->foreign('job_id')
+
+            $table->foreign('inspection_id')
                     ->references('id')
-                    ->on('job_orders')
+                    ->on('inspections')
                     ->onUpdate('cascade')
                     ->onDelete('restrict');
+
             $table->timestamps();
         });
     }
@@ -42,6 +42,6 @@ class CreateJobServicesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('job_services');
+        Schema::dropIfExists('inspection_services');
     }
 }

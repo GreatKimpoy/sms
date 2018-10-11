@@ -17,7 +17,6 @@ $(function(){
 	  	if($(this).text().trim()== 'START'){
 	  		$(this).removeClass('btn-success').addClass('btn-danger').html($('<i/>',{class:'fa fa-stop'})).append(' STOP');
 	  		$('#start').text(output);
-
 	  	}
 	  	else{
 	  		$(this).removeClass('btn-danger').addClass('btn-success').html($('<i/>',{class:'fa fa-play'})).append(' START');

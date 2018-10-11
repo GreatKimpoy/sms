@@ -14,6 +14,8 @@ class JobService extends Model
     public $fillable = [
         'job_id',
         'service_id',
+        'sequence',
+        'actual_time',
     ];
 
     public function service(){

@@ -180,4 +180,32 @@ class ServiceListController extends Controller
         $data = 'sample data ko';
         return response()->json(['data' => $data]);
     }
+
+    public function addSteps(Request $request)
+    {
+        $this->validate($request, [
+            'sequence' => 'required',
+            'time' => 'required',
+            'description' => 'nullable',
+            'service' => 'required',        
+        ]);
+        
+        $step = new Step;
+        $step->sequence = $request->sequence;
+        $step->time_consumed = $request->time;
+        $step->description = $request->description;
+        $step->service_id = $request->service;
+        $step->save();
+
+
+        session()->flash('notification', [
+            'title' => 'Success!',
+            'message' => 'You have created your a vehicle category',
+            'type' => 'success'
+        ]);
+
+        
+        return redirect('service');
+            
+    }
 }

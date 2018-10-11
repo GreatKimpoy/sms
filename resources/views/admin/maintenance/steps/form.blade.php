@@ -25,8 +25,11 @@
                     <div class="row">
                         <div class="col-md-12">
                             <label for="serviceName">Service Name <span class="asterisks"><strong>*</strong></span></label>
-                            <select name="category" class="form-control select2" required>
-                                <option></option>
+                            <select name="service" class="form-control select2" required>
+                            @foreach($services as $service)
+							<option value="{{$service->id}}">{{$service->name}} </option>
+							@endforeach
+					
                             </select>
                         </div>
                     </div>
@@ -47,12 +50,27 @@
                                     class="form-control align-center" 
                                     placeholder="Step Sequence"
                                     maxlength="100" 
-                                    name="sequence"
+                                    name="sequence[]"
                                     cols="50"
                                     id="sequence"
                                     value="">
                         </div>
                     </div>
+
+                     <div class="row">
+                        <div class="col-md-12">
+                            <label for="stepsSequence">time </label><span class="asterisks"><strong>*</strong></span>
+                             <input
+                                    class="form-control align-center" 
+                                    placeholder="minutes"
+                                    maxlength="100" 
+                                    name="time[]"
+                                    cols="50"
+                                    id="sequence"
+                                    value="">
+                        </div>
+                    </div>
+
                     <div class="row">
                         <div class="col-md-12">
                             <label for="stepsDescription">Description</label><span class="asterisks"><strong>*</strong></span>
@@ -60,12 +78,14 @@
                                     class="form-control align-center" 
                                     placeholder="Description"
                                     maxlength="100" 
-                                    name="description"
+                                    name="description[]"
                                     cols="50"
                                     id="description"
-                                    rows="10">{{ isset($service->description) ? $service->description : old('description') }}</textarea>
+                                    rows="10"></textarea>
                         </div>
                     </div>
+
+                    
                 </div>
                 <div class="box-footer">
                     <div class="col-md-12">

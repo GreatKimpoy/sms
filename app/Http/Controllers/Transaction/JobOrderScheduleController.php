@@ -13,6 +13,8 @@ use App\VehiclePart;
 use App\JobService;
 use App\JobTechnician;
 use App\ServicePerformed;
+use App\ServicePart;
+use App\Step;
 use DB;
 
 use Illuminate\Support\Facades\Redirect;
@@ -84,9 +86,6 @@ class JobOrderScheduleController extends Controller
        
         $this->validate($request, [
             'start_date' => 'required|date',
-            'start_time' => 'required',
-            'end_date' => 'required|date',
-            'end_time' => 'required',
             'remarks' => 'nullable',
             'technician.*' => 'required',
             'service.*' => 'required',
@@ -95,8 +94,7 @@ class JobOrderScheduleController extends Controller
             
         // Save to database 
         $order = new JobOrder;
-        $order->start = $request->input('start_date')." ".$request->input('start_time');
-        $order->end = $request->input('end_date')." ".$request->input('end_time');
+        $order->start = $request->input('start_date');
         $order->remarks = $request->input('remarks');
         $order->inspection_id = $request->customer;
         $order->save();
@@ -184,7 +182,26 @@ class JobOrderScheduleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'step' => 'required',
+        ]);
+
+       
+        DB::beginTransaction();
+        $service = JobService::findOrFail($id);
+        $service->update([
+            'job_id' => $service->job_id,
+            'service_id' => $service->id,
+            'sequence' => $request->sequence,
+        ]);
+
+        DB::commit();
+
+        session()->flash('notification', [
+            'title' => 'Success!',
+            'message' => 'You have created your service',
+            'type' => 'success'
+        ]);
     }
 
     /**
@@ -200,14 +217,63 @@ class JobOrderScheduleController extends Controller
 
 
     public function findCustomer(Request $request)
-    {
 
-        $data = Customer::select('firstname', 'middlename' ,'lastname','street','barangay','city','contact','email')
-        ->where('id',$request->id)->first();
+    {
+        $services = ServiceList::all();
+        $data = DB::table('inspections as i')
+        ->join('customers as c','c.id','i.customer_id')
+        ->join('vehicle_owners as v','v.id','i.owner_id')
+        ->join('vehicle_models as vm', 'vm.id', 'v.vehicle_id')
+        ->join('inspection_technicians as it', 'it.id', 'it.inspection_id')
+        ->join('technicians as t', 't.id', 'it.technician_id')
+        ->join('inspection_services as is', 'is.id', 'is.inspection_id')
+        ->join('service_lists as s', 's.id', 'is.service_id')
+        ->select('i.*', 'c.*', 'v.*' ,'s.*', 'vm.*')
+        ->where('i.customer_id',$request->id)->first();
+
+        return response()->json($data);
+     
+    }
+
+   public function findStep(Request $request)
+   {
+
+        $data = Step::select('*')
+        ->where('service_id',$request->id)->get();
 
         return response()->json($data);
 
-    }
+   } 
+
+
+   public function updateSequence(Request $request)
+
+   {
+
+        DB::beginTransaction();
+        $service = JobService::findOrFail($request->job_id);
+        $service->update([
+            'sequence' => $request->sequence,
+        ]);
+
+        DB::commit();
+        
+        return response()->json(['success'=>'Data is successfully added']);
+      
+   }
+
+   public function serviceParts(Request $request)
+   {
+
+
+        $data = DB::table('service_parts as sp')
+        ->join('vehicle_parts as vp', 'vp.id','sp.part_id')
+        ->select('vp.*', 'sp.*')
+        ->where('service_id', $request->service_id)->get();
+        return response()->json($data);
+
+
+   }
 
 
 }

@@ -11,8 +11,9 @@ class ServicePartSeeder extends Seeder
      */
     public function run()
     {
-        
-        DB::table('service_parts')->insert([
+        //
+
+    	DB::table('service_parts')->insert([
             'part_id' => '1',
             'service_id' => '1',
         ]);
@@ -505,6 +506,7 @@ class ServicePartSeeder extends Seeder
         DB::table('service_parts')->insert([
             'part_id' => '100',
             'service_id' => '6',
-        ]);
+        ]);	
+
     }
 }
