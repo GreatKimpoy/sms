@@ -23,6 +23,7 @@ Route::resource('report', 'ReportController');
 Route::namespace('Maintenance')->group(function() {
     Route::get('service/part/{id}', 'ServiceListController@showServicePart');
     Route::post('model/save' ,'VehicleModelsController@addParts');
+    Route::post('service/save' ,'ServiceListController@addSteps');
     Route::resource('customer', 'CustomerController');
     Route::resource('technician','TechnicianController');
     Route::resource('model','VehicleModelsController');
@@ -42,6 +43,10 @@ Route::namespace('Transaction')->group(function() {
     Route::resource('maintenance','InspectionMaintenanceController');
     Route::resource('schedule','JobOrderScheduleController');
     Route::get('findCustomer', 'JobOrderScheduleController@findCustomer');
+    Route::get('findStep', 'JobOrderScheduleController@findStep');
+    Route::get('servicePar', 'JobOrderScheduleController@serviceParts');
+    Route::post('sequence/post', 'JobOrderScheduleController@updateSequence');
+    
 });
 
 

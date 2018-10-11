@@ -1,7 +1,11 @@
-<meta charset="utf-8">
+  <html lang="{{ app()->getLocale() }}">  
+  <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>iManage | @yield('title')</title>
   <link rel="icon" type="image/png" href="{{asset ('dist/img/midsouth.png')}}" />
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   

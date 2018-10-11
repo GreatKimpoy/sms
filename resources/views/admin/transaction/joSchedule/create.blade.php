@@ -21,7 +21,7 @@
   <div class="container-fluid">
     <div class="box box-primary col-sm-12 mt-3">
       <div class="box-block pt-3">
-        <div class="box-header "><strong> <h4> Job Order Progress </h4> <hr> </strong></div>
+        <div class="box-header "><strong> <h4> Job Order Form </h4> <hr> </strong></div>
           <div class="box-body">
             <form method="post" action="{{ url('schedule') }}" class="form-horizontal">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">

@@ -18,7 +18,7 @@ class Inspection extends Model
         
     ];
 
-
+    
 
     public function inspection(){
         return $this->hasMany('App\InspectionHeader','inspection_id');

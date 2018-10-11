@@ -44,7 +44,6 @@
 
 </div>
 
-
 @include('admin.transaction.checkup.box')
 
 

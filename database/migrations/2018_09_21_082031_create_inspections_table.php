@@ -17,7 +17,6 @@ class CreateInspectionsTable extends Migration
             $table->increments('id');
             $table->integer('customer_id')->unsigned();
             $table->integer('owner_id')->unsigned();
-            $table->integer('service_id')->unsigned();
 
             $table->text('additional_remarks')->nullable();
             $table->foreign('customer_id')
@@ -31,11 +30,6 @@ class CreateInspectionsTable extends Migration
                 ->onUpdate('cascade')
                 ->onDelete('restrict');
 
-            $table->foreign('service_id')
-                ->references('id')
-                ->on('service_lists')
-                ->onUpdate('cascade')
-                ->onDelete('restrict');
         $table->timestamps();
         });
     }

@@ -25,10 +25,10 @@ class CreateServicePartsTable extends Migration
                     ->onDelete('restrict');
 
             $table->foreign('part_id')
-            ->references('id')
-            ->on('vehicle_parts')
-            ->onUpdate('cascade')
-            ->onDelete('restrict');
+                    ->references('id')
+                    ->on('vehicle_parts')
+                    ->onUpdate('cascade')
+                    ->onDelete('restrict');
 
             $table->timestamps();
         });
