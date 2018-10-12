@@ -16,6 +16,8 @@ class JobService extends Model
         'service_id',
         'sequence',
         'actual_time',
+        'startEnabled',
+        'stopEnabled',
     ];
 
     public function service(){

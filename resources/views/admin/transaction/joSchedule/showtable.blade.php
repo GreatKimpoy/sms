@@ -10,6 +10,7 @@
 
    <!-- DataTables -->
   <link rel="stylesheet" href="{{asset ('bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css')}}">
+  <link data-require="sweet-alert@*" data-semver="0.4.2" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
 
    <style>
     .parts-modal .modal {
@@ -54,32 +55,34 @@
 
           <div class="row">
             <div class="col-md-12">
-              <div class="panel panel-primary">
+              <div class="panel panel-primary" id="panel">
                 <div class="panel-body">
                   <div class="row " style="width: 100%">
 
                     <div class="col-md-4" style="float:left;width:40%">
-                      Job Id: <strong> JO000{{$jobs->id}}  </strong> <br>
-                      Customer Name:<strong> {{$jobs->inspects->customer->firstname}} {{$jobs->inspects->customer->middlename}} {{$jobs->inspects->customer->lastname}} </strong>  <br>
-                      Plate Number:<strong> {{$jobs->inspects->vehicle->plate_number}} </strong>  <br>
-                      Start Date: <label for="start" id="start"></label>
+                      Job Id: <strong>   </strong> <br>
+                      Customer Name:<strong>  </strong>  <br>
+                      Plate Number:<strong>  </strong>  <br>
+                      Start Date: <label for="start" id="start" value="start"></label>&nbsp;  
+                      Start Time: <label for="start" id="startTime" value="endTime"></label>  
                     </div>
 
                     <div class="col-md-4" style="float:left;width:20%">
-                      Car-Brand: <strong> {{$jobs->inspects->vehicle->model->make}} </strong>  <br>
-                      Car Model: <strong> {{$jobs->inspects->vehicle->model->model}} </strong> <br>
-                      Transmission:<strong>{{$jobs->inspects->vehicle->model->transmission_type}}</strong><br>
-                      End Date: <label for="end" id="end"></label>
+                      Car-Brand: <strong>  </strong>  <br>
+                      Car Model: <strong>  </strong> <br>
+                      Transmission:<strong></strong><br>
+                      End Date: <label for="end" id="end" value="start"></label>&nbsp; 
+                      End Time: <label for="end" id="endTime" value="endTime"></label>
 
                     </div>
 
                     <div class="col-md-4" style="float: left;width: 40% ">
-                      Technician(s): </strong>  @foreach($jobs->technicians as $technician)
-                      <strong> {{$technician->firstname}} {{$technician->middlename}} {{$technician->lastname}} </strong> <br>
-                    @endforeach
-                      Service(s):@foreach($jobs->services as $service)
-                      <strong>{{$service->name}}</strong> <br>
-                      @endforeach
+                      Technician(s): </strong>  
+                      <strong> </strong> <br>
+                    
+                      
+                      <strong></strong> <br>
+                      
                     </div>
 
                   </div>
@@ -97,8 +100,11 @@
                   </div>
 
                   <div class="row">
-                    <div class="col-md-12" style="float: left;width: 100%">
-                      <button type="button" class="btn btn-success btn-block" id="btnStart"><i id="icons" class="fa fa-play"></i> START</button>
+                    <div class="col-md-12" style="width: 50%">
+                      <center><button type="button" class="btn btn-success " id="btnStart" data-enabled=""><i class="fa fa-play"></i></button>
+                    </div>
+                    <div class="col-md-12" style="float: left;width: 50%">
+                      <center><button type="button" class="btn btn-danger " id="btnStop" ><i class="fa fa-stop" data-enabled=""></i></button>
                     </div>
                   </div>
 
@@ -124,32 +130,32 @@
                   </tr>
                 </thead>
                     <tbody>
-                        @foreach($jobs->services as $service)
+                        
                             <tr>
-                                <td>{{$service->id}}</td>
-                                <td>{{$service->name}}</td>
-                                <td>{{$service->description}}</td>
-                                <td>{{$service->standard_time}}</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
                                 <td id="currentStep"></td>
-                                <td id="status"><i style="color:red" class="fa fa-times"></i> Not Completed</td>
+                                <td id="status"></td>
                                 <td>   <button type="button" class="btn bg-navy btn-sm" id="modal" 
-                                  data-id="{{$service->id}}" value="{{$service->id}}" data-toggle="modal" data-target="#steps-{{$service->id}}">
+                                  data-id="" value="" data-toggle="modal" data-target="#steps" disabled>
                           <i class="fa fa-eye"></i> <strong></strong> </button> </td>
                             </tr>
-                        @endforeach                   
+                                   
                     </tbody>
               </table>
 
             </div>
           </div>
 
-   @foreach($jobs->services as $service)
-           <div class="modal fade" id="steps-{{$service->id}}" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+
+           <div class="modal fade" id="steps" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
               <div class="modal-content" >
                 <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                  <h4 class="modal-title" id="myModalLabel">{{$service->name}}</h4>
+                  <h4 class="modal-title" id="myModalLabel"></h4>
                 </div>
                 <div class="modal-body">
                     <div class="row">
@@ -157,7 +163,7 @@
                         <div class="row">
                               <div class="col-md-12">
                                 <input type="text" name="stepNumber" id="updateStep" hidden>
-                                <input type="text" name="jobNumber" id="jobNumber" value="{{$jobs->id}}" hidden="">
+                                <input type="text" name="jobNumber" id="jobNumber" value="" hidden="">
                                 <table id="jobs" class="table table-striped table-bordered responsive table-hover">
                                   <thead>
                                     <tr>
@@ -169,15 +175,15 @@
                                     </tr>
                                   </thead>
                                   <tbody>
-                                            @foreach($service->steps as $step)                                             
+                                                                                         
                                                 <tr>
-                                                      <td id="sequence">{{$step->sequence}}</td>
-                                                      <td id="description">{{$step->description}}</td>
-                                                      <td id="time_consumed">{{$step->time_consumed}}</td>
-                                                    <td><input type="checkbox" name="step" value="{{$step->sequence}}" id="check" class="checkbox" 
-                                                        data-stepid="{{$step->sequence}}" data-serviceid="{{$step->service_id}}"></td>
+                                                      <td id="sequence"></td>
+                                                      <td id="description"></td>
+                                                      <td id="time_consumed"></td>
+                                                    <td><input type="checkbox" name="step" value="" id="check" class="checkbox" 
+                                                        data-stepid="" data-serviceid=""></td>
                                                 </tr>
-                                            @endforeach                      
+                                                                  
                                       </tbody>
                                 </table>
                               </div>
@@ -193,7 +199,7 @@
               </div>
             </div>
           </div>
-  @endforeach 
+
 
         </div> 
 
@@ -226,14 +232,12 @@
                  </tr>
                </thead>
                <tbody>
-                                @foreach($jobs->services as $service)
-                                        @foreach($service->parts as $part)
+                               
                                           <tr>
-                                              <td>{{$part->number}}</td>
-                                              <td>{{$part->description}}</td>
+                                              <td></td>
+                                              <td></td>
                                             
-                                          @endforeach
-                                      @endforeach                                         
+                                                                        
                </tbody>
                <tfoot>
                  <tr>
@@ -267,15 +271,14 @@
 
 
 
-
-
 @section('scripts-include')
 
     <!-- DataTables -->
   <script src="{{asset ('bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
   <script src="{{asset ('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
-  <script src="{{asset ('js/serviceProgress.js')}}"></script>
+  <script src="{{asset ('js/servicesProgress.js')}}"></script>
   <script src="{{asset ('js/progress.js')}}"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 
 <script>
@@ -310,6 +313,7 @@
   })
 
 </script>
+
 
 
 

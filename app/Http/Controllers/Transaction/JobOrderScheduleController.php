@@ -124,7 +124,7 @@ class JobOrderScheduleController extends Controller
             'type' => 'success'
         ]);
 
-        return view($this->viewBasePath.'.joSchedule.index', (compact('calendars')));
+        return view($this->viewBasePath.'.joSchedule.index', compact('calendars'));
 
 
         
@@ -245,6 +245,37 @@ class JobOrderScheduleController extends Controller
 
    } 
 
+
+   public function updateStart(Request $request)
+   {
+
+        DB::beginTransaction();
+        $service = JobService::findOrFail($request->job_id);
+        $service->update([
+            'startEnabled' => $request->startEnabled,
+        ]);
+
+        DB::commit();
+        
+        return response()->json(['success'=>'Data is successfully added']);
+      
+   }
+
+   public function updateStop(Request $request)
+
+   {
+
+        DB::beginTransaction();
+        $service = JobService::findOrFail($request->job_id);
+        $service->update([
+            'sequence' => $request->sequence,
+        ]);
+
+        DB::commit();
+        
+        return response()->json(['success'=>'Data is successfully added']);
+      
+   }
 
    public function updateSequence(Request $request)
 
