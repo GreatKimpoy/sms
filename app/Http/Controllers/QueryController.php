@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use DB;
 use Illuminate\Http\Request;
 
 class QueryController extends Controller
@@ -15,8 +15,9 @@ class QueryController extends Controller
      */
     public function index()
     {
-        //
+     
         return view ($this->viewBasePath . '.queries.index');
+        
     }
 
     /**

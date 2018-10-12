@@ -28,12 +28,42 @@
         			<div class="input-group">
     					<span class="input-group-addon"><i class="fa fa-search"></i></span>
     					<select name="category" class="form-control select2" required data-placeholder="Search Query">
-					        <option></option>
-					        <option value=""></option>
+							<option value=""></option>
+                                <option value="1">Most Repaired Vehicle</option>
+                                <option value="2">Most availed services</option>
+                                <option value="3">Most Preferred technician</option>
 					    </select>
         			</div>
         		</div>
         	</div>
+
+
+               <div class="panel panel-primary hidden pan3">
+                    <div class="panel-heading"></div>
+                    <div class="panel-body">
+                        <table id="list4" class="table table-striped table-bordered responsive">
+                            <thead>
+                                <tr>
+                                    <th>Vehicle</th>
+                                    <th class="text-right">No. of times repaired</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                                <tr>
+                                    <td>
+                                        <li>Plate: KIM001</li>
+                                        <li>Transmission: Automatic
+                                        <li>Model:TOYOTA VIOS 2018</li>
+                                        
+                                    </td>
+																				<td class="text-right">3</td>
+                                </tr>
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
 
         </div>
       </div>

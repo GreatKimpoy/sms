@@ -29,7 +29,7 @@
                  @include('errors.alert')
                 @include('admin.maintenance.service.form')
                 <div class="form-group">
-                    <button type="submit" class="btn btn-primary btn-block">SAVE</button>
+                    <button type="submit" class="btn btn-primary btn-block">Update</button>
                 </div>
             </form>
           </div>

@@ -82,21 +82,26 @@
                 <thead>
                   <tr>
                         <th>ID</th>
+                        <th>Date</th>
                         <th>Job Order Number</th>
-                        <th>Service Name</th>
-                        <th>Standard Time</th>
-                        <th>Actual Time</th>
-                        <th>Rating</th>    
+                     
                   </tr>
-                </thead>
+                </thead>  
+                      <tbody>
+                      @foreach($jobs as $job)
+                              <td>{{$job->id}} </td>
+                              <td> {{$job->start}} </td>
+                              <td>JO000{{$job->id}} </td>
+                              
+                        @endforeach
+                      </tbody>
+                     
                 <tfoot>
                   <tr>
                         <th>ID</th>
+                        <th>Date</th>
                         <th>Job Order Number</th>
-                        <th>Service Name</th>
-                        <th>Standard Time</th>
-                        <th>Actual Time</th>
-                        <th>Rating</th>
+                        
                   </tr>
                   </tfoot>
               </table>
