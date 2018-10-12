@@ -60,28 +60,29 @@
                   <div class="row " style="width: 100%">
 
                     <div class="col-md-4" style="float:left;width:40%">
-                      Job Id: <strong>   </strong> <br>
-                      Customer Name:<strong>  </strong>  <br>
-                      Plate Number:<strong>  </strong>  <br>
+                      Job Id: <strong>  JO000{{$jobs->id}} </strong> <br>
+                      Customer Name:<strong> {{$jobs->inspects->customer->firstname}} {{$jobs->inspects->customer->middlename}} {{$jobs->inspects->customer->lastname}} </strong>  <br>
+                      Plate Number:<strong> {{$jobs->inspects->vehicle->plate_number}} </strong>  <br>
                       Start Date: <label for="start" id="start" value="start"></label>&nbsp;  
                       Start Time: <label for="start" id="startTime" value="endTime"></label>  
                     </div>
 
                     <div class="col-md-4" style="float:left;width:20%">
-                      Car-Brand: <strong>  </strong>  <br>
-                      Car Model: <strong>  </strong> <br>
-                      Transmission:<strong></strong><br>
+                      Car-Brand: <strong>  {{$jobs->inspects->vehicle->model->make}}  </strong>  <br>
+                      Car Model: <strong> {{$jobs->inspects->vehicle->model->model}} </strong> <br>
+                      Transmission:<strong>{{$jobs->inspects->vehicle->model->transmission_type}}</strong><br>
                       End Date: <label for="end" id="end" value="start"></label>&nbsp; 
                       End Time: <label for="end" id="endTime" value="endTime"></label>
 
                     </div>
 
                     <div class="col-md-4" style="float: left;width: 40% ">
-                      Technician(s): </strong>  
-                      <strong> </strong> <br>
-                    
-                      
-                      <strong></strong> <br>
+                    Technician(s): </strong>  @foreach($jobs->technicians as $technician)
+                      <strong> {{$technician->firstname}} {{$technician->middlename}} {{$technician->lastname}} </strong> <br>
+                    @endforeach
+                      Service(s):@foreach($jobs->services as $service)
+                      <strong>{{$service->name}}</strong> <br>
+                      @endforeach
                       
                     </div>
 
@@ -130,18 +131,19 @@
                   </tr>
                 </thead>
                     <tbody>
-                        
+                    @foreach($jobs->services as $service)
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>{{$service->id}}</td>
+                                <td>{{$service->name}}</td>
+                                <td>{{$service->description}}</td>
+                                <td>{{$service->standard_time}}</td>
                                 <td id="currentStep"></td>
-                                <td id="status"></td>
+                                <td id="status"><i style="color:red" class="fa fa-times"></i> Not Completed</td>
                                 <td>   <button type="button" class="btn bg-navy btn-sm" id="modal" 
-                                  data-id="" value="" data-toggle="modal" data-target="#steps" disabled>
+                                  data-id="{{$service->id}}" value="{{$service->id}}" data-toggle="modal" data-target="#steps-{{$service->id}}">
                           <i class="fa fa-eye"></i> <strong></strong> </button> </td>
                             </tr>
+                        @endforeach                   
                                    
                     </tbody>
               </table>
@@ -149,8 +151,8 @@
             </div>
           </div>
 
-
-           <div class="modal fade" id="steps" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+@foreach($jobs->services as $service)
+           <div class="modal fade" id="steps-{{$service->id}}" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
               <div class="modal-content" >
                 <div class="modal-header">
@@ -175,15 +177,15 @@
                                     </tr>
                                   </thead>
                                   <tbody>
-                                                                                         
+                                  @foreach($service->steps as $step)                                             
                                                 <tr>
-                                                      <td id="sequence"></td>
-                                                      <td id="description"></td>
-                                                      <td id="time_consumed"></td>
-                                                    <td><input type="checkbox" name="step" value="" id="check" class="checkbox" 
-                                                        data-stepid="" data-serviceid=""></td>
+                                                      <td id="sequence">{{$step->sequence}}</td>
+                                                      <td id="description">{{$step->description}}</td>
+                                                      <td id="time_consumed">{{$step->time_consumed}}</td>
+                                                    <td><input type="checkbox" name="step" value="{{$step->sequence}}" id="check" class="checkbox" 
+                                                        data-stepid="{{$step->sequence}}" data-serviceid="{{$step->service_id}}"></td>
                                                 </tr>
-                                                                  
+                                            @endforeach                           
                                       </tbody>
                                 </table>
                               </div>
@@ -199,7 +201,7 @@
               </div>
             </div>
           </div>
-
+          @endforeach 
 
         </div> 
 
@@ -233,10 +235,14 @@
                </thead>
                <tbody>
                                
+               @foreach($jobs->services as $service)
+                                        @foreach($service->parts as $part)
                                           <tr>
-                                              <td></td>
-                                              <td></td>
+                                              <td>{{$part->number}}</td>
+                                              <td>{{$part->description}}</td>
                                             
+                                          @endforeach
+                                      @endforeach        
                                                                         
                </tbody>
                <tfoot>
