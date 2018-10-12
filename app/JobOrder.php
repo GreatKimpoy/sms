@@ -18,6 +18,7 @@ class JobOrder extends Model
         'start',
         'end',
         'remarks',
+        'progressCount',
     ];
 
     public function rules() 

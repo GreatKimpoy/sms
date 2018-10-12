@@ -17,6 +17,8 @@ class CreateJobOrdersTable extends Migration
             $table->increments('id');
             $table->integer('inspection_id')->unsigned();
             $table->datetime('start');
+            $table->integer('progressCount')->default(0);
+            $table->boolean('isStatus')->default(0);
             $table->datetime('end')->nullable();
             $table->text('remarks')->nullable();
 
