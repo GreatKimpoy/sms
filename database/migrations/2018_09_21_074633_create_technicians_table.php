@@ -15,17 +15,17 @@ class CreateTechniciansTable extends Migration
     {
         Schema::create('technicians', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('firstname', 45);
-            $table->string('middlename', 45)->nullable();
-            $table->string('lastname', 45);
-            $table->text('street')->nullable();
-            $table->text('barangay')->nullable();
-            $table->text('city')->nullable();
-            $table->date('birthdate')->nullable();
-            $table->string('contact', 30);
-            $table->string('email')->nullable();
+            $table->string('firstName', 45);
+            $table->string('middleName', 45)->nullable();
+            $table->string('lastName', 45);
+            $table->text('Street')->nullable();
+            $table->text('Barangay')->nullable();
+            $table->text('City')->nullable();
+            $table->date('Birthdate')->nullable();
+            $table->string('Contact', 30);
+            $table->string('Email')->nullable();
             $table->text('image')->nullable();
-            $table->unique(['firstname', 'middlename','lastname']);
+            $table->unique(['firstName', 'middleName','lastName']);
             $table->timestamps();
         });
     }
