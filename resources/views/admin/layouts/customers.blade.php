@@ -146,7 +146,7 @@
         <label for="model" class="labely">Technician(s) Assigned</label>
             <select name="technician[]" class="form-control select2 technician" id="technician" multiple="multiple" style="width: 100%;">
                 @foreach($technicians as $technician)
-                <option value="{{$technician->id}}">{{$technician->firstname}} {{$technician->lastname}}</option>
+                <option value="{{$technician->id}}">{{$technician->firstName}} {{$technician->middleName}} {{$technician->lastName}}</option>
                 @endforeach   
             </select>
     </div>

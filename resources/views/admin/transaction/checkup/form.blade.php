@@ -5,7 +5,7 @@
             <select name="technician[]" class="form-control select2" multiple="multiple" style="width: 100%;">
 
             @foreach($technicians as $technician)
-                <option value="{{$technician->id}}">{{$technician->firstname}} {{$technician->middlename}} {{$technician->lastname}}</option>
+                <option value="{{$technician->id}}">{{$technician->firstName}} {{$technician->middleName}} {{$technician->lastName}}</option>
             @endforeach
 
      
