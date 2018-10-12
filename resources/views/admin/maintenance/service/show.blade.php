@@ -34,7 +34,7 @@
                     <div class="modal-header">
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span></button>
-                      <h4 class="modal-title">Add Steps</h4>
+                      <h4 class="modal-title"><strong>Add Steps for {{$service->name}}</strong></h4>
                     </div>
                     <div class="modal-body">
 
@@ -127,9 +127,9 @@
               
               <hr>
 
-              <strong><i class="fa fa-car-alt margin-r-5"></i>Total time of Sevice</strong>
+              <strong><i class="fa fa-car-alt margin-r-5"></i>Total time of Sevice in Minutes</strong>
               <p class="text-muted">
-              {{$service->standard_time}}
+              {{$time}}
               </p>
 
               <hr>

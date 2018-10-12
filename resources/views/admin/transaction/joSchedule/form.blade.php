@@ -33,7 +33,7 @@
 		    
 				@foreach($inspects as $inspect)
 					<option></option>
-                    <option value="{{$inspect->customer->id}}" data-inspectId = "{{$inspect->id}}">{{$inspect->customer->firstname}} {{$inspect->customer->middlename}} {{$inspect->customer->lastname}}</option>
+                    <option value="{{$inspect->customer->id}}" data-inspectId = "{{$inspect->id}}">{{$inspect->customer->firstname}} {{$inspect->customer->middlename}} {{$inspect->customer->lastname}} --- INS000{{$inspect->id}}</option>
                 @endforeach
 
 		        </select>

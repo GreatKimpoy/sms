@@ -82,7 +82,7 @@
           { data: "email" },
           { data: function(callback){
             return `
-              <a href="{{ url("customer") }}` + '/' + callback.id + `/edit"  class="btn btn-warning"><i class="fa fa-edit"></i>></a>
+            <a href="{{ url("customer") }}` + '/' + callback.id + `/edit" class="btn btn-success"><i class= "fa fa-edit"> new Inspection</i></a>
             `
           } },
       ],

@@ -12,74 +12,74 @@ class TechnicianSeeder extends Seeder
     public function run()
     {
         DB::table('technicians')->insert([
-            'firstname' => 'Trisha Claire',
-            'middlename' => 'Serrano',
-            'lastname' => 'Abanador',
+            'firstname' => 'Isidro',
+            'middlename' => 'Astejada',
+            'lastname' => 'Sevilla',
             'street' => 'Phase 4 Olympias Street',
             'barangay' => 'Barangay San Isidro',
             'city' => 'Cainta, Rizal',
             'birthdate' => '1988/10/09',
             'contact' => '09777495016',
-            'email' => 'tcabanador@gmail.com',
+            'email' => 'isidrosevilla@gmail.com',
             'image' => 'default_profile_img.png	',
         ]);
 
        DB::table('technicians')->insert([
-            'firstname' => 'Eliakim',
-            'middlename' => 'Del Pozo',
-            'lastname' => 'Urian',
+            'firstname' => 'Cesar',
+            'middlename' => 'Inlayo',
+            'lastname' => 'Mendoza',
             'street' => 'Susana Rsidences, Mayor Is Diaz Streeet',
             'barangay' => 'Barangay San Martin De Porres',
             'city' => 'Cubao, Quezon City',
             'birthdate' => '1989/10/18',
             'contact' => '09151362676',
-            'email' => 'eliakimurian@gmail.com',
+            'email' => 'cesarim@gmail.com',
             'image' => 'default_profile_img.png	',
         ]);
 
         DB::table('technicians')->insert([
-            'firstname' => 'Earnest John',
-            'middlename' => 'Amblon',
-            'lastname' => 'Gungon',
+            'firstname' => 'Luisito',
+            'middlename' => 'Aguinaldo',
+            'lastname' => 'Corpuz',
             'street' => '544 Gov. A. Pascual Street',
             'barangay' => 'Barangay San Roque',
             'city' => 'Navotas City',
             'birthdate' => '1988/10/29',
             'contact' => '0917856312',
-            'email' => 'eliakimurian@gmail.com',
+            'email' => 'LACorpuz@gmail.com',
             'image' => 'default_profile_img.png	',
         ]);
 
         DB::table('technicians')->insert([
-            'firstname' => 'Sid Emmanuel',
-            'middlename' => 'Dulos',
-            'lastname' => 'Damaso',
+            'firstname' => 'Aaron',
+            'middlename' => 'Pardinez',
+            'lastname' => 'Adolfo',
             'street' => '#74 Jasmine St., San Antonio Village',
             'barangay' => 'Barangay Dalig',
             'city' => 'Antipolo, Rizal',
             'birthdate' => '1988/08/17',
             'contact' => '09662372780',
-            'email' => 'emmanueldamaso@gmail.com',
+            'email' => 'APardinzAdolf@gmail.com',
             'image' => 'default_profile_img.png	',
         ]);
 
         DB::table('technicians')->insert([
-            'firstname' => 'John Daniel',
-            'middlename' => 'Bentula',
-            'lastname' => 'Marcelo',
+            'firstname' => 'Kelvin',
+            'middlename' => 'Dela Cruz',
+            'lastname' => 'Morfe',
             'street' => 'Archimedes Street',
             'barangay' => 'Barangay Manggahan',
             'city' => 'Pasig City',
             'birthdate' => '1978/03/21',
             'contact' => '09287615672',
-            'email' => 'jdbentula@gmail.com',
+            'email' => 'kelvin32178@yahoo.com',
             'image' => 'default_profile_img.png',
         ]);
 
         DB::table('technicians')->insert([
-            'firstname' => 'Dustin John',
-            'middlename' => 'Leron',
-            'lastname' => 'Alpasar',
+            'firstname' => 'Selwyn John',
+            'middlename' => 'Abrejica',
+            'lastname' => 'Brion',
             'street' => '1st Street',
             'barangay' => 'Barangay 168',
             'city' => 'Caloocan City',
@@ -90,54 +90,54 @@ class TechnicianSeeder extends Seeder
         ]);
 
         DB::table('technicians')->insert([
-            'firstname' => 'Ike',
-            'middlename' => 'Ferolino',
-            'lastname' => 'Tag-at',
+            'firstname' => 'Franz',
+            'middlename' => 'Eveste',
+            'lastname' => 'Espocia',
             'street' => 'Nipas Drive',
             'barangay' => 'Barangay Balonbato',
             'city' => 'Quezon City',
             'birthdate' => '1989/10/20',
             'contact' => '09500650103',
-            'email' => 'iketagat@gmail.com',
+            'email' => 'FranzExpoxia@yahoo.com',
             'image' => 'default_profile_img.png',
         ]);
 
         DB::table('technicians')->insert([
-            'firstname' => 'Janelle Joy',
+            'firstname' => 'Francis Paulo',
             'middlename' => 'Reyes',
-            'lastname' => 'Gabat',
+            'lastname' => 'Reniva',
             'street' => '31-D G.L. Jaena Street',
             'barangay' => 'Barangay West Rembo',
             'city' => 'Makati City',
             'birthdate' => '1989/12/18',
             'contact' => '09218038667',
-            'email' => 'janellejoygabat@gmail.com',
+            'email' => 'paureyesreni@gmail.com',
             'image' => 'default_profile_img.png',
         ]);
 
         DB::table('technicians')->insert([
-            'firstname' => 'Jan Lexly',
-            'middlename' => 'Medina',
-            'lastname' => 'Cortez',
+            'firstname' => 'Troy',
+            'middlename' => 'Gracia',
+            'lastname' => 'Borbonga',
             'street' => '50 star',
             'barangay' => 'Barangay Poblacion',
             'city' => 'Mandaluyong City',
             'birthdate' => '1989/08/20',
             'contact' => '09219366158',
-            'email' => 'lexlycortez10@gmail.com',
+            'email' => 'TroyGBorbonga@gmail.com',
             'image' => 'default_profile_img.png',
         ]);
       
         DB::table('technicians')->insert([
-            'firstname' => 'Erica Mae',
-            'middlename' => 'Flores',
-            'lastname' => 'Campos',
+            'firstname' => 'Mikko',
+            'middlename' => 'Florentino',
+            'lastname' => 'Malalad',
             'street' => 'Mabini Street',
             'barangay' => 'Barangay Manggahan',
             'city' => 'Pasig City',
             'birthdate' => '1988/07/22',
             'contact' => '09176430962',
-            'email' => 'camposericamaef@gmail.com',
+            'email' => 'malalad_mikko@gmail.com',
             'image' => 'default_profile_img.png',
         ]);
 

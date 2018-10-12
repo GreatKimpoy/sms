@@ -85,6 +85,7 @@
                      <table id="job" class="table table-striped table-bordered responsive">
                         <thead>
                           <tr>
+                            <th>Start Date</th>
                              <th>Vehicle</th>
                              <th>Customer</th>
                              <th class="text-right">Action</th>
@@ -93,6 +94,7 @@
                        <tbody>
                        @foreach($jobs as $job)
                           <tr>
+                            <td>{{$job->start}}</td>
                             <td>
                                 <li>Plate Number: {{$job->inspects->vehicle->plate_number}}</li>
                                 <li>Vehicle Model: {{$job->inspects->vehicle->model->model}}</li>

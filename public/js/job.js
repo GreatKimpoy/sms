@@ -12,7 +12,7 @@ $(document).ready(function(){
       $.ajax({
 
         type:"GET",
-        url: '{!!URL('findCustomer')!!}',
+        url: '{!!URL('findCustomer')!!}'
         data:{ 'id': customerId }, 
         dataType: 'json',
         success:function(data){

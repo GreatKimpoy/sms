@@ -80,7 +80,7 @@
     <div class="col-md-6">
           <label for="trans">Transmission Type</label><span class="asterisks">*</span><br>
              <div class="col-md-12">
-                <select class="form-control select2" name="Transmission" style="width: 100%;" data-placeholder="Select Transmission Type">
+                <select class="form-control select2" name="transmission" style="width: 100%;" data-placeholder="Select Transmission Type">
                     <option></option>
                     <option value="Automatic">Automatic</option>
                     <option value="Manual"> Manual</option>

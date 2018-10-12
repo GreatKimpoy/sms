@@ -41,7 +41,6 @@
                 <th>Name</th>
                 <th>Description</th>
                 <th>Category</th>
-                <th>Standard Time</th>
                 <th>Actions</th>
             </tr>
           </thead>
@@ -81,7 +80,6 @@
           { data: "name" },
           { data: "description" },
           { data: "category.name" },
-          { data: "standard_time" },
           { data: function(callback){
             return `
               <a href="{{ url("service") }}` + '/' + callback.id + `/edit" class="btn btn-warning"><i class="fa fa-edit"></i></a>

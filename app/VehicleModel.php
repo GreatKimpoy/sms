@@ -41,7 +41,7 @@ class VehicleModel extends Model
     
     public function updateRules()
     {
-        $brand = $this->brand;
+        $make = $this->make;
         return [
             'make' => 'required|min:1|max:30',
             'model' => 'nullable|min:3|max:50',

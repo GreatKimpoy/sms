@@ -92,12 +92,14 @@ class ServiceListController extends Controller
         $categories = ServiceCategory::all();
         $parts = VehiclePart::all();
         $steps = Step::all();
+        $time = Step::where('service_id', '=', $id)->sum('time_consumed');
 
         return view( $this->viewBasePath . '.service.show')
                 ->with('service', $service)
                 ->with('categories', $categories)
                 ->with('parts', $parts)
-                ->with('steps',$steps);
+                ->with('steps',$steps)
+                ->with('time', $time);
     
     }
 

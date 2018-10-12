@@ -60,5 +60,6 @@ class ServiceList extends Model
     {
         return $this->belongsToMany( __NAMESPACE__ . '\\VehiclePart', 'service_parts', 'service_id', 'part_id');
     }
+    
 
 }

@@ -157,7 +157,46 @@ class TechnicianController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $id = filter_var( $id, FILTER_VALIDATE_INT);
+        $lastname = filter_var($request->get('lastname'), FILTER_SANITIZE_STRING);
+        $firstname = filter_var($request->get('firstname'), FILTER_SANITIZE_STRING);
+        $middlename = filter_var($request->get('middlename'), FILTER_SANITIZE_STRING);
+        $street = filter_var($request->get('street'), FILTER_SANITIZE_STRING);
+        $barangay = filter_var($request->get('barangay'), FILTER_SANITIZE_STRING);
+        $city = filter_var($request->get('city'), FILTER_SANITIZE_STRING);
+        $birthdate = filter_var($request->get('birthdate'), FILTER_SANITIZE_STRING);
+        $contact = filter_var($request->get('contact'), FILTER_SANITIZE_STRING);
+        $email = filter_var($request->get('email'), FILTER_SANITIZE_STRING);
+        $specializations = $request->get('specializations');
+        $technician = technician::find($id);
+
+        $validator = Validator::make( $request->all(), $technician->mechanicUpdateRules());
+        if($validator->fails()) {
+            return back()->withInput()->withErrors($validator);
+        }
+
+        $technician->lastname = $lastname;
+        $technician->firstname = $firstname;
+        $technician->middlename = $middlename;
+        $technician->barangay = $barangay;
+        $technician->city = $city;
+        $technician->street = $street;
+        $technician->birthdate = $birthdate;
+        $technician->contact = $contact;
+        $technician->email = $email;
+
+        DB::beginTransaction();
+        $technician->save();
+        $technician->categories()->sync($specializations);
+        DB::commit();
+
+        session()->flash('notification', [
+            'title' => 'Success!',
+            'message' => 'You have update a mechanics information',
+            'type' => 'success'
+        ]);
+
+        return redirect($this->baseUrl);
     }
 
     /**

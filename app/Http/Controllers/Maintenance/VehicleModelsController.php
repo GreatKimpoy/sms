@@ -17,6 +17,7 @@ class VehicleModelsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public $viewBasePath = 'admin.maintenance';
+    public $baseUrl = 'model';
 
     public function index(Request $request)
     {
@@ -121,7 +122,36 @@ class VehicleModelsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $id = filter_var( $id, FILTER_VALIDATE_INT);
+        $make = filter_var($request->get('make'), FILTER_SANITIZE_STRING);
+        $model = filter_var($request->get('model'), FILTER_SANITIZE_STRING);
+        $size = filter_var($request->get('size'), FILTER_SANITIZE_STRING);
+        $transmission = filter_var($request->get('transmission'), FILTER_SANITIZE_STRING);
+        $vehicle = VehicleModel::find($id);
+
+        $validator = Validator::make([
+            'make' => $make,
+            'model' => $model,
+            'size' => $size,
+            'transmission' => $transmission
+        ], $vehicle->updateRules());
+
+        if($validator->fails()) {
+            return back()->withInput()->withErrors($validator);
+        }
+
+        $vehicle->make = $make;
+        $vehicle->model = $model;
+        $vehicle->size = $size;
+        $vehicle->transmission_type = $transmission;
+
+        session()->flash('notification', [
+            'title' => 'Success!',
+            'message' => 'You have update a mechanics information',
+            'type' => 'success'
+        ]);
+
+        return redirect($this->baseUrl);
     }
 
     /**

@@ -33,7 +33,7 @@
             <div class="inner">
               <h3>{{count($job)}}</h3>
 
-              <p>Job Orders</p>
+              <p>Job Orders For the Month</p>
             </div>
             <div class="icon">
               <i style="color:white" class="fa fa-briefcase"></i>
@@ -49,7 +49,7 @@
             <div class="inner">
               <h3>{{count($customer)}}</h3>
 
-              <p>Customers</p>
+              <p>Customers for the month</p>
             </div>
             <div class="icon">
               <i style="color:white" class="fa fa-user-alt"></i>

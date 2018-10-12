@@ -178,10 +178,13 @@
                 class="form-control select2"
                 id="form" 
                 multiple= "multiple"
-                data-placeholder="Select Specialization">
+                required
+                
+                data-placeholder="Select Specialization"
+                >
                 <option></option>
                  @foreach($categories as $category)
-                <option
+                <option style="width: 100%; color:blue"
                     value="{{ $category->id }}"
                     @if( old('specializations') )
                         @if( in_array( $category->id, old('specializations') ) )
