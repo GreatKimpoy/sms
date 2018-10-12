@@ -26,8 +26,8 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="box box-success">
-        @include('errors.alert')
             <div class="box-header">
+              @include('notification.notification')
               <h3 class="box-title">Inspection Items</h3>
               <a type="button" id="new" href="{{ url('inspection/create') }}"  class="btn btn-success btn-sm pull-right">
                 <i class="fa fa-plus"></i> <strong> NEW RECORD </strong>  

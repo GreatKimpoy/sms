@@ -25,7 +25,7 @@
           <div class="box-body">
             <form method="post" action="{{ url('service') }}" class="form-horizontal">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                 @include('errors.alert')
+                @include('errors.alert')
                 @include('admin.maintenance.service.form')
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary btn-block">SAVE</button>

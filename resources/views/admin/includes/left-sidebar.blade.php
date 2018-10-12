@@ -62,6 +62,8 @@
                  <!--List-->
                  <li {{{ (Request::is('service') ? 'class=active': '')}}} ><a href="{{url('service')}}"><i class="fa fa-car-alt"></i> List</a></li>
 
+                  <!--List-->
+                 <li {{{ (Request::is('steps') ? 'class=active': '')}}} ><a href="{{url('steps')}}"><i class="fa fa-car-alt"></i> Steps </a></li>
 
               </ul>
             </li>
@@ -93,10 +95,10 @@
         <li class="header">QUERIES & REPORTS</li>
 
 
-         <li {{{ (Request::is('queries') ? 'class = active': '')}}} ><a href="{{url('#')}}"><i class="fa fa-book"></i> Queries</a></li>
+         <li {{{ (Request::is('query') ? 'class = active': '')}}} ><a href="{{url('query')}}"><i class="fa fa-book"></i> Queries</a></li>
 
             <!--Technician-->
-         <li {{{ (Request::is('Reports') ? 'class = active': '')}}}><a href="{{url('#')}}"><i class="fa fa-book"></i> Reports</a></li>
+         <li {{{ (Request::is('report') ? 'class = active': '')}}}><a href="{{url('report')}}"><i class="fa fa-book"></i> Reports</a></li>
 
 
 
