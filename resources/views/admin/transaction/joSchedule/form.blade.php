@@ -136,7 +136,7 @@ $(function () {
           op+= '<option selected disabled value ="'+data.service_id+'">' +data.name+'</option>';
           $('.service').append(op).prop('disabled', false);
 
-          ops+= '<option selected disabled value ="'+data.technian_id+'">'+ data.firstname +" "+data.middlename+ " " +data.lastname+'</option>';
+          ops+= '<option selected disabled value ="'+data.technian_id+'">'+ data.firstName +" "+data.middleName+ " " +data.lastName+'</option>';
           $('.technician').append(ops).prop('disabled', false);
 
 
