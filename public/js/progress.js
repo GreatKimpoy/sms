@@ -28,7 +28,7 @@ $(document).ready(function(){
 		});
 
 
-		progressCount= id;
+		progressCount= $(":checkbox:checked").length;
 		progressPercent = (progressCount / stepCount )*100;
 		temp = progressPercent.toFixed(2) + "%";
 		if (progressPercent < 100){

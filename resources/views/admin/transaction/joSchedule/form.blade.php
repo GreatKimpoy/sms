@@ -36,6 +36,9 @@
             <label for="service" class="labely">Service Search</label>
             <select name="service[]" class="form-control select2 service" multiple="multiple" style="width: 100%;">
                 <option value=""></option>
+                 @foreach($services as $service)
+                      <option value="{{$service->id}}">{{$service->name}} </option>
+                  @endforeach
             </select>
         </div>
 
@@ -44,6 +47,19 @@
 		
 
 		<br>
+
+    <div class="row">
+  
+        <div class="col-md-12">
+            <label for="start_date" class="labely">Start Date</label>
+            <input type="date" name="start" id="start" class="form-control" required>
+        </div>
+
+
+    </div>
+    
+
+    <br>
 
   </div>
 </section>
@@ -104,7 +120,7 @@ $(function () {
         success:function(data){
 
           
-          
+         " "+
           $('#lastname').val(data.lastname);
           $('#firstname').val(data.firstname);
           $('#middlename').val(data.middlename);
@@ -117,8 +133,10 @@ $(function () {
           $('#model').val(data.brand).val(data.model);
 
 
+          op+= '<option selected disabled value ="'+data.service_id+'">' +data.name+'</option>';
+          $('.service').append(op).prop('disabled', false);
 
-          ops+= '<option selected disabled value ="'+data.technian_id+'">' +data.firstname+'</option>';
+          ops+= '<option selected disabled value ="'+data.technian_id+'">'+ data.firstname +" "+data.middlename+ " " +data.lastname+'</option>';
           $('.technician').append(ops).prop('disabled', false);
 
 

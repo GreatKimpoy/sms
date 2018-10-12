@@ -46,7 +46,8 @@ Route::namespace('Transaction')->group(function() {
     Route::get('findStep', 'JobOrderScheduleController@findStep');
     Route::get('servicePar', 'JobOrderScheduleController@serviceParts');
     Route::post('sequence/post', 'JobOrderScheduleController@updateSequence');
-    
+    Route::post('start/post', 'JobOrderScheduleController@updateStart');
+    Route::post('end/post', 'JobOrderScheduleController@updateStop');
 });
 
 

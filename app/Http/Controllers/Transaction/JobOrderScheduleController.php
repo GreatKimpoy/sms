@@ -85,7 +85,7 @@ class JobOrderScheduleController extends Controller
     {
        
         $this->validate($request, [
-            'start_date' => 'required|date',
+            'start' => 'required|date',
             'remarks' => 'nullable',
             'technician.*' => 'required',
             'service.*' => 'required',
@@ -94,7 +94,7 @@ class JobOrderScheduleController extends Controller
             
         // Save to database 
         $order = new JobOrder;
-        $order->start = $request->input('start_date');
+        $order->start = $request->input('start');
         $order->remarks = $request->input('remarks');
         $order->inspection_id = $request->customer;
         $order->save();
@@ -124,7 +124,7 @@ class JobOrderScheduleController extends Controller
             'type' => 'success'
         ]);
 
-        return view($this->viewBasePath.'.joSchedule.index', (compact('calendars')));
+        return view($this->viewBasePath.'.joSchedule.index', compact('calendars'));
 
 
         
@@ -245,6 +245,37 @@ class JobOrderScheduleController extends Controller
 
    } 
 
+
+   public function updateStart(Request $request)
+   {
+
+        DB::beginTransaction();
+        $service = JobService::findOrFail($request->job_id);
+        $service->update([
+            'startEnabled' => $request->startEnabled,
+        ]);
+
+        DB::commit();
+        
+        return response()->json(['success'=>'Data is successfully added']);
+      
+   }
+
+   public function updateStop(Request $request)
+
+   {
+
+        DB::beginTransaction();
+        $service = JobService::findOrFail($request->job_id);
+        $service->update([
+            'sequence' => $request->sequence,
+        ]);
+
+        DB::commit();
+        
+        return response()->json(['success'=>'Data is successfully added']);
+      
+   }
 
    public function updateSequence(Request $request)
 
