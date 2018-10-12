@@ -71,15 +71,15 @@ class TechnicianController extends Controller
             return back()->withInput()->withErrors($validator);
         }
 
-        $technician->lastname = $lastname;
-        $technician->firstname = $firstname;
-        $technician->middlename = $middlename;
-        $technician->barangay = $barangay;
-        $technician->city = $city;
-        $technician->street = $street;
-        $technician->birthdate = $birthdate;
-        $technician->contact = $contact;
-        $technician->email = $email;
+        $technician->lastName = $lastname;
+        $technician->firstName = $firstname;
+        $technician->middleName = $middlename;
+        $technician->Barangay = $barangay;
+        $technician->City = $city;
+        $technician->Street = $street;
+        $technician->Birthdate = $birthdate;
+        $technician->Contact = $contact;
+        $technician->Email = $email;
 
         if ($request->hasFile('image')) {
             // Get filename with extension
@@ -175,15 +175,15 @@ class TechnicianController extends Controller
             return back()->withInput()->withErrors($validator);
         }
 
-        $technician->lastname = $lastname;
-        $technician->firstname = $firstname;
-        $technician->middlename = $middlename;
-        $technician->barangay = $barangay;
-        $technician->city = $city;
-        $technician->street = $street;
-        $technician->birthdate = $birthdate;
-        $technician->contact = $contact;
-        $technician->email = $email;
+        $technician->lastName = $lastname;
+        $technician->firstName = $firstname;
+        $technician->middleName = $middlename;
+        $technician->Barangay = $barangay;
+        $technician->City = $city;
+        $technician->Street = $street;
+        $technician->Birthdate = $birthdate;
+        $technician->Contact = $contact;
+        $technician->Email = $email;
 
         DB::beginTransaction();
         $technician->save();

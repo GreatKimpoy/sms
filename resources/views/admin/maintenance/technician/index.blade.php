@@ -83,8 +83,8 @@
           { data: "image" },
           { data: "full_name" },
           { data: "full_address" },
-          { data: "contact" },
-          { data: "email" },
+          { data: "Contact" },
+          { data: "Email" },
           { data: "specializations" },
           { data: function(callback){
             return `

@@ -15,15 +15,15 @@ class Technician extends Model
     public $timestamps = false;
     
     public $fillable = [
-        'lastname',
-        'firstname',
-        'middlename',
-        'barangay',
-        'city',
-        'street',
-        'birthdate',
-        'contact',
-        'email',
+        'lastName',
+        'firstName',
+        'middleName',
+        'Barangay',
+        'City',
+        'Street',
+        'Birthdate',
+        'Contact',
+        'Email',
         'image',
     ];
 
@@ -73,18 +73,18 @@ class Technician extends Model
 
     public function getFullNameAttribute()
     {
-        $lastname = $this->lastname;
-        $firstname = $this->firstname;
-        $middlename = $this->middlename;
-        return trim("$lastname, $firstname $middlename");
+        $lastName = $this->lastName;
+        $firstName = $this->firstName;
+        $middleName = $this->middleName;
+        return trim("$lastName, $firstName $middleName");
     }
 
     public function getFullAddressAttribute()
     {
-        $street = $this->street;
-        $barangay = $this->barangay;
-        $city = $this->city;
-        return trim("$street $barangay $city");
+        $Street = $this->Street;
+        $Barangay = $this->Barangay;
+        $City = $this->City;
+        return trim("$Street $Barangay $City");
     }
 
     public function getSpecializationsAttribute()
@@ -110,7 +110,7 @@ class Technician extends Model
      */
     public function getAgeAttribute()
     {
-    return Carbon::parse($this->attributes['birthdate'])->age;
+    return Carbon::parse($this->attributes['Birthdate'])->age;
     }
 
     public function jobs()
