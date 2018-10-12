@@ -1,7 +1,6 @@
   $(document).ready(function(){
 
     var jobId = $('#jobNumber').val();
-        var startEnabled = parseInt("1");
         var d = new Date();
         var time = d.getHours() + ":" + d.getMinutes();
         var month = d.getMonth()+1;
@@ -10,7 +9,7 @@
             ((''+month).length<2 ? '0' : '') + month + '/' +
             ((''+day).length<2 ? '0' : '') + day;
 
-    $('#btnStart').click(function(){
+    $('#btnStart').click(function(e){
 
 
 		var validate = confirm("Are you sure to start this job?");
@@ -22,6 +21,9 @@
 
                     });
                     $('#startTime').val(time).text(time);
+                    var jobId = $('#jobNumber').val();
+                    var startEnabled = parseInt("1");
+                    e.preventDefault();
                     $.ajaxSetup({
                                   headers: {
                                       'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')

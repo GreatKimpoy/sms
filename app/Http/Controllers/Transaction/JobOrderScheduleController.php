@@ -246,43 +246,13 @@ class JobOrderScheduleController extends Controller
    } 
 
 
-   public function updateStart(Request $request)
-   {
-
-        DB::beginTransaction();
-        $service = JobService::findOrFail($request->job_id);
-        $service->update([
-            'startEnabled' => $request->startEnabled,
-        ]);
-
-        DB::commit();
-        
-        return response()->json(['success'=>'Data is successfully added']);
-      
-   }
-
-   public function updateStop(Request $request)
-
-   {
-
-        DB::beginTransaction();
-        $service = JobService::findOrFail($request->job_id);
-        $service->update([
-            'sequence' => $request->sequence,
-        ]);
-
-        DB::commit();
-        
-        return response()->json(['success'=>'Data is successfully added']);
-      
-   }
 
    public function updateSequence(Request $request)
 
    {
 
         DB::beginTransaction();
-        $service = JobService::findOrFail($request->job_id);
+        $service = JobService::findOrFail($request->service_id);
         $service->update([
             'sequence' => $request->sequence,
         ]);
@@ -292,6 +262,7 @@ class JobOrderScheduleController extends Controller
         return response()->json(['success'=>'Data is successfully added']);
       
    }
+
 
    public function serviceParts(Request $request)
    {
@@ -304,6 +275,39 @@ class JobOrderScheduleController extends Controller
         return response()->json($data);
 
 
+   }
+
+
+   public function updateProgress(Request $request)
+
+   {
+
+        DB::beginTransaction();
+        $order = JobOrder::findOrFail($request->job_id);
+        $order->update([
+            'progressCount' => $request->progressCount,
+        ]);
+
+        DB::commit();
+        
+        return response()->json(['success'=>'Data is successfully added']);
+      
+   }
+
+   public function updateStart(Request $request)
+
+   {
+
+        DB::beginTransaction();
+        $job= JobService::findOrFail($request->job_id);
+        $job->update([
+            'isStartEnabled' => $request->startEnabled,
+        ]);
+
+        DB::commit();
+        
+        return response()->json(['success'=>'Data is successfully added']);
+      
    }
 
 

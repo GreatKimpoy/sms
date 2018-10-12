@@ -45,10 +45,15 @@ Route::namespace('Transaction')->group(function() {
     Route::get('findCustomer', 'JobOrderScheduleController@findCustomer');
     Route::get('findStep', 'JobOrderScheduleController@findStep');
     Route::get('servicePar', 'JobOrderScheduleController@serviceParts');
+
     Route::post('sequence/post', 'JobOrderScheduleController@updateSequence');
+    Route::post('progress/post', 'JobOrderScheduleController@updateProgress');
     Route::post('start/post', 'JobOrderScheduleController@updateStart');
-    Route::post('end/post', 'JobOrderScheduleController@updateStop');
+
+
+
 });
 
 
 Route::get('job/final', 'JobOrderScheduleController@store');
+

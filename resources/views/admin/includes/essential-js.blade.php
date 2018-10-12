@@ -26,4 +26,4 @@
 <script src="{{ asset ('bower_components/bootstrap-daterangepicker/daterangepicker.js')}}"></script>
 <!-- bootstrap datepicker -->
 <script src="{{asset  ('bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js')}}"></script>
-s
+
