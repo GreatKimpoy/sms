@@ -10,7 +10,6 @@
 
    <!-- DataTables -->
   <link rel="stylesheet" href="{{asset ('bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css')}}">
-  <link data-require="sweet-alert@*" data-semver="0.4.2" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
 
    <style>
     .parts-modal .modal {
@@ -78,7 +77,7 @@
 
                     <div class="col-md-4" style="float: left;width: 40% ">
                     Technician(s): </strong>  @foreach($jobs->technicians as $technician)
-                      <strong> {{$technician->firstname}} {{$technician->middlename}} {{$technician->lastname}} </strong> <br>
+                      <strong> {{$technician->firstName}} {{$technician->middleName}} {{$technician->lastName}} </strong> <br>
                     @endforeach
                       Service(s):@foreach($jobs->services as $service)
                       <strong>{{$service->name}}</strong> <br>
@@ -116,9 +115,9 @@
 
           <div class="row">
             <div class="col-md-12">
-
-              <table id="services" class="table table-bordered table-striped table-hover">
-
+              <input type="text" name="jobNumber" id="jobNumber" value="{{$jobs->id}}" hidden="">
+              <table id="services" class="table table-bordered table-striped table-hover" value="{{$jobs->progressCount}}">
+                <input type="text" name="progressPercent" id="progressPercent" hidden="">
                 <thead>
                   <tr>
                     <th>ID</th>
@@ -135,8 +134,7 @@
                                 <td>{{$service->id}}</td>
                                 <td>{{$service->name}}</td>
                                 <td>{{$service->description}}</td>
-                                <td id="currentStep"></td>
-                                <td id="status"><i style="color:red" class="fa fa-times"></i> Not Completed</td>
+                                <td id="status"><i class="fa fa-check" style="color: green"></i> DONE</td>
                                 <td>   <button type="button" class="btn bg-navy btn-sm" id="modal" 
                                   data-id="{{$service->id}}" value="{{$service->id}}" data-toggle="modal" data-target="#steps-{{$service->id}}" disabled>
                           <i class="fa fa-eye"></i> <strong></strong> </button> </td>
@@ -155,15 +153,15 @@
               <div class="modal-content" >
                 <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                  <h4 class="modal-title" id="myModalLabel"></h4>
+                  <h4 class="modal-title" id="myModalLabel">{{$service->name}}</h4>
                 </div>
                 <div class="modal-body">
                     <div class="row">
                       <div class="col-md-12">
                         <div class="row">
                               <div class="col-md-12">
-                                <input type="text" name="stepNumber" id="updateStep" hidden>
-                                <input type="text" name="jobNumber" id="jobNumber" value="" hidden="">
+                                <input type="text" name="stepNumber" id="updateStep" hidden >
+                                <input type="text" name="progress" id="stepCount" hidden >
                                 <table id="jobs" class="table table-striped table-bordered responsive table-hover">
                                   <thead>
                                     <tr>
@@ -180,8 +178,8 @@
                                                       <td id="sequence">{{$step->sequence}}</td>
                                                       <td id="description">{{$step->description}}</td>
                                                       <td id="time_consumed">{{$step->time_consumed}}</td>
-                                                    <td><input type="checkbox" name="step" value="{{$step->sequence}}" id="check" class="checkbox" 
-                                                        data-stepid="{{$step->sequence}}" data-serviceid="{{$step->service_id}}"></td>
+                                                    <td><input type="checkbox" name="step" value="{{$service->sequence}}" id="check" class="checkbox" 
+                                                        data-stepid="{{$step->sequence}}"></td>
                                                 </tr>
                                             @endforeach                           
                                       </tbody>
@@ -194,7 +192,7 @@
 
                   </div>
                 <div class="modal-footer">
-                  <button id="ajaxSubmit" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+                  <button type="button" id="ajaxSubmit" data-id="{{$service->id}}" class="update btn btn-primary" data-dismiss="modal">Save changes</button>
                 </div>
               </div>
             </div>
@@ -206,7 +204,7 @@
         <div class="box-footer">
           <div class="row">
             <div class="col-md-12">
-              <button type="submit" id="save" class="btn btn-block btn-primary">Save</button>
+              <button type="submit" id="save" class="SAVE btn btn-block btn-primary">Save</button>
             </div>
           </div>
         </div>
@@ -280,11 +278,7 @@
     <!-- DataTables -->
   <script src="{{asset ('bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
   <script src="{{asset ('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
-  <script src="{{asset ('js/servicesProgress.js')}}"></script>
   <script src="{{asset ('js/progress.js')}}"></script>
-  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
-
 <script>
 
   $(function () {
@@ -318,8 +312,164 @@
 
 </script>
 
+<script>
+  
+  $(document).ready(function(){
+
+      $('.SAVE').on('click',function(e){
+        var progressCount = $('#progressPercent').val();
+        var jobId = $('#jobNumber').val();
+
+        e.preventDefault();
+               $.ajaxSetup({
+                  headers: {
+                      'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                  }
+              });
+
+
+        console.log(jobId,progressCount);
+
+        jQuery.ajax({
+            url: "{{ url('/progress/post') }}",
+            method: 'post',
+            data: {
+                    _token : $('meta[name="csrf-token"]').attr('content'), 
+                     job_id: jQuery('#jobNumber').val(),
+                     progressCount: progressCount,
+                     contentType: "application/json; charset=utf-8",
+            },
+            success: function(result){
+               alert('success');
+
+            }
+        });
+
+
+    });
+  });
+
+</script>
 
 
 
 
-@stop
+
+<script>
+  
+  $(document).ready(function(){
+
+      $('.update').on('click',function(e){
+        var service_id = $(this).data('id');
+        var sequence = $('#updateStep').val();
+        var jobId = $('#jobNumber').val();
+
+        e.preventDefault();
+               $.ajaxSetup({
+                  headers: {
+                      'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                  }
+              });
+
+
+        console.log(jobId,service_id,sequence);
+
+        jQuery.ajax({
+            url: "{{ url('/sequence/post') }}",
+            method: 'post',
+            data: {
+                    _token : $('meta[name="csrf-token"]').attr('content'), 
+                     service_id: service_id,
+                     job_id: jQuery('#jobNumber').val(),
+                     sequence: sequence,
+                     contentType: "application/json; charset=utf-8",
+            },
+            success: function(result){
+               alert('success');
+
+            }
+        });
+
+
+    });
+  });
+
+</script>
+
+<script>
+  
+  $(document).ready(function(){
+
+    var jobId = $('#jobNumber').val();
+        var d = new Date();
+        var time = d.getHours() + ":" + d.getMinutes();
+        var month = d.getMonth()+1;
+        var day = d.getDate();
+        var output = d.getFullYear() + '/' +
+            ((''+month).length<2 ? '0' : '') + month + '/' +
+            ((''+day).length<2 ? '0' : '') + day;
+
+    $('#btnStart').click(function(e){
+
+
+    var validate = confirm("Are you sure to start this job?");
+        if (validate==true){
+            confirm("The Job has been started");
+                    $(this).prop("disabled",true);
+                    $('table.table-bordered tr td button').each(function(){
+                        $(this).prop("disabled",false);
+                        $("#modal").prop("disabled",false);      
+
+                    });
+                    $('#startTime').val(time).text(time);
+                    var jobId = $('#jobNumber').val();
+                    var startEnabled = 
+                    e.preventDefault();
+                    $.ajaxSetup({
+                                  headers: {
+                                      'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                                  }
+                              });
+                        jQuery.ajax({
+                                        url: "{{ url('/start/post') }}",    
+                                        method: 'post',
+                                        data: {
+                                                _token : $('meta[name="csrf-token"]').attr('content'), 
+                                                 job_id: jQuery('#jobNumber').val(),
+                                                 isStartEnabled: startEnabled,
+                                                 contentType: "application/json; charset=utf-8",
+                                        },
+                                        success: function(result){
+                                           alert('success');
+                                           console.log(startEnabled);  
+                            }});
+        }
+        else{
+          $(this).prop("disabled",false);
+        }     
+     
+    })
+
+    $('#btnStop').click(function(){
+      var validate = confirm("Are you sure to finish this job?");
+        if (validate==true){
+            confirm("The Job has been Finished!");
+            $(this).prop("disabled",true);
+                $('table.table-bordered tr td button').each(function(){
+                $(this).prop("disabled",true);
+                $("#modal").prop("disabled",true);      
+
+            });
+                    $('#end').val(output).text(output);
+                    $('#endTime').val(time).text(time);
+        }
+        else{
+          $(this).prop("disabled",false);
+        }
+  });
+
+});
+
+</script>
+
+@endsection
