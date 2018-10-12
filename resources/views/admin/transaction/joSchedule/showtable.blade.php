@@ -124,7 +124,6 @@
                     <th>ID</th>
                     <th>Service Name</th>
                     <th>Service Description</th>
-                    <th>Standard TIme</th>
                     <th>Service Progress</th>
                     <th>Status</th>
                     <th>Action</th>
@@ -136,7 +135,6 @@
                                 <td>{{$service->id}}</td>
                                 <td>{{$service->name}}</td>
                                 <td>{{$service->description}}</td>
-                                <td>{{$service->standard_time}}</td>
                                 <td id="currentStep"></td>
                                 <td id="status"><i style="color:red" class="fa fa-times"></i> Not Completed</td>
                                 <td>   <button type="button" class="btn bg-navy btn-sm" id="modal" 

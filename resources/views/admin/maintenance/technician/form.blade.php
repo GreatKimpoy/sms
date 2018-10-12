@@ -35,7 +35,7 @@
                 name="lastname" 
                 type="text"
                 id="lastname"
-                value="{{ isset($technician->lastname) ? $technician->lastname : old('lastname') }}">
+                value="{{ isset($technician->lastName) ? $technician->lastName : old('lastName') }}">
     </div>
 
     <div class="col-md-4">
@@ -48,7 +48,7 @@
                 name="firstname" 
                 type="text"
                 id="firstname"
-                value="{{ isset($technician->firstname) ? $technician->firstname : old('firstname') }}">
+                value="{{ isset($technician->firstName) ? $technician->firstName : old('firstName') }}">
 
     </div>
 
@@ -62,7 +62,7 @@
                 name="middlename" 
                 type="text"
                 id="middlename"
-                value="{{ isset($technician->middlename) ? $technician->middlename : old('middlename') }}">
+                value="{{ isset($technician->middleName) ? $technician->middleName : old('middleName') }}">
     </div>
 </div>
 
@@ -78,7 +78,7 @@
                 name="street" 
                 type="text"
                 id="street"
-                value="{{ isset($technician->barangay) ? $technician->barangay : old('barangay') }}">
+                value="{{ isset($technician->Street) ? $technician->Street : old('Street') }}">
 
     </div>
 
@@ -92,7 +92,7 @@
                 name="barangay" 
                  type="text"
                 id="barangay"
-                value="{{ isset($technician->barangay) ? $technician->barangay : old('barangay') }}">
+                value="{{ isset($technician->Barangay) ? $technician->Barangay : old('Barangay') }}">
     </div>
 
     <div class="col-md-4">
@@ -105,7 +105,7 @@
                 name="city" 
                 type="text"
                 id="city"
-                value="{{ isset($technician->city) ? $technician->city : old('city') }}">
+                value="{{ isset($technician->City) ? $technician->City : old('City') }}">
     </div>
 </div>
 
@@ -120,7 +120,7 @@
                 name="birthdate" 
                 type="date"
                 id="birthdate"
-                value="{{ isset($technician->birthdate) ? $technician->birthdate : old('birthdate') }}">
+                value="{{ isset($technician->Birthdate) ? $technician->Birthdate : old('Birthdate') }}">
     </div>
 
     <div class="col-md-4">
@@ -133,7 +133,7 @@
                 name="contact" 
                 type="text"
                 id="contact"
-                value="{{ isset($technician->contact) ? $technician->contact : old('contact') }}">
+                value="{{ isset($technician->Contact) ? $technician->Contact : old('Contact') }}">
     </div>
 
     <div class="col-md-4">
@@ -146,7 +146,7 @@
                 name="email" 
                 type="email"
                 id="emails"
-                value="{{ isset($technician->email) ? $technician->email : old('email') }}">
+                value="{{ isset($technician->Email) ? $technician->Email : old('Email') }}">
     </div>
 </div>
 
