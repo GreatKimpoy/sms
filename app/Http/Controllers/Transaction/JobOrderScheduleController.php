@@ -85,7 +85,7 @@ class JobOrderScheduleController extends Controller
     {
        
         $this->validate($request, [
-            'start_date' => 'required|date',
+            'start' => 'required|date',
             'remarks' => 'nullable',
             'technician.*' => 'required',
             'service.*' => 'required',
@@ -94,7 +94,7 @@ class JobOrderScheduleController extends Controller
             
         // Save to database 
         $order = new JobOrder;
-        $order->start = $request->input('start_date');
+        $order->start = $request->input('start');
         $order->remarks = $request->input('remarks');
         $order->inspection_id = $request->customer;
         $order->save();
