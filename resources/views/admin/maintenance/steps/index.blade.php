@@ -27,8 +27,10 @@
   <div class="container-fluid">
     <div class="box box-primary col-sm-12 mt-3">
       <div class="box-block pt-3">
+        <div class="box-header">
+          @include('notification.notification')
+        </div>
         <div class="box-body">
-          @include('notification.alert')
         </div>
         <table id="servicesTable" class="table table-bordered table-hover">
           <thead>
@@ -78,8 +80,8 @@
           { data: "standard_time" },
           { data: function(callback){
             return `
-              <a href="{{ url("service") }}` + '/' + callback.id + `/edit" class="btn btn-warning"><i class= "fa fa-edit"> EDIT</i></a>
-              <button type="button" data-id='` + callback.id + `' class="btn-remove btn btn-danger"><i class= "fa fa-trash"> REMOVE</i></button>
+              <a href="{{ url("service") }}` + '/' + callback.id + `/edit" class="btn btn-warning"><i class= "fa fa-edit"> </i></a>
+              <button type="button" data-id='` + callback.id + `' class="btn-remove btn btn-danger"><i class= "fa fa-trash"> </i></button>
             `
           } },
       ],

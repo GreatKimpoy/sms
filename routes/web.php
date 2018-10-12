@@ -16,6 +16,8 @@ Route::get('/', function () {
 });
 
 Route::resource('dashboard', 'DashboardController');
+Route::resource('query', 'QueryController');
+Route::resource('report', 'ReportController');
 
 
 Route::namespace('Maintenance')->group(function() {

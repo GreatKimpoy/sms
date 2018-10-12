@@ -24,12 +24,14 @@
       <div class="container-fluid">
         <div class="box box-primary col-sm-12 mt-3">
           <div class="box-block pt-3">
+            <div class="box-header">
+              @include('notification.notification')
+            </div>
             <div class="box-body">
               <a type="button" id="new" href="{{ url('model/create') }}"  class="btn btn-success btn-sm pull-right">
                 <i class="fa fa-plus"></i> <strong> NEW RECORD </strong>  
               </a>
             </div>
-            @include('notification.alert')
             <table id="vehicle-categories-table" class="table table-bordered table-hover">
               <thead>
                 <tr> 

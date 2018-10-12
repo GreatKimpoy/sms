@@ -163,29 +163,4 @@
 
     </div>
 
-</div><br>
-
-
-
-<div class="row">
-
-        <div class="col-md-12">
-                <label for="start"> Start Date <span class="asterisks"><strong>*</strong></span></label>
-                <input type="date" name="start_date" class="form-control" id="dateDefault">
-
-        </div>
-
 </div>
-
-<div class="row">
-    <div class="col-md-12">
-        <label for="service" class="labely">Service Search</label>
-        <select name="service" class="form-control select2 services" id="services" multiple style="width: 100%;"> 
-        <option value=""></option>
-        @foreach($services as $service)
-            <option value="{{$service->id}}">{{$service->name}}</option>
-        @endforeach
-        </select>
-    </div>
-</div><br>
-

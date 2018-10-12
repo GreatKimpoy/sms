@@ -24,7 +24,6 @@
           <div class="box-body">
                 @include('errors.alert')
                 @include('admin.maintenance.inspection.form')
-
           </div>
       </div>
     </div> 

@@ -35,8 +35,8 @@
 	              <a type="button" id="new" href="{{ url('checkup/create') }}"  class="btn btn-success btn-sm pull-right">
 		            <i class="fa fa-plus"></i> <strong> NEW RECORD </strong>  
 		          </a>
+		          @include('notification.notification')
 	            </div>
-							@include('notification.alert')
 	            <div class="box-body">
 	              <table id="checkup" class="table table-bordered table-striped table-hover">
 	                <thead>
