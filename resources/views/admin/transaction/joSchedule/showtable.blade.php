@@ -63,7 +63,7 @@
                       Job Id: <strong>  JO000{{$jobs->id}} </strong> <br>
                       Customer Name:<strong> {{$jobs->inspects->customer->firstname}} {{$jobs->inspects->customer->middlename}} {{$jobs->inspects->customer->lastname}} </strong>  <br>
                       Plate Number:<strong> {{$jobs->inspects->vehicle->plate_number}} </strong>  <br>
-                      Start Date: <label for="start" id="start" value="start"></label>&nbsp;  
+                      Start Date: <label for="start" id="start" value="start">{{$jobs->start}}</label>&nbsp;  
                       Start Time: <label for="start" id="startTime" value="endTime"></label>  
                     </div>
 
@@ -124,7 +124,6 @@
                     <th>ID</th>
                     <th>Service Name</th>
                     <th>Service Description</th>
-                    <th>Standard TIme</th>
                     <th>Service Progress</th>
                     <th>Status</th>
                     <th>Action</th>
@@ -136,11 +135,10 @@
                                 <td>{{$service->id}}</td>
                                 <td>{{$service->name}}</td>
                                 <td>{{$service->description}}</td>
-                                <td>{{$service->standard_time}}</td>
                                 <td id="currentStep"></td>
                                 <td id="status"><i style="color:red" class="fa fa-times"></i> Not Completed</td>
                                 <td>   <button type="button" class="btn bg-navy btn-sm" id="modal" 
-                                  data-id="{{$service->id}}" value="{{$service->id}}" data-toggle="modal" data-target="#steps-{{$service->id}}">
+                                  data-id="{{$service->id}}" value="{{$service->id}}" data-toggle="modal" data-target="#steps-{{$service->id}}" disabled>
                           <i class="fa fa-eye"></i> <strong></strong> </button> </td>
                             </tr>
                         @endforeach                   

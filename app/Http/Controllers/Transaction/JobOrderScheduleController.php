@@ -228,7 +228,7 @@ class JobOrderScheduleController extends Controller
         ->join('technicians as t', 't.id', 'it.technician_id')
         ->join('inspection_services as is', 'is.id', 'is.inspection_id')
         ->join('service_lists as s', 's.id', 'is.service_id')
-        ->select('i.*', 'c.*', 'v.*' ,'s.*', 'vm.*')
+        ->select('i.*', 'c.*', 'v.*' ,'s.*', 'vm.*', 't.*')
         ->where('i.customer_id',$request->id)->first();
 
         return response()->json($data);

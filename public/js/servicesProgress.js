@@ -17,7 +17,10 @@
     		if (validate==true){
     				confirm("The Job has been started");
                     $(this).prop("disabled",true);
-                    $('#modal').prop("disabled",false);
+                    $('table.table-bordered tr td button').each(function(){
+                        $(this).prop("disabled",false);    
+
+                    });
                     $('#startTime').val(time).text(time);
                     $.ajaxSetup({
                                   headers: {

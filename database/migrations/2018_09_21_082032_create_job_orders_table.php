@@ -16,7 +16,7 @@ class CreateJobOrdersTable extends Migration
         Schema::create('job_orders', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('inspection_id')->unsigned();
-            $table->datetime('start');
+            $table->date('start');
             $table->integer('progressCount')->default(0);
             $table->boolean('isStatus')->default(0);
             $table->datetime('end')->nullable();
