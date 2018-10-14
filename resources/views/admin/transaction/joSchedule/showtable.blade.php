@@ -116,14 +116,13 @@
           <div class="row">
             <div class="col-md-12">
               <input type="text" name="jobNumber" id="jobNumber" value="{{$jobs->id}}" hidden="">
-              <table id="services" class="table table-bordered table-striped table-hover" value="{{$jobs->progressCount}}">
-                <input type="text" name="progressPercent" id="progressPercent" hidden="">
+              <input type="text" name="progressPercent" id="progressPercent" hidden=""value="{{$jobs->progressCount}}">
+              <table id="jobs" class="table table-bordered table-striped table-hover">
                 <thead>
                   <tr>
                     <th>ID</th>
                     <th>Service Name</th>
                     <th>Service Description</th>
-                    <th>Service Progress</th>
                     <th>Status</th>
                     <th>Action</th>
                   </tr>
@@ -134,8 +133,8 @@
                                 <td>{{$service->id}}</td>
                                 <td>{{$service->name}}</td>
                                 <td>{{$service->description}}</td>
-                                <td id="status"><i class="fa fa-check" style="color: green"></i> DONE</td>
-                                <td>   <button type="button" class="btn bg-navy btn-sm" id="modal" 
+                                <td id="status">DONE</td>
+                                <td>   <button type="button" class="btn btn-modal bg-navy btn-sm" id="modal" 
                                   data-id="{{$service->id}}" value="{{$service->id}}" data-toggle="modal" data-target="#steps-{{$service->id}}" disabled>
                           <i class="fa fa-eye"></i> <strong></strong> </button> </td>
                             </tr>
@@ -155,7 +154,7 @@
                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                   <h4 class="modal-title" id="myModalLabel">{{$service->name}}</h4>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" id="steps-{{$service->id}}">
                     <div class="row">
                       <div class="col-md-12">
                         <div class="row">
@@ -173,7 +172,8 @@
                                     </tr>
                                   </thead>
                                   <tbody>
-                                  @foreach($service->steps as $step)                                             
+                                  @foreach($service->steps as $step)
+                                                                                   
                                                 <tr>
                                                       <td id="sequence">{{$step->sequence}}</td>
                                                       <td id="description">{{$step->description}}</td>
@@ -181,6 +181,7 @@
                                                     <td><input type="checkbox" name="step" value="{{$service->sequence}}" id="check" class="checkbox" 
                                                         data-stepid="{{$step->sequence}}"></td>
                                                 </tr>
+                                            
                                             @endforeach                           
                                       </tbody>
                                 </table>
@@ -280,19 +281,6 @@
   <script src="{{asset ('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
   <script src="{{asset ('js/progress.js')}}"></script>
 <script>
-
-  $(function () {
-    $('#services').DataTable({
-      'paging'      : false,
-      'lengthChange': false,
-      'searching'   : false,
-      'ordering'    : true,
-      'info'        : false,
-      'autoWidth'   : false
-    })
-  })
-
-
 
 
   $(function () {

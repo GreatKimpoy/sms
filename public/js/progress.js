@@ -1,27 +1,28 @@
 
-
-
-
 $(document).ready(function(){
 
 
-	$("table.table-striped").on("click", "#check", function(event){
+$("table.table-striped").on("click", "#check", function(event){
 
 		var progressCount = 0, stepCount=0 , progressPercent = 0, temp;
 
 		var id = $(this).data('stepid');
+		var serviceId = $(this).data('id'); 
 
+		console.log(serviceId);
 
 		$('table.table-striped tr td input').each(function(){
 
 			var check= $(this).data('stepid');
+			var serviceId = $(this).data('id'); 
 			check = parseInt(check);
-			if((this.id) == "check" && check <= id )
+			serviceId = parseInt(serviceId);
+			if((this.id) == "check" && check <= id)
 				$(this).prop("checked", "checked");
 			else
 				$(this).prop("checked", false);
 			stepCount++;
-			console.log(stepCount);
+			console.log(check);
 
 		});
 
@@ -44,6 +45,7 @@ $(document).ready(function(){
 		$('#progressPercent').val(progressPercent);
 
 	});
+
 });
 
 
