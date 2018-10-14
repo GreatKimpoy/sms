@@ -51,6 +51,34 @@
       </div>
     </div>
   </div>
+
+   <div class="panel panel-primary ">
+                    <div class="panel-heading"> INSPECTION REPORT</div>
+                    <div class="panel-body">
+
+                        <table id="list4" class="table table-striped table-bordered responsive">
+                            <thead>
+                                <tr>
+                                    <th>Inspections</th>
+                                    <th class="text-right">No. of times Inspections</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                                <tr>
+                                    <td>
+                                        <li>Customer: Eliakim Urian</li>
+                                        <li>Vehicle: VIOS 2018</li>
+                                        <li>Plate Number: KIM200</li>
+                                        
+                                    </td>
+																				<td class="text-right">5</td>
+                                </tr>
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
 </section>
 @endsection
 

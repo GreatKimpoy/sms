@@ -122,9 +122,15 @@ class TechnicianController extends Controller
      
         $technician = Technician::where('id', '=', $id)->first();
         
+        $jobs = DB::table('job_technicians as jt')
+                 ->join('technicians as t', 't.id', 'jt.technician_id')
+                 ->join('job_orders as jo', 'jo.id', 'jt.job_id')
+                 ->select('jo.*')->where('jt.technician_id', '=', $id)->get();
+
 
         return view( $this->viewBasePath . '.technician.show')
-        ->with('technician', $technician);
+        ->with('technician', $technician)
+        ->with('jobs', $jobs);
               
     }
 

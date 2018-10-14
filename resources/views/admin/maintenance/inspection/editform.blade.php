@@ -59,7 +59,7 @@
                 @endforeach
             </div>
             <div class="box-footer">
-                <button type="button" id="save" class="btn btn-primary">Save</button>
+                <button type="button" id="save" class="btn btn-primary">Update</button>
                 <button id="addItemUpdate" type="button" class="btn btn-md btn-primary pull-right" data-toggle="tooltip" data-placement="top" title="Add">
                     <i class="fa fa-plus"></i>
                 </button>
