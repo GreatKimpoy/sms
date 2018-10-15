@@ -88,10 +88,6 @@
                 <div class="title m-b-md">
                     MIDSOUTH SERVICE MANAGEMENT APPLICATION
                 </div>
-
-                <div class="links">
-                    <a href="#" >Login</a>
-                </div>
             </div>
         </div>
     </body>

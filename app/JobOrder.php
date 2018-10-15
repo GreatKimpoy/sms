@@ -16,7 +16,9 @@ class JobOrder extends Model
         'vehicle_id',
         'inspection_id',
         'start',
+        'start_time',
         'end',
+        'end_time',
         'remarks',
         'progressCount',
     ];
@@ -26,7 +28,7 @@ class JobOrder extends Model
         return [
             'customer' => 'required',
             'start_date' => 'required|date|date_format:M-d-y|after:yesterday',
-            'end_date' => 'required|date|date_format:M-d-y|after:xxxx',
+            'start_time'=>'required',
             'firstname' => 'required|min:2|max:60|string',
             'street' => 'required|min:2|max:60',
             'barangay' => 'required|min:2|max:60',

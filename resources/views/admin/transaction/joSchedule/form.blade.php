@@ -54,22 +54,15 @@
             <label for="start_date" class="labely">Start Date</label>
             <input type="date" name="start" id="start" class="form-control" required>
         </div>
+        
+      <br>
+      <div class="col-md-6">
+        <label for="startTime"> Start Time <span class="asterisks"><strong>*</strong></span></label>
+        <input type="time" name="start_time" class="form-control">
 
+      </div>
        
     </div>
-
-    
-    <div class="row">
-  
-    <div class="col-md-6">
-		 		<label for="startTime"> Start Time <span class="asterisks"><strong>*</strong></span></label>
-		 		<input type="time" name="start_time" class="form-control">
-
-		 	</div>
-
-       
-    </div>
-    
 
     <br>
 
@@ -132,7 +125,6 @@ $(function () {
         success:function(data){
 
           
-         " "+
           $('#lastname').val(data.lastname);
           $('#firstname').val(data.firstname);
           $('#middlename').val(data.middlename);

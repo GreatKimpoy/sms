@@ -15,6 +15,7 @@ use App\JobTechnician;
 use App\ServicePerformed;
 use App\ServicePart;
 use App\Step;
+use Validator;
 use DB;
 
 use Illuminate\Support\Facades\Redirect;
@@ -92,7 +93,7 @@ class JobOrderScheduleController extends Controller
        
         $this->validate($request, [
             'start' => 'required|date|After:Yesterday',
-            'start_time' => 'requiredd|ate_format:H:i',
+            'start_time' => 'required|date_format:H:i',
             'remarks' => 'nullable',
             'technician.*' => 'required',
             'service.*' => 'required',
@@ -124,7 +125,7 @@ class JobOrderScheduleController extends Controller
             ]);
         }
 
-        DB::commit();
+           DB::commit();
 
         session()->flash('notification', [
             'title' => 'Success!',
@@ -264,6 +265,21 @@ class JobOrderScheduleController extends Controller
         ->where('job_id', $request->job_id)
         ->where('service_id' , $request->service_id )
         ->update(['sequence' => $request->sequence]);
+
+        DB::commit();
+        
+        return response()->json(['success'=>'Data is successfully added']);
+      
+   }
+
+   public function stopRequest(Request $request)
+
+   {
+
+        DB::beginTransaction();
+        $order = DB::table('job_orders')
+        ->where('id', $request->id)
+        ->update(['end' => $request->end, 'end_time' => $request->input('end_time')]);
 
         DB::commit();
         
