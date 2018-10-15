@@ -31,11 +31,11 @@
 			<div class="col-md-12">
 	          <div class="box box-success">
 	            <div class="box-header">
+	            @include('notification.notification')
 	              <h3 class="box-title">Check-up Inspection</h3>
 	              <a type="button" id="new" href="{{ url('checkup/create') }}"  class="btn btn-success btn-sm pull-right">
 		            <i class="fa fa-plus"></i> <strong> NEW RECORD </strong>  
 		          </a>
-		          @include('notification.notification')
 	            </div>
 	            <div class="box-body">
 	              <table id="checkup" class="table table-bordered table-striped table-hover">

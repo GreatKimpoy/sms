@@ -14,7 +14,7 @@
 @section('content-header')
 	<section class="content-header">
 	  <div class="container-fluid">
-	      <h3 class="float-left">Queries</h3>
+	      <h3 class="float-left">Reports</h3>
 	  </div><!-- /.container-fluid -->
 	</section>
 @endsection
@@ -32,7 +32,7 @@
         			<label for="query" ><h5><strong>Report Search</strong></h5></label>
           			<div class="input-group">
         					<span class="input-group-addon"><i class="fa fa-search"></i></span>
-        					<select name="category" class="form-control select2" required data-placeholder="Search Query">
+        					<select name="reportId" id="reportId" class="form-control select2" required data-placeholder="Search Report">
         			        <option></option>
         			        <option value=""></option>
         			    </select>
@@ -51,34 +51,6 @@
       </div>
     </div>
   </div>
-
-   <div class="panel panel-primary ">
-                    <div class="panel-heading"> INSPECTION REPORT</div>
-                    <div class="panel-body">
-
-                        <table id="list4" class="table table-striped table-bordered responsive">
-                            <thead>
-                                <tr>
-                                    <th>Inspections</th>
-                                    <th class="text-right">No. of times Inspections</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                
-                                <tr>
-                                    <td>
-                                        <li>Customer: Eliakim Urian</li>
-                                        <li>Vehicle: VIOS 2018</li>
-                                        <li>Plate Number: KIM200</li>
-                                        
-                                    </td>
-																				<td class="text-right">5</td>
-                                </tr>
-                                
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
 </section>
 @endsection
 

@@ -252,7 +252,7 @@ class JobOrderScheduleController extends Controller
    {
 
         DB::beginTransaction();
-        $service = JobService::findOrFail($request->service_id);
+        $service = JobService::findOrFail($request->job_id, $request->service_id);
         $service->update([
             'sequence' => $request->sequence,
         ]);

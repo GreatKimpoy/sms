@@ -87,23 +87,20 @@
                      
                   </tr>
                 </thead>  
+                @foreach($jobs as $job)
                       <tbody>
-                      @foreach($jobs as $job)
                               <td>{{$job->id}} </td>
                               <td> {{$job->start}} </td>
                               <td>JO000{{$job->id}} </td>
-                              
-                        @endforeach
                       </tbody>
-                     
+                @endforeach
                 <tfoot>
                   <tr>
                         <th>ID</th>
                         <th>Date</th>
-                        <th>Job Order Number</th>
-                        
+                        <th>Job Order Number</th> 
                   </tr>
-                  </tfoot>
+                </tfoot>                  
               </table>
             </div>
           </div>

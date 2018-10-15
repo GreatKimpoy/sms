@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-use DB;
 use Illuminate\Http\Request;
 Use App\Technician;
 use App\JobTechnician;
@@ -21,8 +20,7 @@ class QueryController extends Controller
      */
     public function index()
     {
-<<<<<<< HEAD
-        //
+
 
 
 
@@ -68,11 +66,7 @@ class QueryController extends Controller
             '));
 
         return View ($this->viewBasePath . '.queries.index',compact('technicians', 'services', 'vehicles', 'customers'));
-=======
-     
-        return view ($this->viewBasePath . '.queries.index');
-        
->>>>>>> master
+
     }
 
     /**

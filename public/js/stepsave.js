@@ -20,7 +20,6 @@ $(document).ready(function(){
             method: 'post',
             data: {
                     _token : $('meta[name="csrf-token"]').attr('content'), 
-                     service_id: service_id,
                      job_id: jQuery('#jobNumber').val(),
                      sequence: sequence,
                      contentType: "application/json; charset=utf-8",
