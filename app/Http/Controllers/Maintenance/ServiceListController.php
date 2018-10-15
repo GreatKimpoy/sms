@@ -14,6 +14,11 @@ use Validator;
 
 class ServiceListController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public $viewBasePath = 'admin.maintenance';
     public $baseUrl = 'service';
     /**

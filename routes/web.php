@@ -58,3 +58,7 @@ Route::namespace('Transaction')->group(function() {
 
 Route::get('job/final', 'JobOrderScheduleController@store');
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

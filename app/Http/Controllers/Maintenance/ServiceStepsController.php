@@ -13,6 +13,11 @@ use DB;
 class ServiceStepsController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public $viewBasePath = 'admin.maintenance';
 
 

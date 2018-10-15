@@ -29,6 +29,12 @@ class JobOrderScheduleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+     
     public function index()
     {
         //
@@ -85,14 +91,14 @@ class JobOrderScheduleController extends Controller
     {
        
         $this->validate($request, [
-            'start' => 'required|date',
+            'start' => 'required|date|After:Yesterday',
             'remarks' => 'nullable',
             'technician.*' => 'required',
             'service.*' => 'required',
         ]);
         
             
-        // Save to database 
+        // Save to datarbase 
         $order = new JobOrder;
         $order->start = $request->input('start');
         $order->remarks = $request->input('remarks');
