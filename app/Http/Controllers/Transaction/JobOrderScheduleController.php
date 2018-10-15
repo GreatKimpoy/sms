@@ -92,6 +92,7 @@ class JobOrderScheduleController extends Controller
        
         $this->validate($request, [
             'start' => 'required|date|After:Yesterday',
+            'start_time' => 'requiredd|ate_format:H:i',
             'remarks' => 'nullable',
             'technician.*' => 'required',
             'service.*' => 'required',
@@ -101,6 +102,7 @@ class JobOrderScheduleController extends Controller
         // Save to datarbase 
         $order = new JobOrder;
         $order->start = $request->input('start');
+        $order->start_time = $request->input('start_time');
         $order->remarks = $request->input('remarks');
         $order->inspection_id = $request->customer;
         $order->save();
