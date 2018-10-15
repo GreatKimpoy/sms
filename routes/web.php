@@ -49,6 +49,7 @@ Route::namespace('Transaction')->group(function() {
     Route::post('sequence/post', 'JobOrderScheduleController@updateSequence');
     Route::post('progress/post', 'JobOrderScheduleController@updateProgress');
     Route::post('start/post', 'JobOrderScheduleController@updateStart');
+    Route::get('getProgress', 'JobOrderScheduleController@getProgress');
 
 
 

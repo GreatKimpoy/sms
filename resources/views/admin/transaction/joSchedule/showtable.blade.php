@@ -89,10 +89,9 @@
 
                   <div class="row">
                     <div class="col-md-12" style="float:left;width:100%"><br>
-                      
                       <div class="progress active">
-                           <div id="stepProgress" class="progress-bar progress-bar-success progress-bar-striped"  role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em;width: 0%;">
-                             0% 
+                           <div id="stepProgress" class="progress-bar progress-bar-success progress-bar-striped"  role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em;width:{{$jobs->progressCount}}%;">
+                             {{$jobs->progressCount}}%
                           </div>
                       </div>
 
@@ -133,7 +132,7 @@
                                 <td>{{$service->id}}</td>
                                 <td>{{$service->name}}</td>
                                 <td>{{$service->description}}</td>
-                                <td id="status">DONE</td>
+                                <td id="status"></td>
                                 <td>   <button type="button" class="btn btn-modal bg-navy btn-sm" id="modal" 
                                   data-id="{{$service->id}}" value="{{$service->id}}" data-toggle="modal" data-target="#steps-{{$service->id}}">
                           <i class="fa fa-eye"></i> <strong></strong> </button> </td>
@@ -179,7 +178,8 @@
                                                       <td id="description">{{$step->description}}</td>
                                                       <td id="time_consumed">{{$step->time_consumed}}</td>
                                                     <td><input type="checkbox" name="step" value="{{$service->sequence}}" id="check" class="checkbox" 
-                                                        data-stepid="{{$step->sequence}}"></td>
+                                                        data-stepid="{{$step->sequence}}"
+                                                          ></td>
                                                 </tr>
                                             
                                             @endforeach                           
@@ -411,26 +411,25 @@
                     });
                     $('#startTime').val(time).text(time);
                     var jobId = $('#jobNumber').val();
-                    var startEnabled = 
-                    e.preventDefault();
-                    $.ajaxSetup({
-                                  headers: {
-                                      'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-                                  }
-                              });
                         jQuery.ajax({
-                                        url: "{{ url('/start/post') }}",    
-                                        method: 'post',
-                                        data: {
-                                                _token : $('meta[name="csrf-token"]').attr('content'), 
+                                        url: "{{ url('getProgress') }}",    
+                                        method: "GET",
+                                        dataType: 'json',
+                                        data: { 
                                                  job_id: jQuery('#jobNumber').val(),
-                                                 isStartEnabled: startEnabled,
-                                                 contentType: "application/json; charset=utf-8",
                                         },
-                                        success: function(result){
-                                           alert('success');
-                                           console.log(startEnabled);  
-                            }});
+                                        success: function(data){
+                                           console.log(data);
+
+                                           for(i=0; i<data.length; i++){
+
+                                               var progress= data[i].progressCount;
+                                               temp = progress.toFixed(2) + "%";
+                                               $('#stepProgress').css('width', temp);
+                                               $('#stepProgress').text(progress + "%");
+                                           }  
+                            }
+                          });
         }
         else{
           $(this).prop("disabled",false);

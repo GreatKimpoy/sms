@@ -252,10 +252,10 @@ class JobOrderScheduleController extends Controller
    {
 
         DB::beginTransaction();
-        $service = JobService::findOrFail($request->job_id, $request->service_id);
-        $service->update([
-            'sequence' => $request->sequence,
-        ]);
+        $service = DB::table('job_services')
+        ->where('job_id', $request->job_id)
+        ->where('service_id' , $request->service_id )
+        ->update(['sequence' => $request->sequence]);
 
         DB::commit();
         
@@ -292,6 +292,17 @@ class JobOrderScheduleController extends Controller
         
         return response()->json(['success'=>'Data is successfully added']);
       
+   }
+
+   public function getProgress(Request $request)
+   {
+
+        $data = JobOrder::select('*')
+        ->where('id',$request->job_id)->get();
+
+        
+        return response()->json($data);
+
    }
 
    public function updateStart(Request $request)
