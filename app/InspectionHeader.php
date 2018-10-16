@@ -10,7 +10,7 @@ class InspectionHeader extends Model
     //Primary Key
 	public $primaryKey = 'id';
     // Timestamps
-    public $timestamps = false;
+    public $timestamps = true;
     
     protected $fillable = [
         'inspection_id',

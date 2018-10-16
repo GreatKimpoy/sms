@@ -8,7 +8,7 @@ class JobTechnician extends Model
 {
     protected $table = 'job_technicians';
 	public $primaryKey = 'id';
-    public $timestamps = false;
+    public $timestamps = true;
 
     public $fillable = [
         'job_id',

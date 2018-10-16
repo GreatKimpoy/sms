@@ -8,7 +8,7 @@ class InspectionItem extends Model
 {
     protected $table = 'inspection_items';
     // Timestamps
-    public $timestamps = false;
+    public $timestamps = true;
     
     protected $fillable = [
     	'name',

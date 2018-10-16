@@ -9,7 +9,7 @@ class JobService extends Model
     //
     protected $table = 'job_services';
 	public $primaryKey = 'id';
-    public $timestamps = false;
+    public $timestamps = true;
 
     public $fillable = [
         'job_id',

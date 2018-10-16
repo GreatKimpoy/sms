@@ -8,7 +8,7 @@ class Inspection extends Model
 {
     protected $table = 'inspections';
     public $primaryKey = 'id';
-    public $timestamps = false;
+    public $timestamps = true;
 
     protected $fillable = [
         'customer_id',
