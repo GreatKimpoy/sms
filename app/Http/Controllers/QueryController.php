@@ -65,7 +65,18 @@ class QueryController extends Controller
                 LIMIT 5
             '));
 
-        return View ($this->viewBasePath . '.queries.index',compact('technicians', 'services', 'vehicles', 'customers'));
+        $customer= DB::select(DB::raw('
+                SELECT cust.* from customers as cust
+                JOIN inspections AS i ON i.customer_id = cust.id
+                JOIN vehicle_owners AS vo ON vo.id = i.owner_id
+                JOIN job_orders AS jo ON jo.inspection_id = i.id
+                WHERE jo.isStatus=1
+                GROUP BY cust.id
+                LIMIT 5
+            '));
+
+
+        return View ($this->viewBasePath . '.queries.index',compact('technicians', 'services', 'vehicles', 'customers' ,'customer'));
 
     }
 

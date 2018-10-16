@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
 
 class ReportController extends Controller
 {
@@ -15,7 +16,19 @@ class ReportController extends Controller
     public function index()
     {
         //
-        return view ($this->viewBasePath . '.reports.index');
+            $currentMonth=date('m');
+
+             $customers= DB::select(DB::raw('
+                SELECT cust.* from customers as cust
+                JOIN inspections AS i ON i.customer_id = cust.id
+                JOIN vehicle_owners AS vo ON vo.id = i.owner_id
+                JOIN job_orders AS jo ON jo.inspection_id = i.id
+                WHERE jo.isStatus=1
+                GROUP BY cust.id
+                LIMIT 5
+            '));
+
+        return view ($this->viewBasePath . '.reports.index', compact('customers'));
     }
 
     /**
@@ -83,4 +96,6 @@ class ReportController extends Controller
     {
         //
     }
+
+
 }

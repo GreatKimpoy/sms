@@ -16,11 +16,11 @@ class CustomerSeeder extends Seeder
             'firstname' => 'Lourdes',
             'middlename' => 'Dizon',
             'lastname' => 'Tagulao',
-            'Street' => 'Mabuhay Street, Sitio Tubigan',
-            'Barangay' => 'Brgy. San Isidro',
-            'City' => 'Antipolo City, Rizal',
-            'Contact' => '09662372789',
-            'Email' => 'odeztagulao@gmail.com',
+            'street' => 'Mabuhay Street, Sitio Tubigan',
+            'barangay' => 'Brgy. San Isidro',
+            'city' => 'Antipolo City, Rizal',
+            'contact' => '09662372789',
+            'email' => 'odeztagulao@gmail.com',
             
         ]);
 
@@ -28,11 +28,11 @@ class CustomerSeeder extends Seeder
             'firstname' => 'Armando',
             'middlename' => 'Jacinto',
             'lastname' => 'Canales',
-            'Street' => 'Blk. 2 Lot 27, Guava St., Sta. Elena Subdivision',
-            'Barangay' => 'Brgy. San Roque',
-            'City' => 'Novaliches',
-            'Contact' => '0917859216',
-            'Email' => 'armandocanales@yahoo.com',
+            'street' => 'Blk. 2 Lot 27, Guava St., Sta. Elena Subdivision',
+            'barangay' => 'Brgy. San Roque',
+            'city' => 'Novaliches',
+            'contact' => '0917859216',
+            'email' => 'armandocanales@yahoo.com',
             
         ]);
     }

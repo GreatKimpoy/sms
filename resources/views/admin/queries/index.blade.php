@@ -33,6 +33,7 @@
                             <option value="2">Most preferred services</option>
                             <option value="3">Most car repaired</option>
                             <option value="4">Most customer served</option>
+                            <option value="5">Customer with Finished Job</option>
                         </select>
         			</div>
         		</div>
@@ -177,6 +178,50 @@
             </div>
           </div>
 
+          <div class="row">
+            <div class="col-md-12">
+               <div class="panel panel-primary" id="pan5" style="display: none;">
+                    <div class="panel-heading"></div>
+                    <div class="panel-body">
+                        <table id="list3" class="table table-striped table-bordered responsive">
+                             <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Customer</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                              @foreach($customers as $customer)
+                                <tr>
+                                  <td>{{$customer->id}}</td>
+                                  <td>
+                                    <ul>
+                                      <li>
+                                        {{$customer->firstname}} {{$customer->middlename}} {{$customer->lastname}}
+                                      </li>
+                                      <li>{{$customer->street}} {{$customer->barangay}} {{$customer->city}}</li>
+                                      <li>
+                                        {{$customer->email}}
+                                      </li>
+                                      <li>
+                                        {{$customer->contact}}
+                                      </li>
+                                    </ul>
+                                  </td>
+                                  <td>
+                                    <i class="fa fa-check" style="color: green"> DONE</i>
+                                  </td>
+                                </tr>
+                              @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+              
+            </div>
+          </div>
+
 
         
       </div>
@@ -230,6 +275,13 @@
             else
             {
               $('#pan4').hide();
+            }
+            if($(this).val() == "5"){
+              $('#pan5').show();
+            }
+            else
+            {
+              $('#pan5').hide();
             }
         });
 

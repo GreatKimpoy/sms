@@ -29,7 +29,7 @@
         <div class="box-body">
         	<div class="row">
         		<div class="col-md-6">
-        			<label for="query" ><h5><strong>Report Search</strong></h5></label>
+        			<label for="report" ><h5><strong>Report Search</strong></h5></label>
           			<div class="input-group">
         					<span class="input-group-addon"><i class="fa fa-search"></i></span>
         					<select name="reportId" id="reportId" class="form-control select2" required data-placeholder="Search Report">
@@ -40,13 +40,56 @@
           			</div>
         		</div>
             <div class="col-md-4">
-              <label for="query" ><h5><strong>Date range</strong></h5></label>
+              <label for="dateRange" ><h5><strong>Date range</strong></h5></label>
               <div class="input-group">
                   <span class="input-group-addon"><i class="fa fa-calendar-alt"></i></span>
-                  <input type="text" class="form-control pull-right" id="reservation">
+                  <input type="text" class="form-control pull-right" id="reservation" placeholder="Date" required>
                 </div>
             </div>
         	</div>
+          <br>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="panel panel-primary" id="pan1" style="display">
+                    <div class="panel-heading"></div>
+                    <div class="panel-body">
+                        <table id="jobsTable" class="table table-striped table-bordered responsive">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Customer</th>
+                                    <th class="text-right">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                              @foreach($customers as $customer)
+                                <tr>
+                                  <td>{{$customer->id}}</td>
+                                  <td>
+                                    <ul>
+                                      <li>
+                                        {{$customer->firstname}} {{$customer->middlename}} {{$customer->lastname}}
+                                      </li>
+                                      <li>{{$customer->street}} {{$customer->barangay}} {{$customer->city}}</li>
+                                      <li>
+                                        {{$customer->email}}
+                                      </li>
+                                      <li>
+                                        {{$customer->contact}}
+                                      </li>
+                                    </ul>
+                                  </td>
+                                  <td>
+                                    DONE
+                                  </td>
+                                </tr>
+                              @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+          </div>
 
         </div>
       </div>
@@ -99,4 +142,41 @@
 
 </script>
 
+<script>
+  var select = this.value;
+  $('#queryId').change(function() {          
+
+            if($(this).val() == "1"){
+              $('#pan1').show();
+            }
+            else
+            {
+              $('#pan1').hide();
+            }
+            if($(this).val() == "2"){
+              $('#pan2').show();
+            }
+            else
+            {
+              $('#pan2').hide();
+            }
+            if($(this).val() == "3"){
+              $('#pan3').show();
+            }
+            else
+            {
+              $('#pan3').hide();
+            }
+            if($(this).val() == "4"){
+              $('#pan4').show();
+            }
+            else
+            {
+              $('#pan4').hide();
+            }
+        });
+</script>
+
+
 @endsection
+  
