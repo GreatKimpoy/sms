@@ -20,6 +20,7 @@ class CreateJobOrdersTable extends Migration
             $table->time('start_time');
             $table->date('end')->nullable();
             $table->time('end_time')->nullable();
+            $table->time('hours_worked')->nullable();
             $table->float('progressCount',5,2)->default(0);
             $table->boolean('isStatus')->default(0);
             $table->text('remarks')->nullable();

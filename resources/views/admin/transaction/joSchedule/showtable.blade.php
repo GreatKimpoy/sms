@@ -67,7 +67,7 @@
                           $date = date_format($date,"F d,Y");
                       ?>
                       Start Date: <label for="start" id="start" value="start">{{$date}}</label>&nbsp;  
-                      Start Time: <label for="start" id="startTime" value="endTime">{{$jobs->start_time}}</label>  
+                      Start Time: <label for="start" id="startTime" value="startTime">{{$jobs->start_time}}</label>  
                     </div>
 
                     <div class="col-md-4" style="float:left;width:20%">
@@ -182,7 +182,7 @@
                                                       <td id="description">{{$step->description}}</td>
                                                       <td id="time_consumed">{{$step->time_consumed}}</td>
                                                     <td><input type="checkbox" name="step" value="{{$service->sequence}}" id="check" class="checkbox" 
-                                                        data-stepid="{{$step->sequence}}"
+                                                        data-stepid="{{$step->id}}"
                                                           ></td>
                                                 </tr>
                                             
@@ -241,7 +241,7 @@
                                           <tr>
                                               <td>{{$part->number}}</td>
                                               <td>{{$part->description}}</td>
-                                            
+                                          </tr>
                                           @endforeach
                                       @endforeach        
                                                                         
@@ -414,26 +414,6 @@
                         $("#modal").prop("disabled",false);      
 
                     });
-                    var jobId = $('#jobNumber').val();
-                        jQuery.ajax({
-                                        url: "{{ url('getProgress') }}",    
-                                        method: "GET",
-                                        dataType: 'json',
-                                        data: { 
-                                                 job_id: jQuery('#jobNumber').val(),
-                                        },
-                                        success: function(data){
-                                           console.log(data);
-
-                                           for(i=0; i<data.length; i++){
-
-                                               var progress= data[i].progressCount;
-                                               temp = progress.toFixed(2) + "%";
-                                               $('#stepProgress').css('width', temp);
-                                               $('#stepProgress').text(progress + "%");
-                                           }  
-                            }
-                          });
         }
         else{
           $(this).prop("disabled",false);
@@ -446,11 +426,12 @@
       var validate = confirm("Are you sure to finish this job?");
         if (validate==true){
             confirm("The Job has been Finished!");
-            $(this).prop("disabled",true);
+            setTimeout(function() { $(this).prop("disabled",true);},15000) ;
             $("#save").prop("disabled",true); 
                 $('table.table-bordered tr td button').each(function(){
                 $(this).prop("disabled",true);
-                $("#modal").prop("disabled",true);     
+                $("#modal").prop("disabled",true);  
+               
 
             });
 
@@ -469,6 +450,7 @@
                                   dataType: 'json',
                                   data: { 
                                            id: jQuery('#jobNumber').val(),
+                                           start: jQuery('#startTime').val(),
                                            end: output,
                                            end_time:(d),
                                            _token : $('meta[name="csrf-token"]').attr('content'), 

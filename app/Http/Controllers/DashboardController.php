@@ -2,10 +2,24 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Customer;
 use App\JobOrder;
+use App\Technician;
+use App\Customer;
+use App\ServiceList;
+use App\Inspection;
+use App\VehiclePart;
+use App\JobService;
+use App\JobTechnician;
+use App\ServicePerformed;
+use App\ServicePart;
+use App\Step;
+use Validator;
+use DB;
+
+use Carbon\Carbon;
 
 class DashboardController extends Controller
 {
@@ -18,9 +32,13 @@ class DashboardController extends Controller
     {
         //
 
-        $customer=Customer::get();
-        $job = JobOrder::get();
-        return view('admin.dashboard.index',compact('customer','job'));
+        $currentMonth=date('m');
+
+        $customer=Customer::whereRaw('MONTH(created_at) = ?', [$currentMonth])->get();
+        $job=JobOrder::whereRaw('MONTH(start) = ?', [$currentMonth])->get();
+        $technicians = JobTechnician::where('job_id', 'id');
+        $jobs = JobOrder::where('isStatus', 1)->get(); 
+        return view('admin.dashboard.index',compact('customer','job' ,'jobs', 'technicians'));
     }
 
     /**

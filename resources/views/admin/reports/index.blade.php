@@ -34,7 +34,8 @@
         					<span class="input-group-addon"><i class="fa fa-search"></i></span>
         					<select name="reportId" id="reportId" class="form-control select2" required data-placeholder="Search Report">
         			        <option></option>
-        			        <option value=""></option>
+        			        <option value="1">Job Order This Month</option>
+                      <option value="2">Inspection Report This Month</option>
         			    </select>
           			</div>
         		</div>

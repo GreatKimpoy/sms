@@ -74,9 +74,29 @@
                   <tr>
                     <th class="text-center">Job</th>
                     <th class="text-center">Customer</th>
-                    <th class="text-right">Technician</th>
                   </tr>
                 </thead>
+                <tbody>
+                  @foreach($jobs as $jobs)
+                    <tr>
+                      <td>
+                        <ul>
+                          <li>Job Number: JO000{{$jobs->id}}</li>
+                          <li>Start date and time {{$jobs->start}} &nbsp; {{$jobs->start_time}} </li>
+                          <li>End date and time {{$jobs->end}} &nbsp; {{$jobs->end_time}} </li>
+                        </ul>
+                      </td>
+                      <td>
+                        <ul>
+                          <li>Name: {{$jobs->inspects->customer->firstname}} {{$jobs->inspects->customer->middlename}} {{$jobs->inspects->customer->lastname}} </li>
+                          <li>Address: {{$jobs->inspects->customer->street}} {{$jobs->inspects->customer->barangay}} {{$jobs->inspects->customer->city}} </li>
+                          <li>Email: {{$jobs->inspects->customer->email}}</li>
+                          <li>Contact: {{$jobs->inspects->customer->contact}}</li>
+                        </ul>
+                      </td>
+                    </tr>
+                  @endforeach
+                </tbody>
               </table>
             </div>
           </div>

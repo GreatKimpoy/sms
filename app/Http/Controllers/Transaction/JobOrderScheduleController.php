@@ -276,10 +276,17 @@ class JobOrderScheduleController extends Controller
 
    {
 
+        $StartTime= $request->start;
+        $EndTime = $request->end;
+        $sst = strtotime($StartTime);
+        $eet=  strtotime($EndTime);
+        $diff= $eet-$sst;
+        $timeElapsed= gmdate("h:i",$diff);
+
         DB::beginTransaction();
         $order = DB::table('job_orders')
         ->where('id', $request->id)
-        ->update(['end' => $request->end, 'end_time' => $request->input('end_time')]);
+        ->update(['end' => $request->end, 'end_time' => $request->input('end_time'), 'isStatus' => 1 , 'hours_worked' =>$timeElapsed ]);
 
         DB::commit();
         
@@ -336,7 +343,7 @@ class JobOrderScheduleController extends Controller
         DB::beginTransaction();
         $job= JobService::findOrFail($request->job_id);
         $job->update([
-            'isStartEnabled' => $request->startEnabled,
+            'isStartEnabled' => 1,
         ]);
 
         DB::commit();
