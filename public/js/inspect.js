@@ -1,8 +1,11 @@
+
+
+
 function popForm(type_id,typeName,item_id,itemName,form){
     if(!$('#panel'+type_id+'').length){
-        $('#formbox').append(
+        $('#form-box').append(
             '<div id="panel'+type_id+'" class="panel panel-default">' +
-            '<div class="panel-heading" role="tab" id="heading'+type_id+'" data-toggle="collapse" data-parent="#formbox" href="#collapse'+type_id+'" aria-expanded="true" aria-controls="collapse'+type_id+'">' +
+            '<div class="panel-heading" role="tab" id="heading'+type_id+'" data-toggle="collapse" data-parent="#form-box" href="#collapse'+type_id+'" aria-expanded="true" aria-controls="collapse'+type_id+'">' +
             '<h2 class="panel-title" style="font-weight:bold!important;color:black!important">' +
             '<a role="button">'+typeName+'</a></h2>' +
             '</div>' +
@@ -13,7 +16,7 @@ function popForm(type_id,typeName,item_id,itemName,form){
         );
     }
     $('#body'+type_id+'').append(
-        '<div style="padding-left: 50px" id="item'+item_id+'" class="row"></div>'
+        '<div id="item'+item_id+'" style="padding-left: 30px" class="row formed"></div>'
     );
     var formContainer = $('#item'+item_id+'');
     var formData = form;
@@ -23,12 +26,13 @@ function popForm(type_id,typeName,item_id,itemName,form){
     };
     formContainer.formRender(formRenderOpts);
     formContainer.prepend('<label>'+itemName+':</label><br>');
-    formContainer.append('<input type="text" class="hidden" name="type_id[]" id="type_id" value="'+type_id+'" required>');
+    formContainer.append('<input type="text"  class="hidden" name="type_id[]" id="type_id" value="'+type_id+'" required>');
     formContainer.append('<input type="text" class="hidden" name="typeName[]" id="typeName" value="'+typeName+'" required>');
     formContainer.append('<input type="text" class="hidden" name="item_id[]" id="item_id" value="'+item_id+'" required>');
     formContainer.append('<input type="text" class="hidden" name="itemName[]" id="itemName" value="'+itemName+'" required>');
     formContainer.append('<textarea class="hidden" name="form[]" id="form" required>'+formData+'</textarea>');
-    formContainer.children('.form-group').addClass('col-md-6')
+    formContainer.append('<hr>');
+    formContainer.children('.form-group').addClass('col-md-3')
 }
 
 $(document).on('change', '.formed input', function(){
@@ -79,9 +83,9 @@ $(document).on('change', '.formed input', function(){
 
 function pdfForm(type_id,typeName,item_id,itemName,form){
     if(!$('#panel'+type_id+'').length){
-        $('#formbox').append(
+        $('#form-box').append(
             '<div id="panel'+type_id+'" class="panel panel-primary">' +
-            '<div class="panel-heading" role="tab" id="heading'+type_id+'" data-parent="#formbox" href="#collapse'+type_id+'" aria-expanded="true" aria-controls="collapse'+type_id+'">' +
+            '<div class="panel-heading" role="tab" id="heading'+type_id+'" data-parent="#form-box" href="#collapse'+type_id+'" aria-expanded="true" aria-controls="collapse'+type_id+'">' +
             '<h2 class="panel-title" style="font-weight:bold!important;color:white!important">' +
             '<a role="button">'+typeName+'</a></h2>' +
             '</div>' +
@@ -92,7 +96,7 @@ function pdfForm(type_id,typeName,item_id,itemName,form){
         );
     }
     $('#body'+type_id+'').append(
-        '<div id="item'+item_id+'" class="row formed"></div>'
+        '<div id="item'+item_id+'" style="padding-left: 30px" class="row formed"></div>'
     );
     var formContainer = $('#item'+item_id+'');
     var formData = form;
@@ -101,6 +105,8 @@ function pdfForm(type_id,typeName,item_id,itemName,form){
         formData: formData
     };
     formContainer.formRender(formRenderOpts);
-    formContainer.prepend('<label style="padding-left: 1.2%">'+itemName+':</label><br>');
-    formContainer.children('.form-group').addClass('col-md-3')
+    formContainer.prepend('<label>'+itemName+':</label><br>');
+    formContainer.children('.form-group').addClass()
 }
+
+

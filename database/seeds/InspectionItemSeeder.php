@@ -16,7 +16,6 @@ class InspectionItemSeeder extends Seeder
             'form' => '[
                             {
                                 "type": "radio-group",
-                                "required": true,
                                 "label": "Rating",
                                 "inline": true,
                                 "className": "",
@@ -24,8 +23,7 @@ class InspectionItemSeeder extends Seeder
                                 "values": [
                                     {
                                         "label": "😃",
-                                        "value": "1",
-                                        "selected": true
+                                        "value": "1"
                                     },
                                     {
                                         "label": "😐",
@@ -39,13 +37,12 @@ class InspectionItemSeeder extends Seeder
                             },
                             {
                                 "type": "text",
+                                "required": false,
                                 "label": "Condition",
-                                "placeholder": "Condition",
                                 "className": "form-control",
-                                "name": "text-1495719902626",
-                                "subtype": "text",
-                                "maxlength": "100"
-                            }
+                                "name": "text-1502452865914",
+                                "subtype": "text"
+                            },
                         ]',
             'type_id' => 1,
             'Active' => 1
@@ -56,7 +53,6 @@ class InspectionItemSeeder extends Seeder
             'form' => '[
                             {
                                 "type": "radio-group",
-                                "required": true,
                                 "label": "Rating",
                                 "inline": true,
                                 "className": "",
@@ -65,7 +61,6 @@ class InspectionItemSeeder extends Seeder
                                     {
                                         "label": "😃",
                                         "value": "1",
-                                        "selected": true
                                     },
                                     {
                                         "label": "😐",
@@ -77,15 +72,14 @@ class InspectionItemSeeder extends Seeder
                                     }
                                 ]
                             },
-                            {
+                             {
                                 "type": "text",
+                                "required": false,
                                 "label": "Condition",
-                                "placeholder": "Condition",
                                 "className": "form-control",
-                                "name": "text-1495720031415",
-                                "subtype": "text",
-                                "maxlength": "100"
-                            }
+                                "name": "text-1502452865914",
+                                "subtype": "text"
+                            },
                         ]',
             'type_id' => 1,
             'Active' => 1
@@ -96,7 +90,6 @@ class InspectionItemSeeder extends Seeder
             'form' => '[
                     {
                         "type": "radio-group",
-                        "required": true,
                         "label": "Rating",
                         "inline": true,
                         "name": "radio-group-1502452774374",
@@ -104,7 +97,6 @@ class InspectionItemSeeder extends Seeder
                             {
                                 "label": "😃",
                                 "value": "1",
-                                "selected": true
                             },
                             {
                                 "label": "😐",
@@ -116,14 +108,13 @@ class InspectionItemSeeder extends Seeder
                             }
                         ]
                     },
-                    {
-                        "type": "textarea",
+                     {
+                        "type": "text",
+                        "required": false,
                         "label": "Condition",
-                        "placeholder": "Condition",
                         "className": "form-control",
-                        "name": "textarea-1502452774397",
-                        "subtype": "textarea",
-                        "maxlength": "100"
+                        "name": "text-1502452865914",
+                        "subtype": "text"
                     },
                    
                 ]',
@@ -136,7 +127,6 @@ class InspectionItemSeeder extends Seeder
             'form' => '[
                     {
                         "type": "radio-group",
-                        "required": true,
                         "label": "Rating",
                         "inline": true,
                         "name": "radio-group-1502452815378",
@@ -144,7 +134,6 @@ class InspectionItemSeeder extends Seeder
                             {
                                 "label": "😃",
                                 "value": "1",
-                                "selected": true
                             },
                             {
                                 "label": "😐",
@@ -156,16 +145,14 @@ class InspectionItemSeeder extends Seeder
                             }
                         ]
                     },
-                    {
-                        "type": "textarea",
+                     {
+                        "type": "text",
+                        "required": false,
                         "label": "Condition",
-                        "placeholder": "Condition",
                         "className": "form-control",
-                        "name": "textarea-1502452815386",
-                        "subtype": "textarea",
-                        "maxlength": "100"
-                    },
-                   
+                        "name": "text-1502452865914",
+                        "subtype": "text"
+                    },                   
                 ]',
             'type_id' => 2,
             'Active' => 1
@@ -176,7 +163,6 @@ class InspectionItemSeeder extends Seeder
             'form' => '[
                     {
                         "type": "radio-group",
-                        "required": true,
                         "label": "Rating",
                         "inline": true,
                         "name": "radio-group-1502452839609",
@@ -184,7 +170,6 @@ class InspectionItemSeeder extends Seeder
                             {
                                 "label": "😃",
                                 "value": "1",
-                                "selected": true
                             },
                             {
                                 "label": "😐",
@@ -197,13 +182,12 @@ class InspectionItemSeeder extends Seeder
                         ]
                     },
                     {
-                        "type": "textarea",
+                        "type": "text",
+                        "required": false,
                         "label": "Condition",
-                        "placeholder": "Condition",
                         "className": "form-control",
-                        "name": "textarea-1502452839621",
-                        "subtype": "textarea",
-                        "maxlength": "100"
+                        "name": "text-1502452865914",
+                        "subtype": "text"
                     },
                 
                 ]',
@@ -216,7 +200,6 @@ class InspectionItemSeeder extends Seeder
             'form' => '[
                     {
                         "type": "radio-group",
-                        "required": true,
                         "label": "Rating",
                         "inline": true,
                         "name": "radio-group-1502452861959",
@@ -224,7 +207,6 @@ class InspectionItemSeeder extends Seeder
                             {
                                 "label": "😃",
                                 "value": "1",
-                                "selected": true
                             },
                             {
                                 "label": "😐",
@@ -237,13 +219,12 @@ class InspectionItemSeeder extends Seeder
                         ]
                     },
                     {
-                        "type": "textarea",
+                        "type": "text",
+                        "required": false,
                         "label": "Condition",
-                        "placeholder": "Condition",
                         "className": "form-control",
-                        "name": "textarea-1502452861966",
-                        "subtype": "textarea",
-                        "maxlength": "100"
+                        "name": "text-1502452865914",
+                        "subtype": "text"
                     },
                   
                 ]',

@@ -1,6 +1,6 @@
 <div class="col-md-12">
         <div class="panel-body">
-            <div id="formbox" class="panel-group" role="tab-list" aria-multiselectable="true">
+            <div id="form-box" class="panel-group" role="tab-list" aria-multiselectable="true">
             </div>
         </div>
             <div class="form-group">

@@ -55,13 +55,13 @@
                         </div>
                     </div>
                 </div>
-                <div id="formbox"></div>
+                <div id="form-box"></div>
             </div>            
         </div>
     </div>
 
-
-    <script src="{{ URL::asset('js/inspect.js') }}"></script>	
+	
+    <script src="{{ URL::asset('js/inspect.js') }}"></script>
 	<!-- jQuery 3 -->
 	<script src="{{asset ('bower_components/jquery/dist/jquery.min.js')}}"></script>
 	<!-- Bootstrap 3.3.7 -->
@@ -85,7 +85,6 @@
             pdfForm({{$inspection->item->type_id}},"{{$inspection->item->type->type}}",{{$inspection->item_id}},"{{$inspection->item->name}}",form)
         </script>
     @endforeach
-
 
 </body>
 

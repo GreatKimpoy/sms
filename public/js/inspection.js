@@ -64,23 +64,22 @@ $(document).on('click', '#pushItem', function (){
                 defaultFields: [
                     {//radio
                         "type": "radio-group",
-                        "required": true,
                         "label": "Rating",
                         "inline": true,
                         "className": "",
                         "values": [
-                            {"label": "😃","value": "1"},
-                            {"label": "😐","value": "2"},
-                            {"label": "☹️","value": "3"}
+                            {"label": "😃 Excellent Condition","value": "1"},
+                            {"label": "😐 Good Condition","value": "2"},
+                            {"label": "☹️ Bad Condition","value": "3"}
                         ]
                     },//end of radio
                     {
-                        "type": "textarea",
+                        "type": "text",
+                        "required": false,
                         "label": "Condition",
-                        "placeholder": "Condition",
                         "className": "form-control",
-                        "subtype": "text",
-                        "maxlength": "100",
+                        "name": "text-1502452865914",
+                        "subtype": "text"
                     }
                 ]//end of defaultFields
             }
