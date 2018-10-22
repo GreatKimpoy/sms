@@ -78,7 +78,6 @@ class InspectionCheckupController extends Controller
             'firstname' => 'required|max:45',
             'middlename' => 'required|nullable',
             'lastname' => 'required|max:45',
-            'birthdate'=> 'required|date',
             'contact' => 'required|max:30',
             'email' => 'required|nullable|email|max:100',
             'street' => 'required|nullable|max:140',
@@ -208,8 +207,9 @@ class InspectionCheckupController extends Controller
      */
     public function edit($id)
     {
-        //
-        $items = InspectionItem::all();
+        
+        
+        $services = ServiceList::all();
         $inspect = Inspection::findorFail($id);
         $customers = DB::table('customers')
             ->select('customers.*')
@@ -221,7 +221,7 @@ class InspectionCheckupController extends Controller
             ->select('v.*')
             ->get();
         $technicians = Technician::all();
-        return View($this ->viewBasePath.'.edit',compact('items','inspect','customers','autos','vehicles','technicians'));
+        return View($this ->viewBasePath.'.edit',compact('items','inspect','customers','autos','vehicles','technicians','services'));
 
     }
 
@@ -246,6 +246,7 @@ class InspectionCheckupController extends Controller
             'plate' => 'required',
             'modelId' => 'required',
             'technician.*' => 'required',
+            'service.*' => 'required',
             'remarks' => 'max:140',
             'form.*' => 'required',
             'item.*' => 'required'
@@ -295,33 +296,49 @@ class InspectionCheckupController extends Controller
                     ]
                 );
                 $model = $request->modelId;
-                $vehicle = Vehicle::updateOrCreate(
+                $vehicle = VehicleOwner::updateOrCreate(
                     [
                         'plate_number' => str_replace('_','',trim($request->plate)),
                         'vehicle_id' => $model,
                     ]
                 );
+            
                 $inspection = Inspection::findOrFail($id);
                 $inspection->update([
                     'customer_id' => $customer->id,
                     'vehicle_id' => $vehicle->id,
                     'additional_remarks' => trim($request->remarks)
                 ]);
+
                 $forms = $request->form;
-                $items = $request->itemId;
-                   foreach($items as $key => $item){
-                    InspectionHeader::updateOrCreate([
-                        'inspection_id' => $inspection->id,
-                        'item_id' => $item,
-                        'remarks' => $forms[$key],
-                    ]);
-                 }
+                $items = $request->item_id;
+                InspectionHeader::where('inspection_id',$id)->update(['isActive'=>0]);
+                foreach($items as $key=>$item){
+                    InspectionHeader::updateOrCreate(
+                        [
+                            'inspectionId' => $inspection->id,
+                            'item_id' => $item,
+                        ],
+                         [   
+                            'remarks' => $forms[$key],
+                            'isActive' => 1
+                        ]
+                    );
+                }
                 $technicians = $request->technician;
                 InspectionTechnician::where('inspection_id',$id);
                 foreach($technicians as $technician){
                     InspectionTechnician::updateOrCreate([
                         'inspection_id' => $inspection->id,
                         'technician_id' => $technician,
+                    ]);
+                }
+                $services = $request->service;
+                InspectionService::where('inspection_id',$id);
+                foreach($services as $service){
+                    InspectionService::create([
+                        'inspection_id' => $inspection->id,
+                        'service_id' => $service,
                     ]);
                 }
                 DB::commit();
@@ -345,9 +362,35 @@ class InspectionCheckupController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
-        //
+    {   
+       
+     
+      
+        
     }
+
+    public function delete(Request $request, $id)
+    {
+        $inspection = InspectionHeader::where('inspection_id', '=', $id);
+        $service = InspectionService::where('inspection_id', '=', $id);
+        $ins = Inspection::findOrfail($id);
+
+        $inspection->delete();
+        $ins->delete();
+
+        if( $request->ajax() ) {
+            return response()->json([
+                'title' => 'Success',
+                'message' => 'Category successfully removed',
+                'status' => 'ok',
+                'others' => '',
+            ], 200);
+        }
+
+        session()->flush('success', 'Category successfully removed');
+        return redirect($this->baseUrl);
+    }
+
 
 
 }

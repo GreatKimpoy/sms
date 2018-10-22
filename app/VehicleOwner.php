@@ -15,7 +15,7 @@ class VehicleOwner extends Model
     
      public $fillable = [
         'plate_number',
-        'vehicle_id'
+        'vehicle_id',
        
     ];
 

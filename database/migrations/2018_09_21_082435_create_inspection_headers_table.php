@@ -18,6 +18,7 @@ class CreateInspectionHeadersTable extends Migration
             $table->integer('inspection_id')->unsigned();
             $table->integer('item_id')->unsigned();
             $table->text('remarks');
+            $table->boolean('isActive')->default(1);
 
             $table->foreign('inspection_id')
             ->references('id')

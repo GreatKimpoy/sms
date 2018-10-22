@@ -16,7 +16,7 @@ class CreateVehicleOwnersTable extends Migration
         Schema::create('vehicle_owners', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('vehicle_id')->unsigned();
-            $table->string('plate_number')->nullable()->unique();
+            $table->string('plate_number')->nullable();
             $table->timestamps();
             $table->foreign('vehicle_id')
             ->references('id')
