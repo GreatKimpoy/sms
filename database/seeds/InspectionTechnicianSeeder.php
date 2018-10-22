@@ -14,11 +14,19 @@ class InspectionTechnicianSeeder extends Seeder
         //
         DB::table('inspection_technicians')->insert([
             'inspection_id' => '1',
+            'technician_id' => '3',
+        ]);
+        DB::table('inspection_technicians')->insert([
+            'inspection_id' => '1',
+            'technician_id' => '2',
+        ]);
+        DB::table('inspection_technicians')->insert([
+            'inspection_id' => '2',
             'technician_id' => '3', 
         ]);
         DB::table('inspection_technicians')->insert([
             'inspection_id' => '2',
-            'technician_id' => '5', 
+            'technician_id' => '1', 
         ]);
     }
 }

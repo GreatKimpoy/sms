@@ -89,10 +89,7 @@
               </ul>
             </li>
 
-        <li class="header">QUERIES & REPORTS</li>
-
-
-         <li {{{ (Request::is('query') ? 'class = active': '')}}} ><a href="{{url('query')}}"><i class="fa fa-book"></i> Queries</a></li>
+        <li class="header">REPORT</li>
 
             <!--Technician-->
          <li {{{ (Request::is('report') ? 'class = active': '')}}}><a href="{{url('report')}}"><i class="fa fa-book"></i> Reports</a></li>

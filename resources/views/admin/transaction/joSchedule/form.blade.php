@@ -101,18 +101,20 @@ $(function () {
     $(document).on('change', '#customer', function(event){
 
 
-      var customerId = $('#customer option:selected').val();
+      var customer_id = $('#customer option:selected').val();
 
 
       var parent = $(this).parent();
 
-      console.log(customerId);
+      console.log(customer_id);
 
       var op = "";
 
       var ops = "";
 
+      var inspect = $(this).data('inspectId');
 
+      console.log(inspect);
 
       //console.log(customerId);
 
@@ -120,31 +122,36 @@ $(function () {
 
         type:"GET",
         url: '{!!URL('findCustomer')!!}',
-        data:{ 'id': customerId }, 
+        data:{ 'customer_id': customer_id}, 
         dataType: 'json',
         success:function(data){
 
           
-          $('#lastname').val(data.lastname);
-          $('#firstname').val(data.firstname);
-          $('#middlename').val(data.middlename);
-          $('#barangay').val(data.barangay);
-          $('#street').val(data.street);
-          $('#city').val(data.city);
-          $('#email').val(data.email);
-          $('#contact').val(data.contact);
-          $('#plate').val(data.plate_number);
-          $('#model').val(data.brand).val(data.model);
+          for(var i=0;i<=1;i++){
+            $('#lastname').val(data[i].lastname);
+            $('#firstname').val(data[i].firstname);
+            $('#middlename').val(data[i].middlename);
+            $('#barangay').val(data[i].barangay);
+            $('#street').val(data[i].street);
+            $('#city').val(data[i].city);
+            $('#email').val(data[i].email);
+            $('#contact').val(data[i].contact);
+            $('#plate').val(data[i].plate_number);
+            $('#model').val(data[i].brand).val(data[i].model);
+            ops+= '<option selected value ="'+data[i].id+'">'+ data[i].firstName +" "+data[i].middleName+ " " +data[i].lastName+'</option>';
+          
+            console.log(data[i]);
 
+                  
 
-          op+= '<option selected disabled value ="'+data.service_id+'">' +data.name+'</option>';
-          $('.service').append(op).prop('disabled', false);
+            }
+            for(var i=0;i<1;i++){
+              op+= '<option selected value ="'+data[i].service_id+'">' +data[i].name+'</option>'; 
+            }
 
-          ops+= '<option selected disabled value ="'+data.technian_id+'">'+ data.firstName +" "+data.middleName+ " " +data.lastName+'</option>';
-          $('.technician').append(ops).prop('disabled', false);
+            $('.service').append(op).prop('disabled', false);
+            $('.technician').append(ops).prop('disabled', false);
 
-
-          console.log(data);
 
 
         },

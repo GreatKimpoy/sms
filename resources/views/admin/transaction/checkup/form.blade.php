@@ -35,7 +35,8 @@
     
     <div class="col-md-12">
         <label for="service" class="labely">Service Search</label>
-        <select name="service[]" class="form-control select2 service" multiple="multiple" style="width: 100%;">
+        <select name="service[]" class="form-control select2 service" style="width: 100%;">
+                <option></option>
                   @foreach($services as $service)
                       <option value="{{$service->id}}">{{$service->name}} </option>
                   @endforeach

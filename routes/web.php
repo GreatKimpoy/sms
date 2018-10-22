@@ -17,7 +17,9 @@ Route::get('/', function () {
 
 Route::resource('dashboard', 'DashboardController');
 Route::resource('query', 'QueryController');
-Route::resource('report', 'ReportController');
+Route::resource('report','ReportController',['only' => [
+            'index','store']]);
+Route::post('report/filter','ReportController@filter');
 
 
 Route::namespace('Maintenance')->group(function() {
@@ -49,6 +51,7 @@ Route::namespace('Transaction')->group(function() {
     Route::post('sequence/post', 'JobOrderScheduleController@updateSequence');
     Route::post('progress/post', 'JobOrderScheduleController@updateProgress');
     Route::post('start/post', 'JobOrderScheduleController@updateStart');
+    Route::post('startRequest', 'JobOrderScheduleController@startRequest');
     Route::post('stopRequest', 'JobOrderScheduleController@stopRequest');
     Route::get('getProgress', 'JobOrderScheduleController@getProgress');
 

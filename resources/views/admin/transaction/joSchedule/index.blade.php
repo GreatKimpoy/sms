@@ -8,9 +8,9 @@
 
 @section('styles-include')
 
-    <!-- fullCalendar -->
-  <link rel="stylesheet" href="{{asset ('bower_components/fullcalendar/dist/fullcalendar.min.css')}}">
-  <link rel="stylesheet" href="{{asset ('bower_components/fullcalendar/dist/fullcalendar.print.min.css')}}" media="print">
+ <!--FullCalendar-->
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.css"/>
+<link rel="stylesheet" href="{{asset ('bower_components/fullcalendar/dist/fullcalendar.print.min.css')}}" media="print">
 
 
    <!-- DataTables -->
@@ -73,8 +73,8 @@
             {{-- CALENDAR--}}
             <div role="tabpanel" class="tab-pane active" id="calendarTab">
                 <div class="box box-primary">
-                    <div class="box-body no-padding">
-                             {!! $calendars->calendar() !!}
+                    <div class="box-body">
+                             {!! $calendar_details->calendar() !!}
                     </div>
                 </div>
             </div>
@@ -131,18 +131,18 @@
 
 @section('scripts-include')
 
-<!-- fullCalendar -->
-<script src="{{ asset ('bower_components/moment/moment.js')}}"></script>
-<script src="{{ asset ('bower_components/fullcalendar/dist/fullcalendar.min.js')}}"></script>
 
-    <!-- DataTables -->
-  <script src="{{asset ('bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
-  <script src="{{asset ('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.js"></script>
 
-  <script src="{{asset ('js/calendar.js')}}"></script>
+{!! $calendar_details->script() !!}
+
+  <!-- DataTables -->
+<script src="{{asset ('bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset ('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
+
+<script src="{{asset ('js/calendar.js')}}"></script>
   
-  {!! $calendars->script() !!}
-
 
 <script>
 	

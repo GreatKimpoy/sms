@@ -9,12 +9,14 @@ class JobOrder extends Model
     //
     protected $table = 'job_orders';
 	public $primaryKey = 'id';
-    public $timestamps = false;
+    public $timestamps = true;
 
     public $fillable = [
         'customer_id',
         'vehicle_id',
         'inspection_id',
+        'jobStart',
+        'jobStart_time',
         'start',
         'start_time',
         'end',
@@ -27,8 +29,8 @@ class JobOrder extends Model
     {
         return [
             'customer' => 'required',
-            'start_date' => 'required|date|date_format:M-d-y|after:yesterday',
-            'start_time'=>'required',
+            'jobStart' => 'required|date|date_format:M-d-y|after:yesterday',
+            'jobStart_time'=>'required',
             'firstname' => 'required|min:2|max:60|string',
             'street' => 'required|min:2|max:60',
             'barangay' => 'required|min:2|max:60',

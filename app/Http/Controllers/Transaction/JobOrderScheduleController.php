@@ -53,8 +53,8 @@ class JobOrderScheduleController extends Controller
                 
         }
         
-        $calendars = Calendar::addEvents($job_list);
-        return view( $this->viewBasePath . '.joSchedule.index', compact('calendars'))
+        $calendar_details = Calendar::addEvents($job_list);
+        return view( $this->viewBasePath . '.joSchedule.index', compact('calendar_details'))
         ->with('jobs', $jobs);
     }
 
@@ -102,8 +102,8 @@ class JobOrderScheduleController extends Controller
             
         // Save to datarbase 
         $order = new JobOrder;
-        $order->start = $request->input('start');
-        $order->start_time = $request->input('start_time');
+        $order->jobStart = $request->input('start');
+        $order->jobStart_time = $request->input('start_time');
         $order->remarks = $request->input('remarks');
         $order->inspection_id = $request->customer;
         $order->save();
@@ -228,17 +228,17 @@ class JobOrderScheduleController extends Controller
     public function findCustomer(Request $request)
 
     {
-        $services = ServiceList::all();
+
         $data = DB::table('inspections as i')
         ->join('customers as c','c.id','i.customer_id')
         ->join('vehicle_owners as v','v.id','i.owner_id')
         ->join('vehicle_models as vm', 'vm.id', 'v.vehicle_id')
-        ->join('inspection_technicians as it', 'it.id', 'it.inspection_id')
+        ->join('inspection_technicians as it', 'it.inspection_id', 'i.id')
         ->join('technicians as t', 't.id', 'it.technician_id')
-        ->join('inspection_services as is', 'is.id', 'is.inspection_id')
+        ->join('inspection_services as is', 'is.inspection_id', 'i.id')
         ->join('service_lists as s', 's.id', 'is.service_id')
-        ->select('i.*', 'c.*', 'v.*' ,'s.*', 'vm.*', 't.*')
-        ->where('i.customer_id',$request->id)->first();
+        ->select('i.*', 'c.*', 'v.*', 'is.*','s.*' ,'vm.*','it.*','t.*')
+        ->where('i.customer_id', $request->customer_id)->get();
 
         return response()->json($data);
      
@@ -271,6 +271,23 @@ class JobOrderScheduleController extends Controller
         return response()->json(['success'=>'Data is successfully added']);
       
    }
+   public function startRequest(Request $request)
+
+   {
+
+        DB::beginTransaction();
+        $order = DB::table('job_orders')
+        ->where('id', $request->id)
+        ->update(['start' => $request->start, 'start_time' => $request->input('start_time'), 'isStartEnabled'=>1]);
+
+
+
+        DB::commit();
+        
+        return response()->json(['success'=>'Data is successfully added']);
+      
+   }
+
 
    public function stopRequest(Request $request)
 
@@ -286,7 +303,7 @@ class JobOrderScheduleController extends Controller
         DB::beginTransaction();
         $order = DB::table('job_orders')
         ->where('id', $request->id)
-        ->update(['end' => $request->end, 'end_time' => $request->input('end_time'), 'isStatus' => 1 , 'hours_worked' =>$timeElapsed ]);
+        ->update(['end' => $request->end, 'end_time' => $request->input('end_time'), 'isStatus' => 1 , 'hours_worked' =>$timeElapsed , 'isStopEnabled'=>1 ]);
 
         DB::commit();
         
