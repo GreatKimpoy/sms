@@ -22,6 +22,21 @@ class Customer extends Model
     ];
 
 
+    public function customerUpdateRules() 
+    {
+        return [
+            'lastname' => 'required|min:2|max:60|string',
+            'middlename' => 'min:2|max:60|string',
+            'firstname' => 'required|min:2|max:60|string',
+            'street' => 'required|min:2|max:60',
+            'barangay' => 'required|min:2|max:60',
+            'city' => 'required|min:2|max:60',
+            'contact' => 'required|min:2|max:60',
+            'email' => 'required|email',
+        ];
+    }
+
+
     public function checkIfCustomerExists()
     {
         return [

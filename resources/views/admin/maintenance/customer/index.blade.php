@@ -83,7 +83,10 @@
           { data: function(callback){
             return `
             <a href="{{ url("customer") }}` + '/' + callback.id + `/edit" class="btn btn-success"><i class= "fa fa-stethoscope"></i><strong> NEW INSPECTION</strong></a>
+            <a href="{{ url("customers/update") }}` + '/' + callback.id + `" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></a>
+             
             `
+
           } },
       ],
     } );
