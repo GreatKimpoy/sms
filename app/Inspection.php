@@ -14,7 +14,8 @@ class Inspection extends Model
         'customer_id',
         'owner_id',
         'service_id',
-        'additional_remarks'
+        'additional_remarks',
+        'isActive',
         
     ];
 

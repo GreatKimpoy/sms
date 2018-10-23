@@ -40,7 +40,7 @@ Route::namespace('Maintenance')->group(function() {
 Route::get('checkup/pdf/{id}','PdfController@inspect');
 
 Route::namespace('Transaction')->group(function() {
-    Route::get('checkup/delete/{id}', 'InspectionCheckupController@delete');
+    Route::put('checkups/{id}', 'DeleteController@destroy');
     Route::resource('checkup', 'InspectionCheckupController');
     Route::resource('maintenance','InspectionMaintenanceController');
     Route::resource('schedule','JobOrderScheduleController');

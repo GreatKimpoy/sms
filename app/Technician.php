@@ -37,7 +37,7 @@ class Technician extends Model
             'street' => 'required|min:2|max:60',
             'barangay' => 'required|min:2|max:60',
             'city' => 'required|min:2|max:60',
-            'birthdate' => 'required|date|min:1960',
+            'birthdate' => 'required|date',
             'contact' => 'required|min:2|max:60',
             'email' => 'required|email',
 
