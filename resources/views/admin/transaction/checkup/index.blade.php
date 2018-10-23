@@ -52,7 +52,7 @@
                         @foreach($inspects as $inspect)
                             <tr>
                                 <td>
-																		<li><strong>Inspection Number: INS000{{$inspect->id}} </strong></li>
+									<li><strong>Inspection Number: INS000{{$inspect->id}} </strong></li>
                                     <li>Plate: {{$inspect->plate_number}}</li>
                                 
                                     <li>Model: {{$inspect->make}} - {{$inspect->model}} </li>

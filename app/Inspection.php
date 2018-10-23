@@ -22,7 +22,7 @@ class Inspection extends Model
     
 
     public function inspection(){
-        return $this->hasMany('App\InspectionHeader','inspection_id');
+        return $this->hasMany('App\InspectionHeader','inspection_id')->where('isActive',1);
     }
     
     public function customer(){
