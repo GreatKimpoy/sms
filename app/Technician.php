@@ -12,7 +12,7 @@ class Technician extends Model
     //Primary Key
 	public $primaryKey = 'id';
     // Timestamps
-    public $timestamps = false;
+    public $timestamps = true;
     
     public $fillable = [
         'lastName',

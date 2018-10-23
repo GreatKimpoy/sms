@@ -9,7 +9,7 @@ class ServiceCategory extends Model
     //
     protected $table = 'service_categories';
 	public $primaryKey = 'id';
-    public $timestamps = false;
+    public $timestamps = true;
     
     public function rules()
     {

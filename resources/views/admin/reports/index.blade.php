@@ -67,10 +67,10 @@
                     </div>
                 </div>
                 {!! Form::close() !!}
-                <div class="panel panel-primary pan1 hide"  >
+                <div class="panel panel-primary pan1"  >
                     <div class="panel-heading"><h3 class="panel-title">Job Order Report</h3></div>
                     <div class="panel-body">
-                        <table id="jobsTable" class="table table-striped table-bordered responsive">
+                        <table id="jobsTable" class="table table-striped table-bordered responsive" style="width: 100%">
                             <thead>
                                 <tr>
                                     <th width="5%">#</th>
@@ -107,18 +107,16 @@
   <!-- DataTables -->
   <script src="{{asset ('bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
   <script src="{{asset ('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
-  <script>
+  <script>  
 
   $('#daterange').daterangepicker(
       {
-        ranges   : {
-          'Today'       : [moment(), moment()],
-          'Yesterday'   : [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-          'Last 7 Days' : [moment().subtract(6, 'days'), moment()],
-          'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-          'This Month'  : [moment().startOf('month'), moment().endOf('month')],
-          'Last Month'  : [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-        },
+        ranges: {
+        'Today': [moment(), moment()],
+        'Last for 7 Days': [moment(), moment().add(6, 'days')],
+        'Last for 30 Days': [moment(), moment().add(29, 'days')],
+        'This Month': [moment().startOf('month'), moment().endOf('month')],
+    },
         startDate: moment().subtract(29, 'days'),
         endDate  : moment()
       },
@@ -155,6 +153,7 @@
       }
   });
 
+  var datee = $('#daterange').val();
 
        
   $.ajaxSetup({
@@ -164,7 +163,6 @@
       });
   
   var jList = $('#jobsTable').DataTable({
-          'responsive': true,
            "ajax" : {
             "url": 'report/filter',
             "type": 'POST',
@@ -172,15 +170,17 @@
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
             "data": function ( d ) {
-                    return {reportId: "1",date: $('#daterange').val()};
-                    { _token: "{{csrf_token()}}"}
-                },
-            dataSrc: '',   
+                    return {reportId: "1",date: datee};
+                }, 
         },
         "columns": [
             { "data": "id", },
             { "data": "customer"},
-            { "data": "car"},
+            { "data": "plate", 
+                render:  function(data,type,row,meta){   
+                return row.plate+" | "+row.make+" "+row.model+" - ("+row.transmission+')';
+            } 
+          },
         ],
     });
 

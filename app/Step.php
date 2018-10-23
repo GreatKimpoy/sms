@@ -9,7 +9,7 @@ class Step extends Model
     //
     protected $table = 'steps';
     public $primaryKey = 'id';
-    public $timestamps = false;
+    public $timestamps = true;
 
     public $fillable = [
         'service_id',

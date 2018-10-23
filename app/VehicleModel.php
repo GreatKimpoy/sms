@@ -10,7 +10,7 @@ class VehicleModel extends Model
     
     protected $table = 'vehicle_models';
     public $primaryKey = 'id';
-    public $timestamps = false;
+    public $timestamps = true;
     public static $transmission_types = [
         'Automatic', 'Manual', 'AT/MT'
     ];

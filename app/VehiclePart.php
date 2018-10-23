@@ -8,7 +8,7 @@ class VehiclePart extends Model
 {
     protected $table = 'vehicle_parts';
     public $primaryKey = 'id';
-    public $timestamps = false;
+    public $timestamps = true;
 
     protected $fillable = [
         'vehicle_id',

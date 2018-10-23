@@ -62,47 +62,6 @@
 
       </div>
 
-      <div class="row">
-        <div class="col-md-12">
-          <div class="box box-primary">
-            <div class="box-header">
-              <h3 class="box-title">Finished Jobs</h3>
-            </div>
-            <div class="box-body">
-              <table id="jobs" class="table table-bordered table-hover table-striped">
-                <thead>
-                  <tr>
-                    <th class="text-center">Job</th>
-                    <th class="text-center">Customer</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  @foreach($jobs as $jobs)
-                    <tr>
-                      <td>
-                        <ul>
-                          <li>Job Number: JO000{{$jobs->id}}</li>
-                          <li>Start date and time {{$jobs->start}} &nbsp; {{$jobs->start_time}} </li>
-                          <li>End date and time {{$jobs->end}} &nbsp; {{$jobs->end_time}} </li>
-                        </ul>
-                      </td>
-                      <td>
-                        <ul>
-                          <li>Name: {{$jobs->inspects->customer->firstname}} {{$jobs->inspects->customer->middlename}} {{$jobs->inspects->customer->lastname}} </li>
-                          <li>Address: {{$jobs->inspects->customer->street}} {{$jobs->inspects->customer->barangay}} {{$jobs->inspects->customer->city}} </li>
-                          <li>Email: {{$jobs->inspects->customer->email}}</li>
-                          <li>Contact: {{$jobs->inspects->customer->contact}}</li>
-                        </ul>
-                      </td>
-                    </tr>
-                  @endforeach
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-
     </div>
   </section>
 
@@ -114,14 +73,5 @@
    <!-- DataTables -->
   <script src="{{asset ('bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
   <script src="{{asset ('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
-
-  <script>
-    
-  $(function () {
-    $('#jobs').DataTable({
-    })
-  })
-
-  </script>
 
 @stop

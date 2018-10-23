@@ -80,26 +80,21 @@
         <table width="100%">
             <thead>
                 <tr>
-                    <th width="5%">#</th>
-                    <th>Customer</th>
-                    <th>Vehicle</th>
-                <th>Technician</th>
-                <th>Service</th>
+                    <th>Technician ID</th>
+                    <th>Technician</th>
+                    <th>Total No. Of Job Orders Done</th>        
                 </tr>
             </thead>
             <tbody>
-              @foreach($job as $jobs)
-              <tr>
-                <td>JOB0000{{$loop->index+1}}</td>
-                <td>{{$jobs->customer}}</td>
-                <td>
-                  {{$jobs->plate}}<br>
-                  {{$jobs->make}} {{$jobs->model}} - {{$jobs->transmission}}
-                </td>
-                <td>{{$jobs->technician}}</td>
-                <td>{{$jobs->serviceName}}</td>
-              </tr>
-              @endforeach
+                @foreach($tech as $tech)
+                <tr>
+                    <td><center>{{$tech->techid}}</center></td>
+                    <td><center>{{$tech->technician}}</center></td>
+                    <td>
+                        <center>{{$tech->serviceNumber}}</center>
+                    </td>
+                </tr>
+                @endforeach
             </tbody>
         </table>
     </body>

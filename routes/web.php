@@ -17,9 +17,26 @@ Route::get('/', function () {
 
 Route::resource('dashboard', 'DashboardController');
 Route::resource('query', 'QueryController');
-Route::resource('report','ReportController',['only' => [
+Route::resource('joreport', 'jobReportController',['only' => [
             'index','store']]);
-Route::post('report/filter','ReportController@filter');
+Route::post('joreport/filter','jobReportController@filter');
+Route::get('joreport/pdf', 'PdfController@job');
+
+
+Route::resource('prodreport', 'prodReportController',['only' =>[
+                'index','store']]);
+Route::post('prodreport/filter','prodReportController@filter');
+Route::get('prodreport/pdf', 'PdfController@prod');
+
+Route::resource('appointreport', 'appointController',['only' =>[
+                'index','store']]);
+Route::post('appointreport/filter','appointController@filter');
+Route::get('appointreport/pdf', 'PdfController@appoint');
+
+
+//Route::resource('report','ReportController',['only' => [
+            //'index','store']]);
+//Route::post('report/filter','ReportController@filter');
 
 
 Route::namespace('Maintenance')->group(function() {

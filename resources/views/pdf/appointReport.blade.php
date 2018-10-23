@@ -78,29 +78,23 @@
         <div style="clear:both"></div>
         <br>
         <table width="100%">
-            <thead>
-                <tr>
-                    <th width="5%">#</th>
-                    <th>Customer</th>
-                    <th>Vehicle</th>
-                <th>Technician</th>
-                <th>Service</th>
-                </tr>
-            </thead>
-            <tbody>
-              @foreach($job as $jobs)
-              <tr>
-                <td>JOB0000{{$loop->index+1}}</td>
-                <td>{{$jobs->customer}}</td>
-                <td>
-                  {{$jobs->plate}}<br>
-                  {{$jobs->make}} {{$jobs->model}} - {{$jobs->transmission}}
-                </td>
-                <td>{{$jobs->technician}}</td>
-                <td>{{$jobs->serviceName}}</td>
-              </tr>
-              @endforeach
-            </tbody>
+              <thead>
+                    <tr>
+                        <th width="5%">#</th>
+                        <th>Customer</th>
+                        <th>Appointment Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                        @foreach($appointment as $appoint)
+                            <tr>
+                                <td>{{$loop->index+1}}</td>
+                                <td>{{$appoint->customer}}</td>
+                                <td>{{$appoint->AppointmentDate}}</td>
+                            </tr>
+
+                        @endforeach
+                </tbody>
         </table>
     </body>
 </html>

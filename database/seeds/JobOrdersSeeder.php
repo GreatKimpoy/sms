@@ -16,21 +16,28 @@ class JobOrdersSeeder extends Seeder
             'inspection_id' => '1',
             'jobStart' => '2018-10-19', 
             'jobStart_time' => '10:00:00',
-            'end' => '',
-            'end_time' => '',
+            'start' => '2018-10-19', 
+            'start_time' => '10:00:00',
+            'end' => '2018-10-22', 
+            'end_time' => '17:00:00',
+            'progressCount' => '100.00',
+            'isStatus' => 1,
+            'created_at' => '2018-10-18 10:30:35',
+            'updated_at' => '2018-10-18 17:12:55',
         ]);
 
         DB::table('job_orders')->insert([
             'inspection_id' => '2',
-            'jobStart' => '2018-09-15',
+            'jobStart' => '2018-10-09',
             'jobStart_time' => '8:00:00',
-            'end' => '2018-09-17',
-            'end_time' => '5:00:00',
-            'hours_worked' => '5:00:00',
+            'start' => '2018-10-9', 
+            'start_time' => '10:00:00',
+            'end' => '2018-10-12', 
+            'end_time' => '17:00:00',
             'progressCount' => '100.00',
             'isStatus' => 1,
-            'created_at' => '2018-09-10',
-            'updated_at' => '2018-09-10',
+            'created_at' => '2018-10-10 10:30:35',
+            'updated_at' => '2018-10-10 17:12:55',
             
         ]);
     }
