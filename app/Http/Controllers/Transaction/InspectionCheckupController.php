@@ -312,16 +312,16 @@ class InspectionCheckupController extends Controller
 
                 $forms = $request->form;
                 $items = $request->item_id;
-                InspectionHeader::where('inspection_id',$id)->update(['isActive'=>0]);
-                foreach($items as $key=>$item){
+                InspectionHeader::where('inspection_id',$id)->update(['isActive'=>1]);
+                foreach($items as $key => $item){
                     InspectionHeader::updateOrCreate(
                         [
-                            'inspectionId' => $inspection->id,
-                            'item_id' => $item,
+                            'inspection_id' => $inspection->id,
+                            'item_id' => $items,
                         ],
                          [   
                             'remarks' => $forms[$key],
-                            'isActive' => 1
+                            'isActive' => 0
                         ]
                     );
                 }
@@ -347,9 +347,9 @@ class InspectionCheckupController extends Controller
                 $errMess = $e->getMessage();
                 return back()->withErrors($errMess);
             }
-            $request->session()->flash('success', 'Successfully added.');  
+            $request->session()->flash('success', 'Successfully Updated.');  
          
-           return redirect('inspection');
+           return redirect('checkup');
     
         }
         

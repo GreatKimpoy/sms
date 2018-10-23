@@ -36,7 +36,7 @@
         </div>
         <div class="row">
         
-            <div class="form-group col-md-4">
+            <div class="form-group col-md-6">
                 {!! Form::label('contact', 'Contact No.') !!}<span>*</span>
                 {!! Form::input('text','customer[contact]',null,[
                     'class' => 'form-control',
@@ -46,7 +46,7 @@
                     'required']) 
                 !!}
             </div>
-            <div class="form-group col-md-4">
+            <div class="form-group col-md-6">
                 {!! Form::label('email', 'Email') !!}
                 {!! Form::input('text','customer[email]',null,[
                     'class' => 'form-control',
@@ -102,7 +102,7 @@
     <div class="col-md-6">
          <div class="form-group">
          <label for="model" class="labely">Technician(s) Assigned</label><span class="asterisks"><strong>*</strong></span>
-            <select name="technician[]" class="select2 form-control" multiple="multiple" style="width: 100%;" required>
+            <select name="technician[]" id="technician" class="select2 form-control" multiple="multiple" style="width: 100%;" required>
 
             @foreach($technicians as $technician)
                 <option value="{{$technician->id}}">{{$technician->firstName}} {{$technician->middleName}} {{$technician->lastName}}</option>
@@ -169,6 +169,8 @@
 @section('scripts-include')
 
 
+
+
 <script src="{{ URL::asset('plugins/formbuilder/form-builder.min.js') }}"></script>
 <script src="{{ URL::asset('plugins/formbuilder/form-render.min.js') }}"></script>
 
@@ -178,7 +180,6 @@
 
 
 <script>
-    
 
 $(document).on('focus','#plate',function(){
     $(this).popover({
@@ -282,13 +283,10 @@ $(document).on('click','#tpl',function(){
 
 </script>
 
-
-   
-
-     @foreach($inspect->inspection as $detail)
+@foreach($inspect->inspection as $inspection)
         <script>
-            form = JSON.stringify({!! $detail->remarks !!});
-            popForm({{$detail->item->type_id}},"{{$detail->item->type->type}}",{{$detail->item_id}},"{{$detail->item->name}}",form)
+            form = JSON.stringify({!! $inspection->remarks!!});
+            popForm({{$inspection->item->type_id}},"{{$inspection->item->type->type}}",{{$inspection->item_id}},"{{$inspection->item->name}}",form)
         </script>
     @endforeach
 
