@@ -219,6 +219,9 @@ return [
         'PDFSnappy' => Barryvdh\Snappy\Facades\SnappyPdf::class,
         'Calendar' => MaddHatter\LaravelFullcalendar\Facades\Calendar::class,
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
+        
 
     ],
 

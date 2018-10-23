@@ -9,6 +9,7 @@
 
 @section('styles-include')
   <!-- DataTables -->
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <link rel="stylesheet" href="{{asset ('bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css')}}">
 @endsection
 
@@ -66,16 +67,24 @@
                                 </td>
                                 <td>Remark: {{$inspect->additional_remarks}}</td>
                                 <td class="text-right">
+																	<a href="{{url('/checkup/'.$inspect->inspect_id.'/edit')}}" type="button" class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Update record">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
 
                                     <a href="javascript: w=window.open('{{url('/checkup/pdf/'.$inspect->inspect_id)}}'); w.print()" target="_blank" type="button" class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Generate PDF">
                                         <i class="fa fa-file"></i>
                                     </a>
-                             
+
+																		<form action="{{ url('checkup/delete', ['id' => $inspect->id]) }}" method="post">
+																		<button type="submit" data-id='` + {{$inspect->id}} + `"' class="btn-remove btn btn-danger"><i class= "fa fa-ban"></i></button>
+																		</form>
+																		
+
+																		
                                 </td>
                             </tr>
                         @endforeach
-                    </tbody>
-
+                
 	                <tfoot>
 	                  <tr>
 	                        <th>Vehicle</th>
@@ -110,5 +119,29 @@
      
     })
   </script>
+
+	<script>
+	  $('#checkup').on('click', '.btn-remove', function(){
+        id = $(this).data('id');
+        var $this = $(this);
+        var loadingText = '<i class="fa fa-circle-o-notch fa-spin"></i> Loading...';
+        if ($(this).html() !== loadingText) {
+          $this.data('original-text', $(this).html());
+          $this.html(loadingText);
+        }
+
+        swal({
+          title: "Are you sure?",
+          text: "You want to delete this Check-up Information",
+          icon: "warning",
+          buttons: true,
+          dangerMode: true,
+        })
+        
+      });
+
+ 
+
+	</script>
 
 @endsection

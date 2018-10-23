@@ -21,6 +21,7 @@ class CustomerSeeder extends Seeder
             'city' => 'Antipolo City, Rizal',
             'contact' => '09662372789',
             'email' => 'odeztagulao@gmail.com',
+            'created_at' => '2018-10-19',
             
         ]);
 
@@ -33,6 +34,7 @@ class CustomerSeeder extends Seeder
             'city' => 'Novaliches',
             'contact' => '0917859216',
             'email' => 'armandocanales@yahoo.com',
+            'created_at' => '2018-09-15',
             
         ]);
     }

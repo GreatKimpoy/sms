@@ -17,6 +17,7 @@
 	</section>
 @endsection
 
+
 @section('content-body')
 
 <section class="content-header">
@@ -26,19 +27,19 @@
         <div class="box-header" id="box"><strong><h4> Customer Information Form </h4></strong>
         </div>
           <div class="box-body" id="box">
-          
-                {!! Form::model($inspect , ['method' => 'patch', 'action' => ['Transaction\InspectionCheckupController@update',$inspect->id]]) !!}
-      				    @include('errors.alert')
-                  @include('admin.transaction.checkup.editForm')
-                  
-      			    {!! Form::close() !!}
-
-        
+            <form method="post" action="{{ url("customers/$customer->id") }}" class="form-horizontal">
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            <input type="hidden" name="_method" value="PUT">
+                @include('errors.alert')
+                @include('admin.maintenance.customer.editForm')
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block">Save</button>
+                </div>
+            </form>
           </div>
       </div>
     </div> 
 	</div>
 </section>
-
 
 @endsection

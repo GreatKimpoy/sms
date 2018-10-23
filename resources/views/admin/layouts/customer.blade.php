@@ -68,18 +68,7 @@
 
 <div class="row">
 
-    <div class="col-md-4">
-        <label for="birthdate" class="labely">Birthdate</label><span class="asterisks"><strong>*</strong></span>
-            <input 
-                class="form-control align-center" 
-                placeholder="Birthdate" 
-                maxlength="50" 
-                required 
-                name="birthdate" 
-                type="date"
-                id="birthdate"
-                value="{{ isset($customer->birthdate) ? $customer->birthdate : old('birthdate') }}">
-    </div>
+  
 
     <div class="col-md-4">
         <label for="contact" class="labely">Contact Number</label><span class="asterisks"><strong>*</strong></span>
