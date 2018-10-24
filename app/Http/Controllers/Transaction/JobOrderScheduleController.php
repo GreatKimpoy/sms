@@ -39,7 +39,7 @@ class JobOrderScheduleController extends Controller
     public function index()
     {
         //
-        $jobs = JobOrder::all();
+        $jobs = JobOrder::where('isActive',1)->get();
         $job_list= [];
         $number = 'JO0000';
         foreach ($jobs as $key => $job) {

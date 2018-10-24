@@ -33,7 +33,7 @@ class VehicleOwnersSeeder extends Seeder
 
         DB::table('vehicle_owners')->insert([
             'vehicle_id' => '2',
-            'plate_number' => 'SkL 201',
+            'plate_number' => 'SKL 201',
         ]);
     }
 }

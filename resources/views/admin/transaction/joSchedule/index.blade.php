@@ -94,7 +94,9 @@
                        <tbody>
                        @foreach($jobs as $job)
                           <tr>
-                            <td>{{$job->start}}</td>
+                            <td><li>{{$job->start}}</li>
+                                <li>JO000{{$job->id}}</li>
+                            </td>
                             <td>
                                 <li>Plate Number: {{$job->inspects->vehicle->plate_number}}</li>
                                 <li>Vehicle Model: {{$job->inspects->vehicle->model->model}}</li>
@@ -110,6 +112,12 @@
                                <a href="javascript: w=window.open('{{url('/schedule/pdf/'.$job->id)}}'); w.print()" target="_blank" type="button" class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Generate PDF">
                                         <i class="fa fa-file"></i>
                               </a>
+
+                              <form method="post" action="{{ url("jobs/$job->id") }}" class="form-horizontal">
+																		<input type="hidden" name="_token" value="{{ csrf_token() }}">
+           													 <input type="hidden" name="_method" value="PUT">
+																		<button type="submit" data-id='` + {{$job->id}} + `"' class="btn-remove btn btn-danger"><i class= "fa fa-ban"></i></button>
+																		</form>
                             </td>
                           </tr>
                           @endforeach

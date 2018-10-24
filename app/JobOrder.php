@@ -23,6 +23,7 @@ class JobOrder extends Model
         'end_time',
         'remarks',
         'progressCount',
+        'isActive',
     ];
 
     public function rules() 

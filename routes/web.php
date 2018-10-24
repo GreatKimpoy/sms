@@ -62,6 +62,7 @@ Route::get('schedule/pdf/{id}','PdfController@jobs');
 
 Route::namespace('Transaction')->group(function() {
     Route::put('checkups/{id}', 'DeleteController@destroy');
+    Route::put('jobs/{id}', 'DeleteController@delete');
     Route::resource('checkup', 'InspectionCheckupController');
     Route::resource('maintenance','InspectionMaintenanceController');
     Route::resource('schedule','JobOrderScheduleController');

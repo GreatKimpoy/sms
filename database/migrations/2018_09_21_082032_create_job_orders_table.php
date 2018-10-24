@@ -27,6 +27,7 @@ class CreateJobOrdersTable extends Migration
             $table->boolean('isStartEnabled')->default(0);
             $table->boolean('isStopEnabled')->default(0);
             $table->boolean('isStatus')->default(0);
+            $table->boolean('isActive')->default(1);
             $table->text('remarks')->nullable();
 
             $table->timestamps();

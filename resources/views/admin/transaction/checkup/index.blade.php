@@ -67,10 +67,7 @@
                                 </td>
                                 <td>Remark: {{$inspect->additional_remarks}}</td>
                                 <td class="text-right">
-																	<a href="{{url('/checkup/'.$inspect->inspect_id.'/edit')}}" type="button" class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Update record">
-                                        <i class="fa fa-edit"></i>
-                                    </a>
-
+																
                                     <a href="javascript: w=window.open('{{url('/checkup/pdf/'.$inspect->inspect_id)}}'); w.print()" target="_blank" type="button" class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Generate PDF">
                                         <i class="fa fa-file"></i>
                                     </a>
