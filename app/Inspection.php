@@ -16,6 +16,7 @@ class Inspection extends Model
         'service_id',
         'additional_remarks',
         'isActive',
+        'isDelete',
         
     ];
 

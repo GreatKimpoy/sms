@@ -28,7 +28,7 @@
                 @include('errors.alert')
                 @include('admin.transaction.joSchedule.form')
                 <div class="form-group">
-                    <button type="submit" class="btn btn-primary btn-block">Save</button>
+                    <button type="submit" class="btn btn-primary btn-block" id="save">Save</button>
                 </div>
             </form>    
           </div>

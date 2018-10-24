@@ -18,6 +18,7 @@ class CreateInspectionsTable extends Migration
             $table->integer('customer_id')->unsigned();
             $table->integer('owner_id')->unsigned();
             $table->boolean('isActive')->default(1);
+            $table->boolean('isDelete')->default(0);
 
             $table->text('additional_remarks')->nullable();
             $table->foreign('customer_id')

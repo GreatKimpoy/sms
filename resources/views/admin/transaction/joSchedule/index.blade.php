@@ -74,7 +74,7 @@
             <div role="tabpanel" class="tab-pane active" id="calendarTab">
                 <div class="box box-primary">
                     <div class="box-body">
-                             {!! $calendar_details->calendar() !!}
+                             {!! $calendar->calendar() !!}
                     </div>
                 </div>
             </div>
@@ -103,9 +103,12 @@
                             <td>
                                 {{$job->inspects->customer->firstname}} {{$job->inspects->customer->middlename}} {{$job->inspects->customer->lastname}}
                             </td>
-                            <td>
+                            <td class="text-right">
                               <a href="{{url('schedule/'.$job->id)}}" type="button" class="btn bg-navy btn-sm"   data-toggle="tooltip" data-placement="top" title="Update record">
-                              <i class="fa fa-eye"></i>
+                                <i class="fa fa-eye"></i>
+                              </a>
+                               <a href="javascript: w=window.open('{{url('/schedule/pdf/'.$job->id)}}'); w.print()" target="_blank" type="button" class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Generate PDF">
+                                        <i class="fa fa-file"></i>
                               </a>
                             </td>
                           </tr>
@@ -135,7 +138,7 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.js"></script>
 
-{!! $calendar_details->script() !!}
+{!! $calendar->script() !!}
 
   <!-- DataTables -->
 <script src="{{asset ('bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>

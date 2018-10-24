@@ -29,8 +29,17 @@ class PdfController extends Controller
         return View('pdf/inspection',compact('inspect','date'));
     }
 
-    public function job(){
+    public function jobs($id){
         $date = date('Y-m-d H:i:s');
+        $job = JobOrder::findOrFail($id);
+
+        return View('pdf/joborder',compact('job','date'));
+    }
+
+    public function job(Request $request){
+        $date = date('Y-m-d H:i:s');
+        $startDate = $request->start;
+        $endDate = $request->end;
         $job = DB::select(DB::raw('
              SELECT jo.*, CONCAT_WS(" ",c.firstname,c.middlename,c.lastname) AS customer, v.plate_number as plate, vd.make as make,vd.model as model,vd.transmission_type AS transmission, CONCAT_WS(" ",t.firstName,t.middleName,t.lastName) as technician, s.name as serviceName  FROM job_orders AS jo
             JOIN inspections AS i ON i.id = jo.inspection_id 
@@ -67,9 +76,11 @@ class PdfController extends Controller
         return View('pdf/prodReport',compact('tech','date','job'));
     }
 
-    public function appoint(){
+    public function appoint(Request $request){
         $date = date('Y-m-d H:i:s');
         $job = JobOrder::all(); 
+        $startDate = $request->start;
+        $endDate = $request->end;
         $appointment = DB::select(DB::raw('
             SELECT jo.*, CONCAT_WS(" ",c.firstname,c.middlename,c.lastname) AS customer , jo.jobStart as AppointmentDate FROM job_orders AS jo
             JOIN inspections AS i ON i.id = jo.inspection_id 

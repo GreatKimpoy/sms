@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>MIDSOUTH SERVICES TECH. CORP. | Job Order Report</title>
+        <title>MIDSOUTH SERVICES TECH. CORP. | APPOINTMENT REPORT</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="css/style.css" rel="stylesheet">
@@ -63,11 +63,11 @@
     </style>
     <body>
         <div class="center header">
-            MIDSOUTH TECHNICAL SERVICES CORPORATION
-        </div>
+          <img src="{{asset ('dist/img/midsouth.png')}}" class="img-circle" width="30" >  MIDSOUTH TECHNICAL SERVICES CORPORATION
+        </div><br>
         <div style="clear:both"></div>
         <div class="col-md-12 border center">
-            JOB ORDER REPORT
+            APPOINTMENT REPORT
         </div><br>
         <div style="float:left"  class="col-md-6">
             Total of {{count($job)}} records

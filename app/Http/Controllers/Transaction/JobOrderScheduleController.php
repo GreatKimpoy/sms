@@ -47,14 +47,14 @@ class JobOrderScheduleController extends Controller
             $job_list[] = Calendar::event( 
                 $number."".$job->id." - ".$job->inspects->customer->firstname." ".$job->inspects->customer->lastname,
                 true,
-                new \DateTime($job->start),
+                new \DateTime($job->jobStart),
                 new \DateTime($job->end.'+1 day')
             );
                 
         }
         
-        $calendar_details = Calendar::addEvents($job_list);
-        return view( $this->viewBasePath . '.joSchedule.index', compact('calendar_details'))
+        $calendar = Calendar::addEvents($job_list);
+        return view( $this->viewBasePath . '.joSchedule.index',compact('calendar'))
         ->with('jobs', $jobs);
     }
 
@@ -70,7 +70,7 @@ class JobOrderScheduleController extends Controller
         $customers = Customer::all();
         $technicians = Technician::all();
         $services = ServiceList::all();
-        $inspects = Inspection::all();
+        $inspects = Inspection::where(['isActive' => 1])->get();
         $parts = VehiclePart::all();
 
         return view( $this->viewBasePath . '.joSchedule.create')
@@ -124,6 +124,11 @@ class JobOrderScheduleController extends Controller
                 'service_id' => $service,
             ]);
         }
+        
+        $inspect = DB::table('inspections') 
+        ->where('id', $request->customer)
+        ->update(['isActive' => 0]);
+
 
            DB::commit();
 
@@ -133,7 +138,7 @@ class JobOrderScheduleController extends Controller
             'type' => 'success'
         ]);
 
-        return view($this->viewBasePath.'.joSchedule.index', compact('calendars'));
+        return Redirect('schedule');
 
 
         
@@ -367,6 +372,25 @@ class JobOrderScheduleController extends Controller
         
         return response()->json(['success'=>'Data is successfully added']);
       
+   }
+
+   public function updateStatus (Request $request)
+   {
+
+         $service = DB::table('job_services')
+        ->where('job_id', $request->job_id)
+        ->where('service_id' , $request->service_id )
+        ->update(['sequence' => $request->sequence]);
+
+
+        DB::beginTransaction();
+        $inspect = DB::table('inspections') 
+        ->where('id', $request->inspect_id)
+        ->update(['isActive' => 0]);
+
+        DB::commit();
+
+        return response()->json(['success'=>'Data is successfully added']);
    }
 
 

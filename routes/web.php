@@ -20,7 +20,8 @@ Route::resource('query', 'QueryController');
 Route::resource('joreport', 'jobReportController',['only' => [
             'index','store']]);
 Route::post('joreport/filter','jobReportController@filter');
-Route::get('joreport/pdf', 'PdfController@job');
+
+
 
 
 Route::resource('prodreport', 'prodReportController',['only' =>[
@@ -57,6 +58,7 @@ Route::namespace('Maintenance')->group(function() {
 
 //PDF
 Route::get('checkup/pdf/{id}','PdfController@inspect');
+Route::get('schedule/pdf/{id}','PdfController@jobs');
 
 Route::namespace('Transaction')->group(function() {
     Route::put('checkups/{id}', 'DeleteController@destroy');
@@ -73,7 +75,7 @@ Route::namespace('Transaction')->group(function() {
     Route::post('startRequest', 'JobOrderScheduleController@startRequest');
     Route::post('stopRequest', 'JobOrderScheduleController@stopRequest');
     Route::get('getProgress', 'JobOrderScheduleController@getProgress');
-
+    Route::post('updateStatus', 'JobOrderScheduleController@updateStatus');
 
 
 });

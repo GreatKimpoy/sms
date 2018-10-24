@@ -8,6 +8,7 @@
 <!-- Select2 -->
 <script src="{{asset ('bower_components/select2/dist/js/select2.full.min.js')}}"></script>
 
+
 <!-- jQuery UI 1.11.4 -->
 <script src="{{asset ('bower_components/jquery-ui/jquery-ui.min.js')}}"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->

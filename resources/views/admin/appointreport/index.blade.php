@@ -29,7 +29,7 @@
          <h4 class="box-title"> Reports as of now <b id="dateLabel">{{$dateEnd}}</b> </h4> 
         </div><br>
         <div class="box-body">
-
+          {!! Form::open(['url' => 'appointreport','id' => 'appointreport','target' => '_blank']) !!}
         	<div class="row">
         		<div class="col-md-5">
         			<label for="start">From Date:</label>
@@ -48,7 +48,8 @@
         	<div class="panel panel-primary pan1 hide">
 	            <div class="panel-heading"><h3 class="panel-title">Appointment Report</h3>
 	            </div><br>
-	            	<a href="javascript: w=window.open('{{url('appointreport/pdf')}}'); w.print()" type="button" class="btn btn-md btn-primary pull-right" style="margin-right: 40px;" id="generatePDF"><i class="glyphicon glyphicon-file" target="_blank"></i> Generate PDF</a>
+	            	<button type="submit" class="btn btn-primary btn-md pull-right" style="margin-right: 40px;" id="generatePdf"><i class="glyphicon glyphicon-file"></i> Generate PDF</button>
+                {!! Form::close() !!}
 	            <br><br>
 		            <div class="panel-body">
 		                <table id="appointTable" class="table table-striped table-bordered responsive" style="width: 100%">
@@ -89,17 +90,6 @@
 
   <script>
 
-  	$('#generatePDF').click(function(){
-
-  		var validate = confirm("Are you sure to print this? ");
-              if (validate==true){
-              		alert('Success');
-              	}
-              else {
-              		alert('Thank You!');
-              }
-
-  	});
 
   	$(document).on('click','#search', function (){
   		var start = $('#startDate').val();
