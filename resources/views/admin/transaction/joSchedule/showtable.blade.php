@@ -133,8 +133,8 @@
                                 <td>{{$service->name}}</td>
                                 <td>{{$service->description}}</td>
                                 <td id="status"></td>
-                                <td>   <button type="button" class="btn btn-modal bg-navy btn-sm" id="modal" 
-                                  data-id="{{$service->id}}" value="{{$service->id}}" data-toggle="modal" data-target="#steps-{{$service->id}}" disabled>
+                                <td>   <button type="button" class="btn btn-modal bg-navy btn-sm" id="modal-{{$service->id}}" 
+                                  data-id="{{$service->sequence}}" value="{{$service->id}}" data-toggle="modal" data-target="#steps-{{$service->id}}" disabled>
                           <i class="fa fa-eye"></i> <strong></strong> </button> </td>
                             </tr>
                         @endforeach                   

@@ -22,6 +22,8 @@ class JobOrdersSeeder extends Seeder
             'end_time' => '17:00:00',
             'progressCount' => '100.00',
             'isStatus' => 1,
+            'isStartEnabled' => 1,
+            'isStopEnabled' => 1,
             'created_at' => '2018-10-18 10:30:35',
             'updated_at' => '2018-10-18 17:12:55',
         ]);
@@ -30,6 +32,8 @@ class JobOrdersSeeder extends Seeder
             'inspection_id' => '2',
             'jobStart' => '2018-10-09',
             'jobStart_time' => '8:00:00',
+            'isStartEnabled' => 1,
+            'isStopEnabled' => 1,
             'start' => '2018-10-9', 
             'start_time' => '10:00:00',
             'end' => '2018-10-12', 

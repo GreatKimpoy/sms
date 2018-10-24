@@ -20,7 +20,8 @@ Route::resource('query', 'QueryController');
 Route::resource('joreport', 'jobReportController',['only' => [
             'index','store']]);
 Route::post('joreport/filter','jobReportController@filter');
-Route::get('joreport/pdf', 'PdfController@job');
+
+
 
 
 Route::resource('prodreport', 'prodReportController',['only' =>[

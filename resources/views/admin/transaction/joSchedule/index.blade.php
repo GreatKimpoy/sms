@@ -74,7 +74,7 @@
             <div role="tabpanel" class="tab-pane active" id="calendarTab">
                 <div class="box box-primary">
                     <div class="box-body">
-                             {!! $calendar_details->calendar() !!}
+                             {!! $calendar->calendar() !!}
                     </div>
                 </div>
             </div>
@@ -135,7 +135,7 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.js"></script>
 
-{!! $calendar_details->script() !!}
+{!! $calendar->script() !!}
 
   <!-- DataTables -->
 <script src="{{asset ('bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>

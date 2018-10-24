@@ -47,14 +47,14 @@ class JobOrderScheduleController extends Controller
             $job_list[] = Calendar::event( 
                 $number."".$job->id." - ".$job->inspects->customer->firstname." ".$job->inspects->customer->lastname,
                 true,
-                new \DateTime($job->start),
+                new \DateTime($job->jobStart),
                 new \DateTime($job->end.'+1 day')
             );
                 
         }
         
-        $calendar_details = Calendar::addEvents($job_list);
-        return view( $this->viewBasePath . '.joSchedule.index', compact('calendar_details'))
+        $calendar = Calendar::addEvents($job_list);
+        return view( $this->viewBasePath . '.joSchedule.index',compact('calendar'))
         ->with('jobs', $jobs);
     }
 
@@ -70,7 +70,7 @@ class JobOrderScheduleController extends Controller
         $customers = Customer::all();
         $technicians = Technician::all();
         $services = ServiceList::all();
-        $inspects = Inspection::all();
+        $inspects = Inspection::where(['isActive' => 1])->get();
         $parts = VehiclePart::all();
 
         return view( $this->viewBasePath . '.joSchedule.create')
@@ -133,7 +133,7 @@ class JobOrderScheduleController extends Controller
             'type' => 'success'
         ]);
 
-        return view($this->viewBasePath.'.joSchedule.index', compact('calendars'));
+        return Redirect('schedule');
 
 
         

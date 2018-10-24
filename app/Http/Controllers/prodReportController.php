@@ -58,6 +58,26 @@ class prodReportController extends Controller
     public function store(Request $request)
     {
         //
+        $job = JobOrder::all(); 
+        $jobs = JobOrder::findOrFail(1);
+        $dateStart = date('m/d/Y', strtotime($jobs->created_at));
+        $startDate = $request->start;
+        $endDate = $request->end;
+        $start = date_create($request->start);
+        $start = date_format($start,"F d,Y");
+        $end = date_create($request->end);
+        $end = date_format($end,"F d,Y");
+        $date = "From $start To $end";
+            $tech = DB::select(DB::raw('
+            SELECT jo.*, CONCAT_WS(" ",t.firstName,t.middleName,t.lastName) AS technician, t.id as techid, COUNT(*) as serviceNumber FROM job_orders AS jo
+            JOIN job_technicians AS jt ON jt.job_id = jo.id
+            JOIN technicians AS t on t.id = jt.technician_id
+            JOIN job_services as js on js.job_id = jo.id
+            JOIN service_lists as s on s.id = js.service_id
+            WHERE jo.isStatus = 1 AND jo.end BETWEEN "'.$startDate.'" AND "'.$endDate.'"
+            GROUP BY t.id
+            '));
+        return View('pdf/prodReport',compact('tech','date','job'));
     }
 
     public function filter(Request $request)

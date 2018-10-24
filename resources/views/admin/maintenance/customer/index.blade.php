@@ -28,7 +28,6 @@
     <div class="box box-primary col-sm-12 mt-3">
       <div class="box-block pt-3">
         <div class="box-header">
-         <a href="{{ url('customer')}}" class="btn btn-success pull-right"><i class= "fa fa-stethoscope"></i><strong> NEW INSPECTION</strong></a>
          </div>
         
         <table id="customersTable" class="table table-bordered table-hover">
