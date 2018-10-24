@@ -40,9 +40,10 @@ class JobOrderScheduleController extends Controller
     {
         //
         $jobs = JobOrder::where('isActive',1)->get();
+        $order = JobOrder::all();
         $job_list= [];
         $number = 'JO0000';
-        foreach ($jobs as $key => $job) {
+        foreach ($order as $key => $job) {
             # code...
             $job_list[] = Calendar::event( 
                 $number."".$job->id." - ".$job->inspects->customer->firstname." ".$job->inspects->customer->lastname,
