@@ -23,6 +23,28 @@ class JobServicesSeeder extends Seeder
             'job_id' => '2',
             'sequence' => '5', 
         
-            ]);
+        ]);
+
+        DB::table('job_services')->insert([
+            'service_id' => '4',
+            'job_id' => '3',
+            'sequence' => '11', 
+        
+        ]);
+
+        DB::table('job_services')->insert([
+            'service_id' => '10',
+            'job_id' => '4',
+            'sequence' => '10', 
+        
+        ]);
+        DB::table('job_services')->insert([
+            'service_id' => '9',
+            'job_id' => '5',
+            'sequence' => '4', 
+        
+        ]);
+
+        
     }
 }

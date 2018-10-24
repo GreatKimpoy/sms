@@ -28,5 +28,22 @@ class InspectionTechnicianSeeder extends Seeder
             'inspection_id' => '2',
             'technician_id' => '1', 
         ]);
+        DB::table('inspection_technicians')->insert([
+            'inspection_id' => '3',
+            'technician_id' => '3', 
+        ]);
+        DB::table('inspection_technicians')->insert([
+            'inspection_id' => '4',
+            'technician_id' => '4', 
+        ]);
+        DB::table('inspection_technicians')->insert([
+            'inspection_id' => '5',
+            'technician_id' => '5', 
+        ]);
+        DB::table('inspection_technicians')->insert([
+            'inspection_id' => '5',
+            'technician_id' => '6', 
+        ]);
+
     }
 }

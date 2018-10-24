@@ -23,5 +23,21 @@ class InspectionSeeder extends Seeder
             'owner_id' => '2',
             'additional_remarks' => '',
         ]);
+        DB::table('inspections')->insert([
+            'customer_id' => '3',
+            'owner_id' => '3',
+            'additional_remarks' => '',
+        ]);
+        DB::table('inspections')->insert([
+            'customer_id' => '4',
+            'owner_id' => '4',
+            'additional_remarks' => '',
+        ]);
+
+        DB::table('inspections')->insert([
+            'customer_id' => '5',
+            'owner_id' => '5',
+            'additional_remarks' => '',
+        ]);
     }
 }
