@@ -124,6 +124,11 @@ class JobOrderScheduleController extends Controller
                 'service_id' => $service,
             ]);
         }
+        
+        $inspect = DB::table('inspections') 
+        ->where('id', $request->customer)
+        ->update(['isActive' => 0]);
+
 
            DB::commit();
 
@@ -367,6 +372,25 @@ class JobOrderScheduleController extends Controller
         
         return response()->json(['success'=>'Data is successfully added']);
       
+   }
+
+   public function updateStatus (Request $request)
+   {
+
+         $service = DB::table('job_services')
+        ->where('job_id', $request->job_id)
+        ->where('service_id' , $request->service_id )
+        ->update(['sequence' => $request->sequence]);
+
+
+        DB::beginTransaction();
+        $inspect = DB::table('inspections') 
+        ->where('id', $request->inspect_id)
+        ->update(['isActive' => 0]);
+
+        DB::commit();
+
+        return response()->json(['success'=>'Data is successfully added']);
    }
 
 

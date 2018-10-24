@@ -478,12 +478,12 @@
 
                 });
 
-                 e.preventDefault();
-                   $.ajaxSetup({
-                      headers: {
-                          'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-                      }
-                  });
+               e.preventDefault();
+                 $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                    }
+                });
                 var d = new Date();
                 d = d.toLocaleTimeString().replace(/:\d+ /, ' '); 
                 var jobId = $('#jobNumber').val();

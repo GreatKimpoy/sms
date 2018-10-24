@@ -74,7 +74,7 @@ Route::namespace('Transaction')->group(function() {
     Route::post('startRequest', 'JobOrderScheduleController@startRequest');
     Route::post('stopRequest', 'JobOrderScheduleController@stopRequest');
     Route::get('getProgress', 'JobOrderScheduleController@getProgress');
-
+    Route::post('updateStatus', 'JobOrderScheduleController@updateStatus');
 
 
 });

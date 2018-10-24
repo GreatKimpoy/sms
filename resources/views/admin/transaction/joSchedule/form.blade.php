@@ -52,7 +52,7 @@
   
         <div class="col-md-6">
             <label for="start_date" class="labely">Start Date</label>
-            <input type="date" name="start" id="start" class="form-control" required>
+            <input type="date" name="start" id="start" class="form-control" value="<?php echo date('Y-m-j'); ?>" required>
         </div>
         
       <br>
@@ -199,7 +199,12 @@ $(function () {
     });
   });
 
+
+
+
 </script>
+
+
 
 
 @endsection
