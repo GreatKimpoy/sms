@@ -103,9 +103,12 @@
                             <td>
                                 {{$job->inspects->customer->firstname}} {{$job->inspects->customer->middlename}} {{$job->inspects->customer->lastname}}
                             </td>
-                            <td>
+                            <td class="text-right">
                               <a href="{{url('schedule/'.$job->id)}}" type="button" class="btn bg-navy btn-sm"   data-toggle="tooltip" data-placement="top" title="Update record">
-                              <i class="fa fa-eye"></i>
+                                <i class="fa fa-eye"></i>
+                              </a>
+                               <a href="javascript: w=window.open('{{url('/schedule/pdf/'.$job->id)}}'); w.print()" target="_blank" type="button" class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Generate PDF">
+                                        <i class="fa fa-file"></i>
                               </a>
                             </td>
                           </tr>

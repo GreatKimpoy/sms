@@ -9,6 +9,62 @@
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('plugins/formbuilder/form-builder.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('plugins/formbuilder/form-render.min.css') }}">
 
+    <style type="text/css">
+        @page{
+            margin-top: 1cm;
+            margin-bottom: 0.25cm;
+        }
+        body{
+            font-family: "SegoeUI","Sans-serif";
+            font-size: 12px;
+        }
+        .header{
+            font-size: 20px!important;
+        }
+        .page-break {
+            page-break-after: always;
+        }
+        .center{
+            text-align: center;
+        }
+        .col-md-12{
+            width: 100%;
+        }
+        .col-md-6{
+            width: 50%;
+        }
+        .border{
+            border: 1px solid black;
+        }
+        .text-right{
+            text-align: right;
+        }
+        table{
+            clear: both;
+            border: 1px solid black
+        }
+        tbody tr{
+            border: 1px solid black;
+        }
+        tr:nth-child(even) {
+            background-color: #e6e6e6
+        }
+        thead th{
+            background-color: black;
+            color: white;
+        }
+        .footer{
+            position: absolute;
+            bottom: 0;
+        }
+        .footerd{
+            font-size: 0.8em;
+        }
+        .page-break {
+            page-break-after: always;
+        }
+    </style>
+
 
 
     <!-- CSRF Token -->
@@ -23,7 +79,9 @@
 <body id="hi">
 
 <center>
-        <h2>MIDSOUTH</h2>
+        <div class="center header">
+          <img src="{{asset ('dist/img/midsouth.png')}}" class="img-circle" width="30" > MIDSOUTH TECHNICAL SERVICES CORPORATION
+        </div>
         <h4>BASIC INSPECTION FORM</h4>
 </center>
 

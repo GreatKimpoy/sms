@@ -14,7 +14,7 @@
 				<label for="customer"> Customer Name <span class="asterisks"><strong>*</strong></span></label>
 				
          
-				<select name="customer" id="customer"  class="form-control select2" style="width: 100%;">
+				<select name="customer" id="customer"  class="form-control select2" id="dropdown"  style="width: 100%;">
 		    
 				@foreach($inspects as $inspect)
 					<option></option>
@@ -34,7 +34,7 @@
   
         <div class="col-md-12">
             <label for="service" class="labely">Service Search</label>
-            <select name="service[]" class="form-control select2 service" multiple="multiple" style="width: 100%;">
+            <select name="service[]" class="form-control select2 service" id="dropdown" multiple  style="width: 100%;">
                 <option value=""></option>
                  @foreach($services as $service)
                       <option value="{{$service->id}}">{{$service->name}} </option>
@@ -81,8 +81,8 @@
   
 
   $(function(){
-         $('.select2').select2();
-
+         $(".select2").select2();
+          
     })
 
 

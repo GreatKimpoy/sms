@@ -63,8 +63,8 @@
     </style>
     <body>
         <div class="center header">
-            MIDSOUTH TECHNICAL SERVICES CORPORATION
-        </div>
+          <img src="{{asset ('dist/img/midsouth.png')}}" class="img-circle" width="30"> MIDSOUTH TECHNICAL SERVICES CORPORATION
+        </div><br>
         <div style="clear:both"></div>
         <div class="col-md-12 border center">
             JOB ORDER REPORT

@@ -68,6 +68,8 @@ class jobReportController extends Controller
         $end = date_create($request->end);
         $end = date_format($end,"F d,Y");
         $date = "From $start To $end";
+
+
         $job = DB::select(DB::raw('
          SELECT jo.*, CONCAT_WS(" ",c.firstname,c.middlename,c.lastname) AS customer, v.plate_number as plate, vd.make as make,vd.model as model,vd.transmission_type AS transmission, CONCAT_WS(" ",t.firstName,t.middleName,t.lastName) as technician, s.name as serviceName  FROM job_orders AS jo
         JOIN inspections AS i ON i.id = jo.inspection_id 
@@ -81,6 +83,7 @@ class jobReportController extends Controller
         WHERE jo.isStatus = 1 AND jo.end BETWEEN "'.$startDate.'" AND "'.$endDate.'"
         GROUP BY jo.id
             '));
+
         //$pdf = PDFSnappy::loadView('pdf.inspection',compact('inspect','date'));
         //return $pdf->inline('github.pdf');
         //PDF::setOptions(['dpi' => 150, 'defaultFont' => 'sans-serif']);

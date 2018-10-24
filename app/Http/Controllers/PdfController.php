@@ -29,6 +29,13 @@ class PdfController extends Controller
         return View('pdf/inspection',compact('inspect','date'));
     }
 
+    public function jobs($id){
+        $date = date('Y-m-d H:i:s');
+        $job = JobOrder::findOrFail($id);
+
+        return View('pdf/joborder',compact('job','date'));
+    }
+
     public function job(Request $request){
         $date = date('Y-m-d H:i:s');
         $startDate = $request->start;

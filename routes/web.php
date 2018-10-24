@@ -58,6 +58,7 @@ Route::namespace('Maintenance')->group(function() {
 
 //PDF
 Route::get('checkup/pdf/{id}','PdfController@inspect');
+Route::get('schedule/pdf/{id}','PdfController@jobs');
 
 Route::namespace('Transaction')->group(function() {
     Route::get('checkup/delete/{id}', 'InspectionCheckupController@delete');

@@ -59,13 +59,13 @@
   $(document).ready(function() {
     var table = $('#customersTable').DataTable( {
         select: {
-          style: 'single'
+          style: 'single',
         },
         language: {
             searchPlaceholder: "Search..."
         },
         columnDefs:[
-        { targets: 'no-sort', orderable: false },
+        { targets: 'no-sort', orderable: false, responsive: true, },
         ],
         "dom": "<'row'<'col-sm-3'l><'col-sm-6'<'toolbar'>><'col-sm-3'f>>" +
                 "<'row'<'col-sm-12'tr>>" +
