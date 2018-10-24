@@ -52,7 +52,7 @@
                         @foreach($inspects as $inspect)
                             <tr>
                                 <td>
-																		<li><strong>Inspection Number: INS000{{$inspect->id}} </strong></li>
+									<li><strong>Inspection Number: INS000{{$inspect->id}} </strong></li>
                                     <li>Plate: {{$inspect->plate_number}}</li>
                                 
                                     <li>Model: {{$inspect->make}} - {{$inspect->model}} </li>
@@ -74,8 +74,9 @@
                                     <a href="javascript: w=window.open('{{url('/checkup/pdf/'.$inspect->inspect_id)}}'); w.print()" target="_blank" type="button" class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Generate PDF">
                                         <i class="fa fa-file"></i>
                                     </a>
-
-																		<form action="{{ url('checkup/delete', ['id' => $inspect->id]) }}" method="post">
+																		<form method="post" action="{{ url("checkups/$inspect->id") }}" class="form-horizontal">
+																		<input type="hidden" name="_token" value="{{ csrf_token() }}">
+           													 <input type="hidden" name="_method" value="PUT">
 																		<button type="submit" data-id='` + {{$inspect->id}} + `"' class="btn-remove btn btn-danger"><i class= "fa fa-ban"></i></button>
 																		</form>
 																		

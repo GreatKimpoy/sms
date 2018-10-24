@@ -12,7 +12,7 @@
 @section('content-header')
 	<section class="content-header">
 	  <div class="container-fluid">
-	      <h3 class="float-left">Inspection Check-up Form</h3>
+	      <h3 class="float-left">inspection Check-up Form</h3>
 	  </div><!-- /.container-fluid -->
 	</section>
 @endsection

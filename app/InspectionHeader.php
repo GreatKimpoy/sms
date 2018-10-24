@@ -16,6 +16,7 @@ class InspectionHeader extends Model
         'inspection_id',
         'item_id',
         'remarks',
+        'isActive',
     	
     ];
 

@@ -39,6 +39,7 @@ class InspectionCheckupController extends Controller
             ->join('vehicle_owners as v','v.id','i.owner_id')
             ->join('vehicle_models as vd','vd.id','v.vehicle_id')
             ->select('i.*','i.id as inspect_id','c.*','v.*','vd.*')
+            ->where('i.isActive',1)
             ->get();
          return View($this ->viewBasePath.'.index', compact('inspects'));
     
@@ -312,16 +313,16 @@ class InspectionCheckupController extends Controller
 
                 $forms = $request->form;
                 $items = $request->item_id;
-                InspectionHeader::where('inspection_id',$id)->update(['isActive'=>0]);
-                foreach($items as $key=>$item){
+                InspectionHeader::where('inspection_id',$id)->update(['isActive'=>1]);
+                foreach($items as $key => $item){
                     InspectionHeader::updateOrCreate(
                         [
-                            'inspectionId' => $inspection->id,
-                            'item_id' => $item,
+                            'inspection_id' => $inspection->id,
+                            'item_id' => $items,
                         ],
                          [   
                             'remarks' => $forms[$key],
-                            'isActive' => 1
+                            'isActive' => 0
                         ]
                     );
                 }
@@ -347,9 +348,9 @@ class InspectionCheckupController extends Controller
                 $errMess = $e->getMessage();
                 return back()->withErrors($errMess);
             }
-            $request->session()->flash('success', 'Successfully added.');  
+            $request->session()->flash('success', 'Successfully Updated.');  
          
-           return redirect('inspection');
+           return redirect('checkup');
     
         }
         
@@ -361,36 +362,19 @@ class InspectionCheckupController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {   
-       
-     
-      
+       try{
+           DB::beginTransaction();
+           $inspection = Inspection::findOrFail($id)->update(['isActive'=>0]);
+           DB::commit();
+       }catch(\Illuminate\Database\QueryException $e){
+        DB::rollBack();
+        $errMess = $e->getMessage();
+        return Redirect::back()->withErrors($errMess);
+    }
+    return Redirect('checkup');
         
     }
-
-    public function delete(Request $request, $id)
-    {
-        $inspection = InspectionHeader::where('inspection_id', '=', $id);
-        $service = InspectionService::where('inspection_id', '=', $id);
-        $ins = Inspection::findOrfail($id);
-
-        $inspection->delete();
-        $ins->delete();
-
-        if( $request->ajax() ) {
-            return response()->json([
-                'title' => 'Success',
-                'message' => 'Category successfully removed',
-                'status' => 'ok',
-                'others' => '',
-            ], 200);
-        }
-
-        session()->flush('success', 'Category successfully removed');
-        return redirect($this->baseUrl);
-    }
-
-
 
 }

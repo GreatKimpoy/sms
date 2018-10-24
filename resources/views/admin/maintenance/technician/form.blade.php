@@ -114,6 +114,7 @@
         <label for="birthdate" class="labely">Birthdate</label><span class="asterisks"><strong>*</strong></span>
             <input 
                 class="form-control align-center" 
+                min="1960-01-01" max="2000-12-12"
                 placeholder="Birthdate" 
                 maxlength="50" 
                 required 
