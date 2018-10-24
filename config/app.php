@@ -165,6 +165,7 @@ return [
         Barryvdh\DomPDF\ServiceProvider::class,
 
         MaddHatter\LaravelFullcalendar\ServiceProvider::class,
+        Yajra\DataTables\DataTablesServiceProvider::class,
 
     ],
 
@@ -217,6 +218,7 @@ return [
         'PDF' => Barryvdh\DomPDF\Facade::class,
         'PDFSnappy' => Barryvdh\Snappy\Facades\SnappyPdf::class,
         'Calendar' => MaddHatter\LaravelFullcalendar\Facades\Calendar::class,
+        'DataTables' => Yajra\DataTables\Facades\DataTables::class,
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
         

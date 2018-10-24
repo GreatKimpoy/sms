@@ -27,8 +27,8 @@
   <div class="container-fluid">
     <div class="box box-primary col-sm-12 mt-3">
       <div class="box-block pt-3">
-        <div class="box-body">
-         
+        <div class="box-header">
+         <a href="{{ url('customer')}}" class="btn btn-success pull-right"><i class= "fa fa-stethoscope"></i><strong> NEW INSPECTION</strong></a>
          </div>
         
         <table id="customersTable" class="table table-bordered table-hover">
@@ -82,7 +82,8 @@
           { data: "email" },
           { data: function(callback){
             return `
-            <a href="{{ url("customer") }}` + '/' + callback.id + `/edit" class="btn btn-success"><i class= "fa fa-stethoscope"></i><strong> NEW INSPECTION</strong></a>
+
+            <a href="{{ url("customer") }}` + '/' + callback.id + `/edit" class="btn btn-sm btn-success"><i class= "fa fa-stethoscope"></i><strong> NEW INSPECTION</strong></a>
             <a href="{{ url("customers/update") }}` + '/' + callback.id + `" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></a>
              
             `

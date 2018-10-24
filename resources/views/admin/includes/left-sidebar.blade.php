@@ -89,17 +89,20 @@
               </ul>
             </li>
 
-        <li class="header">QUERIES & REPORTS</li>
+        <li class="header">REPORT</li>
 
-
-         <li {{{ (Request::is('query') ? 'class = active': '')}}} ><a href="{{url('query')}}"><i class="fa fa-book"></i> Queries</a></li>
-
-            <!--Technician-->
-         <li {{{ (Request::is('report') ? 'class = active': '')}}}><a href="{{url('report')}}"><i class="fa fa-book"></i> Reports</a></li>
-
-
-
-
+          <li class="treeview">
+              <a href="#"><i class="fa fa-book"></i> <span>Reports</span>
+                <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+                 <li {{{ (Request::is('joreport') ? 'class=active': '')}}} ><a href="{{url('joreport')}}"><i class="fa fa-briefcase"></i> Job Order Report </a></li>
+                 <li {{{ (Request::is('prodreport') ? 'class=active': '')}}} ><a href="{{url('prodreport')}}"><i class="fa fa-book"></i> Productivity Report </a></li>
+                 <li {{{ (Request::is('appointreport') ? 'class=active': '')}}} ><a href="{{url('appointreport')}}"><i class="fa fa-calendar-alt"></i> Appointment Report </a></li>
+              </ul>
+            </li>
       </ul>
       <!-- /.sidebar-menu -->
     </section>

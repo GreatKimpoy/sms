@@ -35,7 +35,7 @@ class DashboardController extends Controller
         $currentMonth=date('m');
 
         $customer=Customer::whereRaw('MONTH(created_at) = ?', [$currentMonth])->get();
-        $job=JobOrder::whereRaw('MONTH(start) = ?', [$currentMonth])->get();
+        $job=JobOrder::whereRaw('MONTH(created_at) = ?', [$currentMonth])->get();
         $technicians = JobTechnician::where('job_id', 'id');
         $jobs = JobOrder::where('isStatus', 1)->get(); 
         return view('admin.dashboard.index',compact('customer','job' ,'jobs', 'technicians'));

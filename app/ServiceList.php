@@ -9,7 +9,7 @@ class ServiceList extends Model
     //
     protected $table = 'service_lists';
 	public $primaryKey = 'id';
-    public $timestamps = false;
+    public $timestamps = true;
 
     public function rules()
     {

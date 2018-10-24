@@ -112,30 +112,30 @@
 <div class="row" id="info">
 
 
-<div class="col-md-6">
-    <label for="contact">Contact Number</label>
-       <input 
-            class="form-control align-center" 
-            placeholder="Contact Number" 
-            maxlength="50" 
-            name="contact" 
-            type="text"
-            id="contact"
-            value="{{ isset($customer->contact) ? $customer->contact : old('contact') }}"
-            >
-</div>
+    <div class="col-md-6">
+        <label for="contact">Contact Number</label>
+           <input 
+                class="form-control align-center" 
+                placeholder="Contact Number" 
+                maxlength="50" 
+                name="contact" 
+                type="text"
+                id="contact"
+                value="{{ isset($customer->contact) ? $customer->contact : old('contact') }}"
+                >
+    </div>
 
-<div class="col-md-6">
-    <label for="email" class="labely" >Email Address</label>
-        <input 
-            class="form-control align-center" 
-            placeholder="Email Address" 
-            maxlength="50" 
-            name="email" 
-            type="text"
-            id="email"
-            value="{{ isset($customer->email) ? $customer->email : old('email') }}"
-            >
-</div>
+    <div class="col-md-6">
+        <label for="email">Email Address</label>
+            <input 
+                class="form-control align-center" 
+                placeholder="Email Address" 
+                maxlength="50" 
+                name="email" 
+                type="text"
+                id="email"
+                value="{{ isset($customer->email) ? $customer->email : old('email') }}"
+                >
+    </div>
 
-</div>
+</div><br>

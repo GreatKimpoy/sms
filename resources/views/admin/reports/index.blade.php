@@ -2,14 +2,13 @@
 
 
 @section('title')
-  {{"Queries"}}
+  {{"Report"}}
 @endsection
 
-@section('styles-includes')
-
-
-
-@endsection
+@section('styles-include')
+ <!-- DataTables -->
+  <link rel="stylesheet" href="{{asset ('bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css')}}">
+@stop
 
 @section('content-header')
 	<section class="content-header">
@@ -23,75 +22,77 @@
 @section('content-body')
 <section class="content-header">
   <div class="container-fluid">
-    <div class="box box-primary col-sm-12 mt-3">
+    <div class="box box-primary box-solid col-sm-12 mt-3">
       <div class="box-block pt-3">
-      	<div class="box-header"></div><hr>
-        <div class="box-body">
-        	<div class="row">
-        		<div class="col-md-6">
-        			<label for="report" ><h5><strong>Report Search</strong></h5></label>
-          			<div class="input-group">
-        					<span class="input-group-addon"><i class="fa fa-search"></i></span>
-        					<select name="reportId" id="reportId" class="form-control select2" required data-placeholder="Search Report">
-        			        <option></option>
-        			        <option value="1">Job Order This Month</option>
-                      <option value="2">Inspection Report This Month</option>
-        			    </select>
-          			</div>
-        		</div>
-            <div class="col-md-4">
-              <label for="dateRange" ><h5><strong>Date range</strong></h5></label>
-              <div class="input-group">
-                  <span class="input-group-addon"><i class="fa fa-calendar-alt"></i></span>
-                  <input type="text" class="form-control pull-right" id="reservation" placeholder="Date" required>
+      	<div class="box-header">
+         <h4 class="box-title"> Reports as of now <b id="dateLabel">{{$dateEnd}}</b> </h4> 
+        </div>
+          <div class="box-body dataTable_wrapper">
+           {!! Form::open(['url' => 'report','id' => 'reportForm','target' => '_blank']) !!}
+              <div class="row">
+                  <div class="col-md-6">
+                      <div class="form-group">
+                          {!! Form::label('Report', 'Report Search') !!}
+                          <div class="input-group">
+                              <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                              <select id="reportId" name="reportId" class="form-control">
+                                  <option value="0"></option>
+                                  <option value="1">Job Order Report</option>
+                                  <option value="2">Most Served Customers</option>
+                                  <option value="3">Top Services</option>
+                                  <option value="4">Technician Who finished most services</option>
+                              </select>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-md-4">
+                      <div class="form-group">
+                        <label>Date Range:</label>
+                          <div class="input-group">
+                            <div class="input-group-addon">
+                              <i class="fa fa-calendar"></i>
+                            </div>
+                            {!! Form::input('text','date',$dateString,[
+                                    'class' => 'form-control',
+                                    'id'=>'daterange',
+                                    'placeholder'=>'Date',
+                                    'required'])
+                                !!}
+                          </div>
+                      </div>
+                  </div>
+                    <div class="col-md-2">
+                        {!! Form::label('action', 'Action') !!}
+                        <button type="submit" class="btn btn-primary btn-md" id="generatePdf"><i class="glyphicon glyphicon-file"></i> Generate PDF</button>
+                    </div>
                 </div>
-            </div>
-        	</div>
-          <br>
-          <div class="row">
-            <div class="col-md-12">
-              <div class="panel panel-primary" id="pan1" style="display">
-                    <div class="panel-heading"></div>
+                {!! Form::close() !!}
+                <div class="panel panel-primary pan1"  >
+                    <div class="panel-heading"><h3 class="panel-title">Job Order Report</h3></div>
                     <div class="panel-body">
-                        <table id="jobsTable" class="table table-striped table-bordered responsive">
+                        <table id="jobsTable" class="table table-striped table-bordered responsive" style="width: 100%">
                             <thead>
                                 <tr>
-                                    <th>Id</th>
+                                    <th width="5%">#</th>
                                     <th>Customer</th>
-                                    <th class="text-right">Status</th>
+                                    <th>Vehicle</th>
                                 </tr>
                             </thead>
                             <tbody>
-                              @foreach($customers as $customer)
-                                <tr>
-                                  <td>{{$customer->id}}</td>
-                                  <td>
-                                    <ul>
-                                      <li>
-                                        {{$customer->firstname}} {{$customer->middlename}} {{$customer->lastname}}
-                                      </li>
-                                      <li>{{$customer->street}} {{$customer->barangay}} {{$customer->city}}</li>
-                                      <li>
-                                        {{$customer->email}}
-                                      </li>
-                                      <li>
-                                        {{$customer->contact}}
-                                      </li>
-                                    </ul>
-                                  </td>
-                                  <td>
-                                    DONE
-                                  </td>
-                                </tr>
+                              @foreach($job as $jobs)
+                              <tr>
+                                <td>{{$loop->index+1}}</td>
+                                <td>{{$jobs->customer}}</td>
+                                <td>
+                                  {{$jobs->plate}}<br>
+                                  {{$jobs->make}} {{$jobs->model}} - {{$jobs->transmission}}
+                                </td>
+                              </tr>
                               @endforeach
                             </tbody>
                         </table>
                     </div>
                 </div>
-            </div>
-          </div>
-
-        </div>
       </div>
     </div>
   </div>
@@ -102,6 +103,91 @@
 
 
 @section('scripts-include')
+
+  <!-- DataTables -->
+  <script src="{{asset ('bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
+  <script src="{{asset ('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
+  <script>  
+
+  $('#daterange').daterangepicker(
+      {
+        ranges: {
+        'Today': [moment(), moment()],
+        'Last for 7 Days': [moment(), moment().add(6, 'days')],
+        'Last for 30 Days': [moment(), moment().add(29, 'days')],
+        'This Month': [moment().startOf('month'), moment().endOf('month')],
+    },
+        startDate: moment().subtract(29, 'days'),
+        endDate  : moment()
+      },
+      function (start, end) {
+        $('#daterange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
+      }
+    )
+
+  $(document).on('change','#reportId',function(){
+      reportId = $(this).val();
+      $('.panel').addClass('hide');
+      $('.pan'+reportId).removeClass('hide');
+      if(reportId=="1"){
+          jList.ajax.reload();
+      }else if(reportId=="2"){
+          sList.ajax.reload();
+      }else if(reportId=="3"){
+          iList.ajax.reload();
+      }else if(reportId=="4"){
+          serviceList.ajax.reload();
+      }
+  });
+  $(document).on('change','#daterange',function(){
+      $('#dateLabel').text($(this).val());
+      reportId = $('#reportId').val();
+      if(reportId=="1"){
+          jList.ajax.reload();
+      }else if(reportId=="2"){
+          sList.ajax.reload();
+      }else if(reportId=="3"){
+          iList.ajax.reload();
+      }else if(reportId=="4"){
+          serviceList.ajax.reload();
+      }
+  });
+
+  var datee = $('#daterange').val();
+
+       
+  $.ajaxSetup({
+          headers: {
+              'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+          }
+      });
+  
+  var jList = $('#jobsTable').DataTable({
+           "ajax" : {
+            "url": 'report/filter',
+            "type": 'POST',
+             "headers": {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+            "data": function ( d ) {
+                    return {reportId: "1",date: datee};
+                }, 
+        },
+        "columns": [
+            { "data": "id", },
+            { "data": "customer"},
+            { "data": "plate", 
+                render:  function(data,type,row,meta){   
+                return row.plate+" | "+row.make+" "+row.model+" - ("+row.transmission+')';
+            } 
+          },
+        ],
+    });
+
+
+
+
+  </script>
 
 
 <script>
@@ -114,68 +200,6 @@
 
 </script>
 
-
-<script>
-  
-  $(function(){
-
-      $('#reservation').daterangepicker();
-      $('#daterange-btn').daterangepicker(
-      {
-        ranges   : {
-          'Today'       : [moment(), moment()],
-          'Yesterday'   : [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-          'Last 7 Days' : [moment().subtract(6, 'days'), moment()],
-          'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-          'This Month'  : [moment().startOf('month'), moment().endOf('month')],
-          'Last Month'  : [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-        },
-        startDate: moment().subtract(29, 'days'),
-        endDate  : moment()
-      },
-      function (start, end) {
-        $('#daterange-btn span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
-      }
-    )
-
-  });
-
-</script>
-
-<script>
-  var select = this.value;
-  $('#queryId').change(function() {          
-
-            if($(this).val() == "1"){
-              $('#pan1').show();
-            }
-            else
-            {
-              $('#pan1').hide();
-            }
-            if($(this).val() == "2"){
-              $('#pan2').show();
-            }
-            else
-            {
-              $('#pan2').hide();
-            }
-            if($(this).val() == "3"){
-              $('#pan3').show();
-            }
-            else
-            {
-              $('#pan3').hide();
-            }
-            if($(this).val() == "4"){
-              $('#pan4').show();
-            }
-            else
-            {
-              $('#pan4').hide();
-            }
-        });
-</script>
 
 
 @endsection

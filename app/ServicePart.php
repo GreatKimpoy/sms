@@ -8,7 +8,7 @@ class ServicePart extends Model
 {
     protected $table = 'service_parts';
 	public $primaryKey = 'id';
-    public $timestamps = false;
+    public $timestamps = true;
 
     public function service(){
         $this->belongsTo('App\ServiceList', 'service_id', 'id');

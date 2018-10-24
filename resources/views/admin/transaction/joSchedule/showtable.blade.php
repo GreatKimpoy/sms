@@ -62,11 +62,7 @@
                       Job Id: <strong>  JO000{{$jobs->id}} </strong> <br>
                       Customer Name:<strong> {{$jobs->inspects->customer->firstname}} {{$jobs->inspects->customer->middlename}} {{$jobs->inspects->customer->lastname}} </strong>  <br>
                       Plate Number:<strong> {{$jobs->inspects->vehicle->plate_number}} </strong>  <br>
-                       <?php
-                          $date = date_create($jobs->start);
-                          $date = date_format($date,"F d,Y");
-                      ?>
-                      Start Date: <label for="start" id="start" value="start">{{$date}}</label>&nbsp;  
+                      Start Date: <label for="start" id="start" value="start">{{$jobs->start}}</label>&nbsp;  
                       Start Time: <label for="start" id="startTime" value="startTime">{{$jobs->start_time}}</label>  
                     </div>
 
@@ -74,7 +70,7 @@
                       Car-Brand: <strong>  {{$jobs->inspects->vehicle->model->make}}  </strong>  <br>
                       Car Model: <strong> {{$jobs->inspects->vehicle->model->model}} </strong> <br>
                       Transmission:<strong>{{$jobs->inspects->vehicle->model->transmission_type}}</strong><br>
-                      End Date: <label for="end" id="end" value="start">{{$jobs->end}}</label>&nbsp; 
+                      End Date: <label for="end" id="end" value="end">{{$jobs->end}}</label>&nbsp; 
                       End Time: <label for="end" id="endTime" value="endTime">{{$jobs->end_time}}</label>
 
                     </div>
@@ -104,10 +100,10 @@
 
                   <div class="row">
                     <div class="col-md-12" style="width: 50%">
-                      <center><button type="button" class="btn btn-success " id="btnStart" data-enabled=""><i class="fa fa-play"></i></button>
+                      <center><button type="button" class="btn btn-success " id="btnStart" data-start="{{$jobs->isStartEnabled}}"><i class="fa fa-play"></i></button>
                     </div>
                     <div class="col-md-12" style="float: left;width: 50%">
-                      <center><button type="button" class="btn btn-danger " id="btnStop"disabled ><i class="fa fa-stop" data-enabled=""></i></button>
+                      <center><button type="button" class="btn btn-danger " id="btnStop" data-stop="{{$jobs->isStopEnabled}} "disabled><i class="fa fa-stop"></i></button>
                     </div>
                   </div>
 
@@ -400,74 +396,121 @@
             ((''+month).length<2 ? '0' : '') + month + '-' +
             ((''+day).length<2 ? '0' : '') + day;
 
+   var start = $('#btnStart').data('start');
+   var stop = $('#btnStop').data('stop');         
+
+   if (start==1 && stop==0 ) {
+      $('#btnStart').prop("disabled", true);
+      $('#btnStop').prop("disabled", false);
+      $("#save").prop("disabled",false);
+      $('table.table-bordered tr td button').each(function(){
+        $(this).prop("disabled",false);
+        $("#modal").prop("disabled",false);      
+
+    });
+   }
+   else if (start == 1 && stop==1){
+      $('#btnStop').prop("disabled", true);
+      $('#btnStart').prop("disabled", true);
+      $("#save").prop("disabled",true);
+      $('table.table-bordered tr td button').each(function(){
+        $(this).prop("disabled",true);
+        $("#modal").prop("disabled",true);      
+
+    });
+   }
+
     $('#btnStart').click(function(e){
+          var validate = confirm("Are you sure to start this job?");
+              if (validate==true){
+                  confirm("The Job has been started");
+                          $(this).prop("disabled",true);
+                          $("#save").prop("disabled",false);
+                          $("#btnStop").prop("disabled",false);
+                          $('table.table-bordered tr td button').each(function(){
+                              $(this).prop("disabled",false);
+                              $("#modal").prop("disabled",false);      
 
+                          });
+                          e.preventDefault();
+                           $.ajaxSetup({
+                              headers: {
+                                  'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                              }
+                          });
+                        var d = new Date();
+                        d = d.toLocaleTimeString().replace(/:\d+ /, ' '); 
+                        var jobId = $('#jobNumber').val();
+                                jQuery.ajax({
+                                              url: "{{ url('startRequest') }}",    
+                                              method: "POST",
+                                              dataType: 'json',
+                                              data: { 
+                                                       id: jQuery('#jobNumber').val(),
+                                                       start: output,
+                                                       start_time:(d),
+                                                       _token : $('meta[name="csrf-token"]').attr('content'), 
+                                                       contentType: "application/json; charset=utf-8",
+                                              },
+                                              success: function(data){
+                                                alert("SUCCESS");
+                                                 
+                                  }
+                                  });
+                                $('#start').val(output).text(output);
+                                $('#startTime').val(d).text(d);
+              }
+              else{
+                $(this).prop("disabled",false);
+              }     
+           
+          });
 
-    var validate = confirm("Are you sure to start this job?");
-        if (validate==true){
-            confirm("The Job has been started");
-                    $(this).prop("disabled",true);
-                    $("#save").prop("disabled",false);
-                    $("#btnStop").prop("disabled",false);
+          $('#btnStop').click(function(e){
+          var validate = confirm("Are you sure to finish this job?");
+            if (validate==true){
+                confirm("The Job has been Finished!");
+                $("#save").prop("disabled",true); 
+                $(this).prop("disabled","disabled");
                     $('table.table-bordered tr td button').each(function(){
-                        $(this).prop("disabled",false);
-                        $("#modal").prop("disabled",false);      
+                    $("#modal").prop("disabled",true);  
+                   
 
-                    });
-        }
-        else{
-          $(this).prop("disabled",false);
-        }     
-     
-    })
+                });
 
-
-    $('#btnStop').click(function(e){
-      var validate = confirm("Are you sure to finish this job?");
-        if (validate==true){
-            confirm("The Job has been Finished!");
-            setTimeout(function() { $(this).prop("disabled",true);},15000) ;
-            $("#save").prop("disabled",true); 
-                $('table.table-bordered tr td button').each(function(){
-                $(this).prop("disabled",true);
-                $("#modal").prop("disabled",true);  
-               
-
-            });
-
-             e.preventDefault();
-               $.ajaxSetup({
-                  headers: {
-                      'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-                  }
-              });
-            var d = new Date();
-            d = d.toLocaleTimeString().replace(/:\d+ /, ' '); 
-            var jobId = $('#jobNumber').val();
-                    jQuery.ajax({
-                                  url: "{{ url('stopRequest') }}",    
-                                  method: "POST",
-                                  dataType: 'json',
-                                  data: { 
-                                           id: jQuery('#jobNumber').val(),
-                                           start: jQuery('#startTime').val(),
-                                           end: output,
-                                           end_time:(d),
-                                           _token : $('meta[name="csrf-token"]').attr('content'), 
-                                           contentType: "application/json; charset=utf-8",
-                                  },
-                                  success: function(data){
-                                    alert("SUCCESS");
-                                     
+                 e.preventDefault();
+                   $.ajaxSetup({
+                      headers: {
+                          'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
                       }
-                      });
-                    $('#end').val(output).text(output);
-                    $('#endTime').val(d).text(d);
-        }
-        else{
-          $(this).prop("disabled",false);
-        }
-  });
+                  });
+                var d = new Date();
+                d = d.toLocaleTimeString().replace(/:\d+ /, ' '); 
+                var jobId = $('#jobNumber').val();
+                        jQuery.ajax({
+                                      url: "{{ url('stopRequest') }}",    
+                                      method: "POST",
+                                      dataType: 'json',
+                                      data: { 
+                                               id: jQuery('#jobNumber').val(),
+                                               start: jQuery('#startTime').val(),
+                                               end: output,
+                                               end_time:(d),
+                                               _token : $('meta[name="csrf-token"]').attr('content'), 
+                                               contentType: "application/json; charset=utf-8",
+                                      },
+                                      success: function(data){
+                                        alert("SUCCESS");
+                                         
+                          }
+                          });
+                        $('#end').val(output).text(output);
+                        $('#endTime').val(d).text(d);
+            }
+            else{
+              $(this).prop("disabled",false);
+            }
+      });
 
 });
 

@@ -8,7 +8,7 @@ class Material extends Model
 {
     protected $table = 'materials';
 	public $primaryKey = 'id';
-    public $timestamps = false;
+    public $timestamps = true;
 
 
     public function jobs()

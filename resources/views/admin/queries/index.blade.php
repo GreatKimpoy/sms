@@ -26,7 +26,7 @@
         		<div class="col-md-12">
         			<label for="query" ><h5><strong>Query Search</strong></h5></label>
         			<div class="input-group">
-    					<span class="input-group-addon"><i class="fa fa-search"></i></span>
+    					<span class="input-gro.up-addon"><i class="fa fa-search"></i></span>
     					<select name="queryId" id="queryId" class="form-control select2" required data-placeholder="Search Query">
 					        <option></option>
 					        <option value="1"> Most Technicians Do Jobs</option>

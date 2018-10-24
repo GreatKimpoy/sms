@@ -11,7 +11,7 @@ class TechinicianSkill extends Model
     //Primary Key
 	public $primaryKey = 'id';
     // Timestamps
-    public $timestamps = false;
+    public $timestamps = true;
 
     public function technician(){
         return $this->belongsTo('App\Technician','technician_id');

@@ -18,7 +18,8 @@ class InspectionServiceSeeder extends Seeder
         ]);
         DB::table('inspection_services')->insert([
             'inspection_id' => '2',
-            'service_id' => '5', 
+            'service_id' => '2', 
         ]);
-    }
+
+     }
 }

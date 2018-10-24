@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
-use PDF;
 use App\JobOrder;
 
-class ReportController extends Controller
+use PDF;
+use Barryvdh\Snappy\Facades\SnappyPdf as PDFSnappy;
+
+class jobReportController extends Controller
 {
-     public $viewBasePath = 'admin';
+    public $viewBasePath = 'admin';
     /**
      * Display a listing of the resource.
      *
@@ -24,16 +26,19 @@ class ReportController extends Controller
         $dateString = $dateStart.'-'.$dateEnd;
 
         $job = DB::select(DB::raw('
-            SELECT CONCAT_WS(" ",c.firstname,c.middlename,c.lastname) AS customer, v.plate_number as plate, vd.make as make, vd.model as model, vd.transmission_type as transmission FROM job_orders as jo
+             SELECT jo.*, CONCAT_WS(" ",c.firstname,c.middlename,c.lastname) AS customer, v.plate_number as plate, vd.make as make,vd.model as model,vd.transmission_type AS transmission, CONCAT_WS(" ",t.firstName,t.middleName,t.lastName) as technician, s.name as serviceName  FROM job_orders AS jo
             JOIN inspections AS i ON i.id = jo.inspection_id 
+            JOIN job_technicians AS jt ON jt.job_id = jo.id
+            JOIN technicians AS t on t.id = jt.technician_id
+            JOIN job_services as js on js.job_id = jo.id
+            JOIN service_lists as s on s.id = js.service_id
             JOIN customers AS c ON c.id = i.customer_id
             JOIN vehicle_owners AS v ON v.id = i.owner_id
             JOIN vehicle_models AS vd ON vd.id = v.vehicle_id
             WHERE jo.isStatus = 1
             GROUP BY jo.id
             '));
-
-        return view ($this->viewBasePath . '.reports.index', compact('dateString', 'job','dateEnd'));
+        return view ($this->viewBasePath . '.jobReport.index',  compact('dateString', 'job','dateEnd'));
     }
 
     /**
@@ -54,59 +59,49 @@ class ReportController extends Controller
      */
     public function store(Request $request)
     {
-        //
         $jobs = JobOrder::findOrFail(1);
         $dateStart = date('m/d/Y', strtotime($jobs->created_at));
-        $date = $request->date;
-        $dates = explode('-',$request->date); // two dates MM/DD/YYYY-MM/DD/YYYY
-        $startDate = explode('/',$dates[0]); // MM[0] DD[1] YYYY[2]
-        $minus = $startDate[1]-1;
-        $dateEnd = "$startDate[2]-$startDate[0]-$minus 23:59:59";
-        $finalStartDate = "$startDate[2]-$startDate[0]-$startDate[1] 00:00:00";
-        $endDate = explode('/',$dates[1]); // MM[0] DD[1] YYYY[2] 
-        $finalEndDate = "$endDate[2]-$endDate[0]-$endDate[1] 23:59:59";
-        if($request->reportId=="1"){
+        $startDate = $request->start;
+        $endDate = $request->end;
+
             $job = DB::select(DB::raw('
             SELECT jo.*, CONCAT_WS(" ",c.firstname,c.middlename,c.lastname) AS customer, v.plate_number as plate, vd.make as make,vd.model as model,vd.transmission_type AS transmission  FROM job_orders AS jo
             JOIN inspections AS i ON i.id = jo.inspection_id 
             JOIN customers AS c ON c.id = i.customer_id
             JOIN vehicle_owners AS v ON v.id = i.owner_id
             JOIN vehicle_models AS vd ON vd.id = v.vehicle_id
-            WHERE jo.isStatus = 1 AND jo.start BETWEEN "'.$finalStartDate.'" AND "'.$finalEndDate.'"
+            WHERE jo.isStatus = 1 AND jo.end BETWEEN "'.$startDate.'" AND "'.$endDate.'"
             GROUP BY jo.id
             ORDER BY jo.id
             '));
-            PDF::setOptions(['dpi' => 150 ]);
             $pdf = PDF::loadview('pdf.jobReport',compact('date','job'))->setPaper([0,0,612,792]);
             return $pdf->stream('jobreport.pdf');
-        }
 
     }
+
 
     public function filter(Request $request)
     {
         $jobs = JobOrder::findOrFail(1);
         $dateStart = date('m/d/Y', strtotime($jobs->created_at));
-        $date = $request->date;
-        $dates = explode('-',$request->date); // two dates MM/DD/YYYY-MM/DD/YYYY
-        $startDate = explode('/',$dates[0]); // MM[0] DD[1] YYYY[2]
-        $finalStartDate = $startDate[2].'/'.$startDate[0].'/'.$startDate[1];
-        $endDate = explode('/',$dates[1]); // MM[0] DD[1] YYYY[2] 
-        $finalEndDate = $endDate[2].'/'.$endDate[0].'/'.$endDate[1];
+        $startDate = $request->start;
+        $endDate = $request->end;
 
-        if($request->reportId=="1"){
             $job = DB::select(DB::raw('
-            SELECT jo.*, CONCAT_WS(" ",c.firstname,c.middlename,c.lastname) AS customer, v.plate_number as plate, vd.make as make,vd.model as model,vd.transmission_type AS transmission  FROM job_orders AS jo
+            SELECT jo.*, jt.*,  CONCAT_WS(" ",c.firstname,c.middlename,c.lastname) AS customer, v.plate_number as plate, vd.make as make,vd.model as model,vd.transmission_type AS transmission, CONCAT_WS(" ",t.firstName,t.middleName,t.lastName) as technician, s.name as serviceName  FROM job_orders AS jo
             JOIN inspections AS i ON i.id = jo.inspection_id 
+            JOIN job_technicians AS jt ON jt.job_id = jo.id
+            JOIN technicians AS t on t.id = jt.technician_id
+            JOIN job_services as js on js.job_id = jo.id
+            JOIN service_lists as s on s.id = js.service_id
             JOIN customers AS c ON c.id = i.customer_id
             JOIN vehicle_owners AS v ON v.id = i.owner_id
             JOIN vehicle_models AS vd ON vd.id = v.vehicle_id
-            WHERE jo.isStatus = 1
+            WHERE jo.isStatus = 1 AND jo.end BETWEEN "'.$startDate.'" AND "'.$endDate.'"
             GROUP BY jo.id
             ORDER BY jo.id
             '));
             return response()->json(['data'=>$job]);
-        }
     }
 
     /**
@@ -118,7 +113,7 @@ class ReportController extends Controller
     public function show($id)
     {
         //
-    }   
+    }
 
     /**
      * Show the form for editing the specified resource.
@@ -153,6 +148,4 @@ class ReportController extends Controller
     {
         //
     }
-
-
 }

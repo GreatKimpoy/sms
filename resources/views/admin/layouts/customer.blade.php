@@ -69,8 +69,7 @@
 <div class="row">
 
   
-
-    <div class="col-md-4">
+    <div class="col-md-6">
         <label for="contact" class="labely">Contact Number</label><span class="asterisks"><strong>*</strong></span>
            <input 
                 class="form-control align-center" 
@@ -83,7 +82,7 @@
                 value="{{ isset($customer->contact) ? $customer->contact : old('contact') }}">
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-6">
         <label for="email" class="labely">Email Address</label><span class="asterisks"><strong>*</strong></span>
             <input 
                 class="form-control align-center" 
